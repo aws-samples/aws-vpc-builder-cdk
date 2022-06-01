@@ -176,7 +176,7 @@ cdk bootstrap
 
 Create your own configuration file in the 'config' folder in this project.  Or deploy a sample one that's included.
 
-Each sample in the `config` directory includes a markdown file with deployment instructions and an architecture diagram
+Each sample in the `config` directory includes a markdown file with deployment instructions and an architecture diagram.  See what samples aare available and how to deploy them [here](config/README.md).
 
 Alternately a complete configuration file with many comments and every available option is in the `config-walkthrough.yaml` file.
 
