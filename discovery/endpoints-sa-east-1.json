@@ -1,0 +1,2770 @@
+[
+  {
+    "ServiceName": "aws.sagemaker.sa-east-1.notebook",
+    "ServiceId": "vpce-svc-0a2050abd52fe3a37",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "vpce-svc-0a2050abd52fe3a37.sa-east-1.vpce.amazonaws.com",
+      "notebook.sa-east-1.vpce.sagemaker.aws"
+    ],
+    "PrivateDnsName": "*.notebook.sa-east-1.sagemaker.aws",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.notebook.sa-east-1.sagemaker.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "aws.sagemaker.sa-east-1.studio",
+    "ServiceId": "vpce-svc-01d08e0b930df56e2",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "vpce-svc-01d08e0b930df56e2.sa-east-1.vpce.amazonaws.com",
+      "studio.sa-east-1.vpce.sagemaker.aws"
+    ],
+    "PrivateDnsName": "*.studio.sa-east-1.sagemaker.aws",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.studio.sa-east-1.sagemaker.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.s3-global.accesspoint",
+    "ServiceId": "vpce-svc-071b4570fe729b5cc",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "accesspoint.s3-global.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.accesspoint.s3-global.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.accesspoint.s3-global.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.access-analyzer",
+    "ServiceId": "vpce-svc-05455d94b05e6030d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "access-analyzer.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "access-analyzer.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "access-analyzer.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.acm-pca",
+    "ServiceId": "vpce-svc-0d05149af09c609de",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "acm-pca.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "acm-pca.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "acm-pca.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.airflow.api",
+    "ServiceId": "vpce-svc-0b45af2811bc0f634",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "api.airflow.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "api.airflow.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "api.airflow.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.airflow.env",
+    "ServiceId": "vpce-svc-0dbd8812d04ee2e1f",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "env.airflow.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "env.airflow.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "env.airflow.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.airflow.ops",
+    "ServiceId": "vpce-svc-09841011d9d2c3a8a",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ops.airflow.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ops.airflow.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ops.airflow.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.application-autoscaling",
+    "ServiceId": "vpce-svc-061d663a454779da0",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "application-autoscaling.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "application-autoscaling.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "application-autoscaling.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.appmesh-envoy-management",
+    "ServiceId": "vpce-svc-07d512316a7d79bc3",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "appmesh-envoy-management.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "appmesh-envoy-management.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "appmesh-envoy-management.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.athena",
+    "ServiceId": "vpce-svc-09077b8d65f293ae1",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "athena.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "athena.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "athena.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.autoscaling",
+    "ServiceId": "vpce-svc-025223ee559e55c8c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "autoscaling.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "autoscaling.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "autoscaling.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.awsconnector",
+    "ServiceId": "vpce-svc-09894a58077be1d26",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "awsconnector.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "awsconnector.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "awsconnector.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.backup",
+    "ServiceId": "vpce-svc-00ceb41ad8e13b4b1",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "backup.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "backup.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "backup.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.batch",
+    "ServiceId": "vpce-svc-0e4091e2501ced810",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "batch.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "batch.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "batch.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.cassandra",
+    "ServiceId": "vpce-svc-05bb31a98237a076b",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cassandra.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cassandra.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cassandra.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.cloudformation",
+    "ServiceId": "vpce-svc-00f7776e0d5dcdfe2",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cloudformation.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cloudformation.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cloudformation.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.cloudhsmv2",
+    "ServiceId": "vpce-svc-09d2327c2357834d4",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cloudhsmv2.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cloudhsmv2.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cloudhsmv2.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.cloudtrail",
+    "ServiceId": "vpce-svc-086b9a8c1fd175a96",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cloudtrail.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cloudtrail.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cloudtrail.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.codebuild",
+    "ServiceId": "vpce-svc-0b5c0867f9f514607",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "codebuild.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "codebuild.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "codebuild.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.codecommit",
+    "ServiceId": "vpce-svc-0e2191ebc52a4fe48",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "codecommit.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "codecommit.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "codecommit.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.codedeploy",
+    "ServiceId": "vpce-svc-01c5b919dd0725e40",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "codedeploy.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "codedeploy.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "codedeploy.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.codedeploy-commands-secure",
+    "ServiceId": "vpce-svc-0085477c39681ddd9",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "codedeploy-commands-secure.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "codedeploy-commands-secure.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "codedeploy-commands-secure.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.codepipeline",
+    "ServiceId": "vpce-svc-0f42a99100d187f30",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "codepipeline.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "codepipeline.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "codepipeline.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.codestar-connections.api",
+    "ServiceId": "vpce-svc-0257ddbd5957df966",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "api.codestar-connections.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "codestar-connections.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "codestar-connections.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.config",
+    "ServiceId": "vpce-svc-0b9c25e06947bab08",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "config.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "config.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "config.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.databrew",
+    "ServiceId": "vpce-svc-00363187a3259f240",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "databrew.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "databrew.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "databrew.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.datasync",
+    "ServiceId": "vpce-svc-0e39bca8045c5235f",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "datasync.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "datasync.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "datasync.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.dms",
+    "ServiceId": "vpce-svc-02223128374b4bc9d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "dms.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "dms.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "dms.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ebs",
+    "ServiceId": "vpce-svc-06affd34c2d4b3967",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ebs.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ebs.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ebs.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ec2",
+    "ServiceId": "vpce-svc-0ee6723c76642b3d8",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ec2.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ec2.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ec2.sa-east-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "ec2.sa-east-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ec2messages",
+    "ServiceId": "vpce-svc-0f70e5d200f09304f",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ec2messages.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ec2messages.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ec2messages.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ecr.api",
+    "ServiceId": "vpce-svc-042628d5744481750",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "api.ecr.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "api.ecr.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "api.ecr.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ecr.dkr",
+    "ServiceId": "vpce-svc-0a18c81c0e681b17c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "dkr.ecr.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.dkr.ecr.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.dkr.ecr.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ecs",
+    "ServiceId": "vpce-svc-01793e07d7a9d7c84",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ecs.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ecs.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ecs.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ecs-agent",
+    "ServiceId": "vpce-svc-0acacaa4cf0104e91",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ecs-a.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ecs-a.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ecs-a.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ecs-telemetry",
+    "ServiceId": "vpce-svc-029ef4c6a10cd3f48",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ecs-t.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ecs-t.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ecs-t.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.elasticache",
+    "ServiceId": "vpce-svc-04b5be912a1267a20",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticache.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticache.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticache.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.elasticbeanstalk",
+    "ServiceId": "vpce-svc-0c57b2e94414e0e0f",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticbeanstalk.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticbeanstalk.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticbeanstalk.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.elasticbeanstalk-health",
+    "ServiceId": "vpce-svc-0b02f841368ccd7db",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticbeanstalk-health.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticbeanstalk-health.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticbeanstalk-health.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.elasticfilesystem",
+    "ServiceId": "vpce-svc-094f73c3ca535efe8",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticfilesystem.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticfilesystem.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticfilesystem.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.elasticfilesystem-fips",
+    "ServiceId": "vpce-svc-04f669110af1be9a5",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticfilesystem-fips.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticfilesystem-fips.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticfilesystem-fips.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.elasticloadbalancing",
+    "ServiceId": "vpce-svc-0db61ae56448b7ab0",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticloadbalancing.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticloadbalancing.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticloadbalancing.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.elasticmapreduce",
+    "ServiceId": "vpce-svc-0b92f352d79771dee",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticmapreduce.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticmapreduce.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticmapreduce.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.email-smtp",
+    "ServiceId": "vpce-svc-0449a4ba7c88f6bc6",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "email-smtp.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "email-smtp.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "email-smtp.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.emr-containers",
+    "ServiceId": "vpce-svc-03b8d6161555dab20",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "emr-containers.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "emr-containers.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "emr-containers.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.events",
+    "ServiceId": "vpce-svc-0517b77c0c855df33",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "events.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "events.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "events.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.execute-api",
+    "ServiceId": "vpce-svc-00c050b2e2cb8ce49",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "execute-api.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.execute-api.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.execute-api.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.fis",
+    "ServiceId": "vpce-svc-0f95ab19e12111e8c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "fis.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "fis.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "fis.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.fsx",
+    "ServiceId": "vpce-svc-0481a8c5fdae7e2ae",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "fsx.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "fsx.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "fsx.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.git-codecommit",
+    "ServiceId": "vpce-svc-093024e0af7c9f599",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "git-codecommit.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "git-codecommit.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "git-codecommit.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.glue",
+    "ServiceId": "vpce-svc-087a6fa473f4ce0be",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "glue.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "glue.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "glue.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.imagebuilder",
+    "ServiceId": "vpce-svc-0bee3991a70c017f8",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "imagebuilder.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "imagebuilder.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "imagebuilder.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.inspector2",
+    "ServiceId": "vpce-svc-054c9b4133ca08188",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "inspector2.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "inspector2.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "inspector2.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.iot.data",
+    "ServiceId": "vpce-svc-0c08e9285bc2c766d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "data.iot.sa-east-1.vpce.amazonaws.com"
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": []
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.kinesis-firehose",
+    "ServiceId": "vpce-svc-07d9da56ca45d8429",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "firehose.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "firehose.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "firehose.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.kinesis-streams",
+    "ServiceId": "vpce-svc-0c19b8562e426b4f2",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "kinesis.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "kinesis.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "kinesis.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.kms",
+    "ServiceId": "vpce-svc-0d866079be6106f0e",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "kms.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "kms.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "kms.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.lakeformation",
+    "ServiceId": "vpce-svc-0daaeccbbac2c9845",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "lakeformation.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "lakeformation.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "lakeformation.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.lambda",
+    "ServiceId": "vpce-svc-03173f061cb482aa7",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "lambda.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "lambda.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "lambda.sa-east-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "lambda.sa-east-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.license-manager",
+    "ServiceId": "vpce-svc-0f90745a77bdb4cd5",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "license-manager.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "license-manager.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "license-manager.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.logs",
+    "ServiceId": "vpce-svc-092bc8ed3527a86cb",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "logs.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "logs.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "logs.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.macie2",
+    "ServiceId": "vpce-svc-0b7460e115a7fdb0f",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "macie2.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "macie2.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "macie2.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.mediaconnect",
+    "ServiceId": "vpce-svc-01d29c47a57deceb3",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "mediaconnect.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "mediaconnect.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "mediaconnect.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.memory-db",
+    "ServiceId": "vpce-svc-0a8cf388372ae2e09",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "memory-db.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "memory-db.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "memory-db.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.mgn",
+    "ServiceId": "vpce-svc-083b2dbcd68ff3a2d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "mgn.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "mgn.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "mgn.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.monitoring",
+    "ServiceId": "vpce-svc-08ca23c62cfd79336",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "monitoring.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "monitoring.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "monitoring.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.rds",
+    "ServiceId": "vpce-svc-06c16aad97dc0bf53",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "rds.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "rds.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "rds.sa-east-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "rds.sa-east-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.redshift",
+    "ServiceId": "vpce-svc-008e9ad618b8e582e",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "redshift.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "redshift.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "redshift.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.redshift-data",
+    "ServiceId": "vpce-svc-019cfead49d34ba9a",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "redshift-data.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "redshift-data.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "redshift-data.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.s3",
+    "ServiceId": "vpce-svc-0ebd36288fa402da2",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "s3.sa-east-1.vpce.amazonaws.com"
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sagemaker.api",
+    "ServiceId": "vpce-svc-03dd90a5dc4d09854",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "api.sagemaker.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "api.sagemaker.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "api.sagemaker.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sagemaker.featurestore-runtime",
+    "ServiceId": "vpce-svc-01a00d2f76c54baff",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "featurestore-runtime.sagemaker.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "featurestore-runtime.sagemaker.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "featurestore-runtime.sagemaker.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sagemaker.runtime",
+    "ServiceId": "vpce-svc-0b26dbd3942ef4019",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "runtime.sagemaker.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "runtime.sagemaker.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "runtime.sagemaker.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.secretsmanager",
+    "ServiceId": "vpce-svc-0a4effa30456e091e",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "secretsmanager.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "secretsmanager.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "secretsmanager.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.securityhub",
+    "ServiceId": "vpce-svc-0299fc57f93e490a2",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "securityhub.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "securityhub.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "securityhub.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.servicecatalog",
+    "ServiceId": "vpce-svc-0be4403f5d2c47417",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "servicecatalog.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "servicecatalog.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "servicecatalog.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.servicecatalog-appregistry",
+    "ServiceId": "vpce-svc-0b9dc37eed305adf7",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "servicecatalog-appregistry.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "servicecatalog-appregistry.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "servicecatalog-appregistry.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sms",
+    "ServiceId": "vpce-svc-01fd26d1c0f0011c1",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "sms.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "sms.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "sms.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sns",
+    "ServiceId": "vpce-svc-0f284b513694daebe",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "sns.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "sns.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "sns.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sqs",
+    "ServiceId": "vpce-svc-0bed49ef22d23326a",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "sqs.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "sqs.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "sqs.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ssm",
+    "ServiceId": "vpce-svc-0039038d504694533",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ssm.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ssm.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ssm.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ssm-contacts",
+    "ServiceId": "vpce-svc-01b20e999a3a4133d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ssm-contacts.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ssm-contacts.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ssm-contacts.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ssm-incidents",
+    "ServiceId": "vpce-svc-0f9696469b33f39b8",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ssm-incidents.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ssm-incidents.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ssm-incidents.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.ssmmessages",
+    "ServiceId": "vpce-svc-0f3616daeb10827da",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "ssmmessages.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "ssmmessages.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "ssmmessages.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.states",
+    "ServiceId": "vpce-svc-02981427f7ae210d6",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "states.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "states.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "states.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.storagegateway",
+    "ServiceId": "vpce-svc-0028356f1afbde9fe",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "storagegateway.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "storagegateway.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "storagegateway.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sts",
+    "ServiceId": "vpce-svc-0010b8fec58f76291",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "sts.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "sts.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "sts.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.sync-states",
+    "ServiceId": "vpce-svc-0c56db1a71a8a126b",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "sync-states.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "sync-states.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "sync-states.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.synthetics",
+    "ServiceId": "vpce-svc-0814a7b66c841d319",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "synthetics.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "synthetics.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "synthetics.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.transcribe",
+    "ServiceId": "vpce-svc-09b038d2565160dca",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "transcribe.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "transcribe.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "transcribe.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.transcribestreaming",
+    "ServiceId": "vpce-svc-02c66853b4afe4b87",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "transcribestreaming.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "transcribestreaming.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "transcribestreaming.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.transfer",
+    "ServiceId": "vpce-svc-00290c110fb5fbe5c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "transfer.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "transfer.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "transfer.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.transfer.server",
+    "ServiceId": "vpce-svc-06b9d252b163c1a3b",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "server.transfer.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.server.transfer.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.server.transfer.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.workspaces",
+    "ServiceId": "vpce-svc-0e0b5e28d98fd0ab6",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "workspaces.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "workspaces.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "workspaces.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  },
+  {
+    "ServiceName": "com.amazonaws.sa-east-1.xray",
+    "ServiceId": "vpce-svc-008fdf423fa06af09",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "sa-east-1a",
+      "sa-east-1b",
+      "sa-east-1c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "xray.sa-east-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "xray.sa-east-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "xray.sa-east-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified"
+  }
+]

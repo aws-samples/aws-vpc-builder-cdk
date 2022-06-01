@@ -1,0 +1,600 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "definitions": {
+        "IConfigConfigTag": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "type": "object"
+        },
+        "IConfigDns": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigDnsEntry"
+            },
+            "type": "object"
+        },
+        "IConfigDnsEntry": {
+            "additionalProperties": false,
+            "properties": {
+                "domains": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "shareWithExistingVpcs": {
+                    "items": {
+                        "$ref": "#/definitions/IConfigDnsShareWithExistingVpc"
+                    },
+                    "type": "array"
+                },
+                "shareWithVpcs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "domains"
+            ],
+            "type": "object"
+        },
+        "IConfigDnsShareWithExistingVpc": {
+            "additionalProperties": false,
+            "properties": {
+                "vpcId": {
+                    "type": "string"
+                },
+                "vpcRegion": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "vpcId",
+                "vpcRegion"
+            ],
+            "type": "object"
+        },
+        "IConfigGlobal": {
+            "additionalProperties": false,
+            "properties": {
+                "availabilityZones": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "discoveryFolder": {
+                    "type": "string"
+                },
+                "organizationId": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "ssmPrefix": {
+                    "type": "string"
+                },
+                "stackNamePrefix": {
+                    "type": "string"
+                },
+                "tags": {
+                    "items": {
+                        "$ref": "#/definitions/IConfigConfigTag"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "availabilityZones",
+                "region",
+                "ssmPrefix",
+                "stackNamePrefix"
+            ],
+            "type": "object"
+        },
+        "IConfigProviderEndpoints": {
+            "additionalProperties": false,
+            "properties": {
+                "availabilityZones": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "endpointConfigFile": {
+                    "type": "string"
+                },
+                "endpointMask": {
+                    "type": "number"
+                },
+                "forwardRequests": {
+                    "$ref": "#/definitions/IConfigProviderRoute53EndpointsForwardRequests"
+                },
+                "resolveRequestsFromCidrs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "style": {
+                    "$ref": "#/definitions/IConfigProvidersEndpointsStyles"
+                },
+                "useTransit": {
+                    "type": "string"
+                },
+                "vpcCidr": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "style",
+                "useTransit",
+                "vpcCidr"
+            ],
+            "type": "object"
+        },
+        "IConfigProviderEndpointsNamed": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigProviderEndpoints"
+            },
+            "type": "object"
+        },
+        "IConfigProviderFirewall": {
+            "additionalProperties": false,
+            "properties": {
+                "availabilityZones": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "awsFirewallExistingRuleArn": {
+                    "type": "string"
+                },
+                "firewallDescription": {
+                    "type": "string"
+                },
+                "firewallName": {
+                    "type": "string"
+                },
+                "style": {
+                    "enum": [
+                        "awsNetworkFirewall"
+                    ],
+                    "type": "string"
+                },
+                "useTransit": {
+                    "type": "string"
+                },
+                "vpcCidr": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "firewallDescription",
+                "firewallName",
+                "style",
+                "useTransit",
+                "vpcCidr"
+            ],
+            "type": "object"
+        },
+        "IConfigProviderFirewallNamed": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigProviderFirewall"
+            },
+            "type": "object"
+        },
+        "IConfigProviderInternet": {
+            "additionalProperties": false,
+            "properties": {
+                "availabilityZones": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "style": {
+                    "enum": [
+                        "natEgress"
+                    ],
+                    "type": "string"
+                },
+                "useTransit": {
+                    "type": "string"
+                },
+                "vpcCidr": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "style",
+                "useTransit",
+                "vpcCidr"
+            ],
+            "type": "object"
+        },
+        "IConfigProviderInternetNamed": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigProviderInternet"
+            },
+            "type": "object"
+        },
+        "IConfigProviderRoute53EndpointsForExistingVpcs": {
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "vpcId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "vpcId"
+            ],
+            "type": "object"
+        },
+        "IConfigProviderRoute53EndpointsForwardRequests": {
+            "additionalProperties": false,
+            "properties": {
+                "forDomains": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "forExistingVpcs": {
+                    "items": {
+                        "$ref": "#/definitions/IConfigProviderRoute53EndpointsForExistingVpcs"
+                    },
+                    "type": "array"
+                },
+                "forVpcs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "toIps": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "forDomains",
+                "toIps"
+            ],
+            "type": "object"
+        },
+        "IConfigProviders": {
+            "additionalProperties": false,
+            "properties": {
+                "endpoints": {
+                    "$ref": "#/definitions/IConfigProviderEndpointsNamed"
+                },
+                "firewall": {
+                    "$ref": "#/definitions/IConfigProviderFirewallNamed"
+                },
+                "internet": {
+                    "$ref": "#/definitions/IConfigProviderInternetNamed"
+                }
+            },
+            "type": "object"
+        },
+        "IConfigProvidersEndpointsStyles": {
+            "enum": [
+                "route53ResolverEndpoint",
+                "serviceInterfaceEndpoint"
+            ],
+            "type": "string"
+        },
+        "IConfigTgwBlackholeRoutes": {
+            "additionalProperties": false,
+            "properties": {
+                "blackholeCidrs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "vpcName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "blackholeCidrs",
+                "vpcName"
+            ],
+            "type": "object"
+        },
+        "IConfigTgwDefaultRoutes": {
+            "additionalProperties": false,
+            "properties": {
+                "inspectedBy": {
+                    "type": "string"
+                },
+                "routesTo": {
+                    "type": "string"
+                },
+                "vpcName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "routesTo",
+                "vpcName"
+            ],
+            "type": "object"
+        },
+        "IConfigTgwDynamicRoutes": {
+            "additionalProperties": false,
+            "properties": {
+                "inspectedBy": {
+                    "type": "string"
+                },
+                "routesTo": {
+                    "type": "string"
+                },
+                "vpcName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "routesTo",
+                "vpcName"
+            ],
+            "type": "object"
+        },
+        "IConfigTgwRoutes": {
+            "additionalProperties": false,
+            "properties": {
+                "amazonSideAsn": {
+                    "type": "number"
+                },
+                "blackholeRoutes": {
+                    "items": {
+                        "$ref": "#/definitions/IConfigTgwBlackholeRoutes"
+                    },
+                    "type": "array"
+                },
+                "defaultRoutes": {
+                    "items": {
+                        "$ref": "#/definitions/IConfigTgwDefaultRoutes"
+                    },
+                    "type": "array"
+                },
+                "dynamicRoutes": {
+                    "items": {
+                        "$ref": "#/definitions/IConfigTgwDynamicRoutes"
+                    },
+                    "type": "array"
+                },
+                "staticRoutes": {
+                    "items": {
+                        "$ref": "#/definitions/IConfigTgwStaticRoutes"
+                    },
+                    "type": "array"
+                },
+                "style": {
+                    "enum": [
+                        "transitGateway"
+                    ],
+                    "type": "string"
+                },
+                "tgwDescription": {
+                    "type": "string"
+                },
+                "useExistingTgwId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "style",
+                "tgwDescription"
+            ],
+            "type": "object"
+        },
+        "IConfigTgwStaticRoutes": {
+            "additionalProperties": false,
+            "properties": {
+                "inspectedBy": {
+                    "type": "string"
+                },
+                "routesTo": {
+                    "type": "string"
+                },
+                "staticCidr": {
+                    "type": "string"
+                },
+                "vpcName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "routesTo",
+                "staticCidr",
+                "vpcName"
+            ],
+            "type": "object"
+        },
+        "IConfigTgws": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigTgwRoutes"
+            },
+            "type": "object"
+        },
+        "IConfigVpc": {
+            "additionalProperties": false,
+            "properties": {
+                "attachTgw": {
+                    "type": "boolean"
+                },
+                "availabilityZones": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "providerEndpoints": {
+                    "type": "string"
+                },
+                "providerInternet": {
+                    "type": "string"
+                },
+                "style": {
+                    "$ref": "#/definitions/IConfigVpcStyles"
+                },
+                "subnets": {
+                    "$ref": "#/definitions/IConfigVpcNamedSubnets"
+                },
+                "vpcCidr": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "style",
+                "subnets",
+                "vpcCidr"
+            ],
+            "type": "object"
+        },
+        "IConfigVpcNamedSubnets": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigVpcSubnet"
+            },
+            "type": "object"
+        },
+        "IConfigVpcStyles": {
+            "enum": [
+                "workloadIsolated",
+                "workloadPublic"
+            ],
+            "type": "string"
+        },
+        "IConfigVpcSubnet": {
+            "additionalProperties": false,
+            "properties": {
+                "cidrMask": {
+                    "type": "number"
+                },
+                "sharedWith": {
+                    "items": {
+                        "type": [
+                            "string",
+                            "number"
+                        ]
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "cidrMask"
+            ],
+            "type": "object"
+        },
+        "IConfigVpcs": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigVpc"
+            },
+            "type": "object"
+        },
+        "IConfigVpn": {
+            "additionalProperties": false,
+            "properties": {
+                "existingCustomerGatewayId": {
+                    "type": "string"
+                },
+                "existingVpnConnectionId": {
+                    "type": "string"
+                },
+                "existingVpnTransitGatewayAttachId": {
+                    "type": "string"
+                },
+                "existingVpnTransitGatewayRouteTableId": {
+                    "type": "string"
+                },
+                "newCustomerGatewayAsn": {
+                    "type": "number"
+                },
+                "newCustomerGatewayIp": {
+                    "type": "string"
+                },
+                "newCustomerGatewayName": {
+                    "type": "string"
+                },
+                "style": {
+                    "enum": [
+                        "transitGatewayAttached"
+                    ],
+                    "type": "string"
+                },
+                "tunnelOneOptions": {
+                    "$ref": "#/definitions/IConfigVpnTunnelOptions"
+                },
+                "tunnelTwoOptions": {
+                    "$ref": "#/definitions/IConfigVpnTunnelOptions"
+                },
+                "useTransit": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "style",
+                "useTransit"
+            ],
+            "type": "object"
+        },
+        "IConfigVpnTunnelOptions": {
+            "additionalProperties": false,
+            "properties": {
+                "tunnelInsideCidr": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "tunnelInsideCidr"
+            ],
+            "type": "object"
+        },
+        "IConfigVpns": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigVpn"
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "dns": {
+            "$ref": "#/definitions/IConfigDns"
+        },
+        "global": {
+            "$ref": "#/definitions/IConfigGlobal"
+        },
+        "providers": {
+            "$ref": "#/definitions/IConfigProviders"
+        },
+        "transitGateways": {
+            "$ref": "#/definitions/IConfigTgws"
+        },
+        "vpcs": {
+            "$ref": "#/definitions/IConfigVpcs"
+        },
+        "vpns": {
+            "$ref": "#/definitions/IConfigVpns"
+        }
+    },
+    "required": [
+        "global",
+        "vpcs"
+    ],
+    "type": "object"
+}
+

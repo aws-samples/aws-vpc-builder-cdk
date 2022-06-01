@@ -1,0 +1,145 @@
+global:
+  # ** Replace with overall organizational ID **
+  # Uncomment below  if you'd like to use RAM Sharing
+  # organizationId: o-REPLACEME
+  stackNamePrefix: sample-complex
+  ssmPrefix: /sample-complex/network
+  region: us-east-1
+  availabilityZones:
+    - us-east-1a
+    - us-east-1b
+  tags:
+    - aws-vpc-builder: sample-complex
+
+vpns:
+  on-premises:
+    style: transitGatewayAttached
+    ## Substitute for a REAL public IP Address of a VPN device if you plan to establish a VPN connection.  Also adjust the ASN number.
+    newCustomerGatewayIp: 1.2.3.4
+    newCustomerGatewayAsn: 64501
+    newCustomerGatewayName: sample-vpn-onprem CGW
+    useTransit: central
+
+providers:
+  firewall:
+    internet-inspection:
+      vpcCidr: 100.64.0.0/16
+      useTransit: central
+      style: awsNetworkFirewall
+      firewallDescription: sample-complex AWS Network Firewall
+      firewallName: InspectionInternet
+  internet:
+    central-egress:
+      vpcCidr: 10.10.63.192/26
+      style: natEgress
+      useTransit: central
+  endpoints:
+    vpc-endpoints:
+      style: serviceInterfaceEndpoint
+      vpcCidr: 10.20.0.0/19
+      endpointMask: 24
+      endpointConfigFile: sample-complex-endpoints
+      useTransit: central
+    dns-resolvers:
+      vpcCidr: 10.10.63.128/26
+      # ** Narrow to specific inbound resolver source IPs if desired **
+      resolveRequestsFromCidrs:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+      forwardRequests:
+        # ** Narrow to specific on-premesis domains **
+        forDomains:
+          - onprem.net
+        # ** Replace with the IPs of on-premesis DNS servers **
+        toIps:
+          - 172.31.1.10
+          - 172.31.2.10
+        # ** All VPCs are permitted to resolve on prem **
+        forVpcs:
+          - workload-dev
+          - workload-prod
+      style: route53ResolverEndpoint
+      useTransit: central
+
+dns:
+  base:
+    domains:
+      - cloud.net
+    # ** Everyone can resolve our base domain **
+    shareWithVpcs:
+      - workload-dev
+      - workload-prod
+  prod:
+    domains:
+      - prod.cloud.net
+    # ** Prod domain can be resolved from prod **
+    shareWithVpcs:
+      - workload-prod
+  dev:
+    domains:
+      - dev.cloud.net
+    # ** Dev domain can be resolved from prod **
+    shareWithVpcs:
+      - workload-dev
+
+vpcs:
+  workload-dev:
+    style: workloadIsolated
+    vpcCidr: 10.10.0.0/19
+    providerInternet: central-egress
+    providerEndpoints: vpc-endpoints
+    subnets:
+      workload:
+        cidrMask: 20
+        # ** Update with the Dev OU if you wish to RAM Share **
+        #sharedWith:
+        #  - ou-REPLACEME
+  workload-prod:
+    style: workloadIsolated
+    vpcCidr: 10.10.32.0/20
+    providerInternet: central-egress
+    providerEndpoints: vpc-endpoints
+    subnets:
+      workload:
+        cidrMask: 21
+        # ** Update with the Prod OU if you wish to RAM Share **
+        #sharedWith:
+        #  - ou-REPLACEME
+  central-ingress:
+    style: workloadPublic
+    vpcCidr: 10.10.64.0/19
+    subnets:
+      workload:
+        cidrMask: 20
+        # ** Update with the Prod and Dev OU if you wish to RAM Share **
+        #sharedWith:
+        #  - ou-REPLACEMEDev
+        #  - ou-REPLACEMEProd
+
+transitGateways:
+  central:
+    style: transitGateway
+    tgwDescription: sample-complex TGW
+    defaultRoutes:
+      # Dev and Prod default to internet egress inspected by a firewall.
+      - vpcName: workload-dev
+        routesTo: central-egress
+        inspectedBy: internet-inspection
+      - vpcName: workload-prod
+        routesTo: central-egress
+        inspectedBy: internet-inspection
+    dynamicRoutes:
+      # Dev and Prod can both go on-prem via VPN.  BGP will advertise routes for us to use
+      - vpcName: workload-dev
+        routesTo: on-premises
+      - vpcName: workload-prod
+        routesTo: on-premises
+    blackholeRoutes:
+      # Dev may not communicate with prod and vice versa
+      - vpcName: workload-dev
+        blackholeCidrs:
+          - 10.10.32.0/20
+      - vpcName: workload-prod
+        blackholeCidrs:
+          - 10.10.0.0/19

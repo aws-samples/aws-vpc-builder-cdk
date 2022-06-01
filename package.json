@@ -1,0 +1,37 @@
+{
+  "name": "aws-vpc-builder-cdk",
+  "version": "0.1.0",
+  "bin": {
+    "vpc-scratch": "bin/vpc-builder.js"
+  },
+  "scripts": {
+    "discoverEndpoints": "npm run build ; node tools/discoverEndpoints/index.js $@",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "aws-cdk": "2.20.0",
+    "esbuild": "^0.14.37",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~4.6.3",
+    "typescript-json-schema": "^0.53.0",
+    "prettier": "^2.6.2"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.20.0",
+    "constructs": "^10.0.0",
+    "@types/aws-lambda": "^8.10.94",
+    "source-map-support": "^0.5.16",
+    "@aws-sdk/client-ec2": "^3.74.0",
+    "md5": "^2.3.0",
+    "ajv": "^8.11.0",
+    "yaml": "^2.0.1",
+    "ip-cidr": "^3.0.7"
+  }
+}

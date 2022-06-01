@@ -1,0 +1,32 @@
+global:
+  stackNamePrefix: sample-vpc-endpoints
+  ssmPrefix: /sample-vpc-endpoints/network
+  region: us-east-1
+  availabilityZones:
+    - us-east-1a
+    - us-east-1b
+  tags:
+    - aws-vpc-builder: sample-vpc-endpoints
+
+providers:
+  endpoints:
+    vpcEndpoints:
+      style: serviceInterfaceEndpoint
+      vpcCidr: 10.2.0.0/19
+      endpointMask: 24
+      endpointConfigFile: sample-vpc-endpoints
+      useTransit: central
+
+vpcs:
+  workloadIsolated:
+    style: workloadIsolated
+    vpcCidr: 10.11.0.0/19
+    providerEndpoints: vpcEndpoints
+    subnets:
+      workload:
+        cidrMask: 20
+
+transitGateways:
+  central:
+    style: transitGateway
+    tgwDescription: "sample-vpc-endpoints-tgw"

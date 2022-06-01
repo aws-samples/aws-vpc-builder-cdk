@@ -1,0 +1,58 @@
+global:
+  stackNamePrefix: sample-central-egress
+  ssmPrefix: /sample-central-egress/network
+  region: us-east-1
+  availabilityZones:
+    - us-east-1a
+    - us-east-1b
+  tags:
+    - aws-vpc-builder: sample-central-egress
+
+providers:
+  internet:
+    central-egress:
+      vpcCidr: 10.1.63.192/26
+      style: natEgress
+      useTransit: central
+  firewall:
+    egress-inspection:
+      vpcCidr: 100.64.0.0/16
+      useTransit: central
+      style: awsNetworkFirewall
+      firewallDescription: sample-central-egress-tgw AWS Network Firewall
+      firewallName: InspectionEgress
+
+vpcs:
+  isolatedVpcOne:
+    style: workloadIsolated
+    vpcCidr: 10.10.0.0/19
+    providerInternet: central-egress
+    subnets:
+      workload:
+        cidrMask: 20
+  isolatedVpcTwo:
+    style: workloadIsolated
+    vpcCidr: 10.11.0.0/19
+    providerInternet: central-egress
+    subnets:
+      workload:
+        cidrMask: 20
+
+transitGateways:
+  central:
+    style: transitGateway
+    tgwDescription: sample-central-egress-tgw Transit Gateway
+    defaultRoutes:
+      - vpcName: isolatedVpcOne
+        routesTo: central-egress
+        inspectedBy: egress-inspection
+      - vpcName: isolatedVpcTwo
+        routesTo: central-egress
+        inspectedBy: egress-inspection
+    blackholeRoutes:
+      - vpcName: isolatedVpcOne
+        blackholeCidrs:
+          - 10.11.0.0/19
+      - vpcName: isolatedVpcTwo
+        blackholeCidrs:
+          - 10.10.0.0/19
