@@ -1,0 +1,42 @@
+global:
+  stackNamePrefix: sample-vpn-onprem
+  ssmPrefix: /sample-vpn-onprem/network
+  region: us-east-1
+  availabilityZones:
+    - us-east-1a
+    - us-east-1b
+  tags:
+    - aws-vpc-builder: sample-vpn-onprem
+
+vpns:
+  on-premises:
+    style: transitGatewayAttached
+    ##  Note - Substitute the ACTUAL Elastic IP that you've allocated before deploying.
+    newCustomerGatewayIp: 1.2.3.4
+    newCustomerGatewayAsn: 64501
+    newCustomerGatewayName: sample-vpn-onprem CGW
+    useTransit: central
+
+vpcs:
+  workloadIsolated:
+    style: workloadIsolated
+    vpcCidr: 10.11.0.0/19
+    subnets:
+      workload:
+        cidrMask: 20
+  onPremSimulator:
+    style: workloadPublic
+    vpcCidr: 10.12.0.0/19
+    # Make this explicit since we want this to stand-alone for our exploration
+    attachTgw: false
+    subnets:
+      public:
+        cidrMask: 20
+
+transitGateways:
+  central:
+    style: transitGateway
+    tgwDescription: "sample-vpc-endpoints-tgw"
+    defaultRoutes:
+      - vpcName: workloadIsolated
+        routesTo: on-premises

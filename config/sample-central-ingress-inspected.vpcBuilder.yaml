@@ -1,0 +1,41 @@
+global:
+  stackNamePrefix: sample-central-ingress
+  ssmPrefix: /sample-central-ingress/network
+  region: us-east-1
+  availabilityZones:
+    - us-east-1a
+    - us-east-1b
+  tags:
+    - aws-vpc-builder: sample-central-ingress
+
+providers:
+  firewall:
+    ingress-inspection:
+      vpcCidr: 100.64.0.0/16
+      useTransit: central
+      style: awsNetworkFirewall
+      firewallDescription: sample-central-ingress-tgw AWS Network Firewall
+      firewallName: InspectionIngress
+
+vpcs:
+  centralPublic:
+    style: workloadPublic
+    vpcCidr: 10.10.0.0/19
+    subnets:
+      workload:
+        cidrMask: 20
+  workloadIsolated:
+    style: workloadIsolated
+    vpcCidr: 10.11.0.0/19
+    subnets:
+      workload:
+        cidrMask: 20
+
+transitGateways:
+  central:
+    style: transitGateway
+    tgwDescription: "sample-central-ingress-tgw"
+    dynamicRoutes:
+      - vpcName: centralPublic
+        routesTo: workloadIsolated
+        inspectedBy: ingress-inspection

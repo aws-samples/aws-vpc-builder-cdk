@@ -1,0 +1,70 @@
+global:
+  stackNamePrefix: sample-firewall-blog
+  ssmPrefix: /sample-firewall-blog/network
+  region: us-east-1
+  availabilityZones:
+    - us-east-1a
+  tags:
+    - aws-vpc-builder: sample-firewall-blog
+
+vpns:
+  vpnToGround:
+    style: transitGatewayAttached
+    newCustomerGatewayIp: 5.6.7.8
+    newCustomerGatewayAsn: 65012
+    newCustomerGatewayName: toGround-DataCenterA
+    useTransit: central
+
+providers:
+  internet:
+    centralEgress:
+      vpcCidr: 10.10.0.0/16
+      useTransit: central
+      style: natEgress
+  firewall:
+    inspectionVpc:
+      vpcCidr: 100.64.0.0/16
+      useTransit: central
+      style: awsNetworkFirewall
+      firewallDescription: For Inspection Vpc
+      firewallName: InspectionEgress
+
+vpcs:
+  SpokeVpcA:
+    style: workloadIsolated
+    vpcCidr: 10.1.0.0/16
+    providerInternet: centralEgress
+    subnets:
+      workloadSubnet:
+        cidrMask: 24
+  SpokeVpc:
+    style: workloadIsolated
+    vpcCidr: 10.3.0.0/16
+    subnets:
+      workloadSubnet:
+        cidrMask: 24
+
+transitGateways:
+  central:
+    style: transitGateway
+    tgwDescription: Central Transit Gateway
+    dynamicRoutes:
+      - vpcName: SpokeVpcA
+        routesTo: SpokeVpc
+        inspectedBy: inspectionVpc
+    defaultRoutes:
+      - vpcName: SpokeVpcA
+        routesTo: centralEgress
+        inspectedBy: inspectionVpc
+      - vpcName: SpokeVpc
+        routesTo: centralEgress
+        inspectedBy: inspectionVpc
+      - vpcName: inspectionVpc
+        routesTo: centralEgress
+    staticRoutes:
+      - vpcName: SpokeVpcA
+        routesTo: vpnToGround
+        staticCidr: 192.168.168.0/24
+      - vpcName: SpokeVpc
+        routesTo: vpnToGround
+        staticCidr: 192.168.168.0/24
