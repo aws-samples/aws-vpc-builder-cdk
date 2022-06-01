@@ -33,7 +33,7 @@ global:
 vpcs:
   # REQUIRED: The name of your VPC.  This uniquely identifies the VPC within the configuration file so should be chosen wisely.
   # NOTE: After the VPC has been deployed this *cannot be changed*.  CloudFormation will see the VPC as being deleted and attempt to delete
-  # it.  I've added protections to prevent that from happening (fn:export/fn:import prevents).  To Delete a VPC see the FAQ
+  # it.  I've added protections to prevent that from happening (fn:export/fn:import prevents).
   workload:
     # REQUIRED: This helps our framework decide which 'kind' of VPC you'd like.
     # - 'workloadIsolated' provisions a VPC with no IGW (effectively an isolated VPC).
@@ -52,7 +52,7 @@ vpcs:
     attachTgw: true
     # REQUIRED: Definition section for the subnets to deploy.
     # NOTE: Once initially deployed - the Subnet Names in this section cannot be changed.  This is meant to be an 'additive' section
-    # after your initial deployment you can add more Subnets, but consider it a 1-way door.  If you need a subnet removed see the FAQ.
+    # after your initial deployment you can add more Subnets, but consider it a 1-way door.
     subnets:
       # REQUIRED: A unique name for the subnet WITHIN the definition of the VPC.  Ie: all VPCs can use 'web', 'app', 'db' subnet names
       # however within the VPC you can't create two subnets with the name 'web'.  YAML should prevent this normally anyways.
