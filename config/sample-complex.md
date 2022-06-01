@@ -31,7 +31,7 @@ Assure you have available reosurces in us-east-1 (Virginia).  You will need your
 
 # Deployment
 
-Assure you've followed the setup guide in the repositories main README [here](../README.md)
+Assure you've followed the 'Environment Setup' section in the repositories main README [here](../README.md)
 
 Review the contents of the configuration we will deploy by viewing the [configuration file](sample-complex.vpcBuilder.yaml) for this sample.
 

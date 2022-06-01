@@ -1,6 +1,6 @@
 # Functional Description
 
-We will create an isolated VPC within the AWS Cloud and a VPN connection that can be used to get back to on-premises.  This Isolated VPC will be connected to the TGW with a default route.
+We will create an isolated Amazon VPC within the AWS Cloud and a VPN connection that can be used to get back to on-premises.  This Isolated VPC will be connected to the TGW with a default route.
 
 So we can explore our example we will also create a 'standalone' Public VPC that we can provision an EC2 instance inside-of to establish a VPN Tunnel.
 
@@ -14,13 +14,13 @@ We will set a default route to back through the VPN to provide all network funct
 
 Assure you have available capacity in your account in us-east-1 (Virginia) before starting!
 
-- 2 VPCs
+- 2 Amazon VPCs
 - 1 Transit Gateway
 - 1 AWS Managed VPN
 
 # Deployment
 
-Assure you've followed the setup guide in the repositories main README [here](../README.md)
+Assure you've followed the 'Environment Setup' section in the repositories main README [here](../README.md)
 
 Review the contents of the configuration we will deploy by viewing the [configuration file](sample-vpn-onprem.vpcBuilder.yaml) for this sample.
 

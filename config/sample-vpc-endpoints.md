@@ -19,7 +19,7 @@ Assure you have available capacity in your account in us-east-1 (Virginia) befor
 
 # Deployment
 
-Assure you've followed the setup guide in the repositories main README [here](../README.md)
+Assure you've followed the 'Environment Setup' section in the repositories main README [here](../README.md)
 
 Review the contents of the configuration we will deploy by viewing the [configuration file](sample-vpc-endpoints.vpcBuilder.yaml) for this sample.
 

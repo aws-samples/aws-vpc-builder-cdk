@@ -1,6 +1,6 @@
 # Functional Description
 
-We will create a VPC that is responsible for ingress internet.  Using facilities like RAM [sharing subnets](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html#vpc-sharing-share-subnet) this VPC type can be used within an estate to centralize the internet ingress function.
+We will create an Amazon VPC that is responsible for ingress internet.  Using facilities like RAM [sharing subnets](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html#vpc-sharing-share-subnet) this VPC type can be used within an estate to centralize the internet ingress function.
 
 This centralization aids governance and response to internet based threats and allows for inspection of ingress traffic prior to being sent to downstream workload endpoints.
 
@@ -18,7 +18,7 @@ Assure you have available capacity in your account in us-east-1 (Virginia) befor
 
 # Deployment
 
-Assure you've followed the setup guide in the repositories main README [here](../README.md)
+Assure you've followed the 'Environment Setup' section in the repositories main README [here](../README.md)
 
 Review the contents of the configuration we will deploy by viewing the [configuration file](sample-central-ingress.vpcBuilder.yaml) for this sample.
 
