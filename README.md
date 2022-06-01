@@ -114,7 +114,7 @@ Remove the `--require-approval never` if you'd like to be asked before any IAM r
 
 After it's deployed feel free to explore.  You can make changes and re-deploy and the environment will adjust automatically.  Try removing the 'inspectedBy' from the routes and see what happens!
 
-## Environment setup
+## Environment Setup
 
 An AWS Cloud9 environment will contain all the tools and software to use this repository right away.  Alternately anything with a command line and a text editor should do the trick!
 
