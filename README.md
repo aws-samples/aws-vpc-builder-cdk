@@ -238,11 +238,11 @@ You can destroy the stacks deployed by the configuration file by running:
 cdk destroy -c config=[configuration-file] --all
 ```
 
-# Developer
+## Developer
 
 We'd love additional contributions to this project by way of new Amazon VPC styles, new network functions etc.  Open an issue to discuss your idea before submitting a pull request please!
 
-## Re-generating the JSON Schema
+### Re-generating the JSON Schema
 
 After changes to the IConfig Type the schema will need to be regenerated.
 
@@ -250,7 +250,7 @@ After changes to the IConfig Type the schema will need to be regenerated.
 typescript-json-schema --required --noExtraProps tsconfig.json IConfig > lib/config/config-schema.json
 ```
 
-## Prettier
+### Prettier
 
 All typescript is formatted using Prettier.
 
