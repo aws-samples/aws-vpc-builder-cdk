@@ -249,7 +249,7 @@ export class StackBuilderClass {
         ),
         { encoding: "utf8" }
       )
-      .split("\n");
+      .split("\n").filter(endpoint => endpoint.length > 0)
   }
 
   async buildTransitGatewayStacks() {
