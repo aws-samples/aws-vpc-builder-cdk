@@ -26,7 +26,7 @@ export class VpcWorkloadIsolatedStack extends BuilderVpc {
     this.name = `${props.namePrefix}-vpc-workload`.toLowerCase();
 
     const vpcProps: ec2.VpcProps = {
-      cidr: this.props.vpcCidr,
+      ipAddresses: ec2.IpAddresses.cidr(this.props.vpcCidr),
       enableDnsHostnames: true,
       enableDnsSupport: true,
       maxAzs: this.props.availabilityZones.length,

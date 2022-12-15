@@ -40,7 +40,7 @@ export class VpcAwsNetworkFirewallStack extends BuilderVpc {
     this.name = `${props.namePrefix}-provider-firewall`.toLowerCase();
 
     this.vpc = new ec2.Vpc(this, this.name, {
-      cidr: this.props.vpcCidr,
+      ipAddresses: ec2.IpAddresses.cidr(this.props.vpcCidr),
       enableDnsHostnames: true,
       enableDnsSupport: true,
       maxAzs: this.props.availabilityZones.length,
