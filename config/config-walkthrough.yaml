@@ -8,7 +8,7 @@ global:
   organizationId: o-1234
   # OPTIONAL:DEPENDANT - If you will RAM share to Organizational units this is required
   # This is the AWS Account identifier for account owning the Organization
-  organizationMainAccountId: 123456789012
+  organizationMainAccountId: "123456789012"
   # REQUIRED - This prefix will pre-pend ALL stacks created, and will be used within the SSM Prefix below
   # This assures that you can deploy multiple environments with similar resources without name collision.
   stackNamePrefix: Core
