@@ -6,6 +6,9 @@ global:
   # OPTIONAL:DEPENDANT - If you will RAM share to Organizational units this is required
   # This must start with 'o-'.  You can find it in the Organizations service on the left pane
   organizationId: o-1234
+  # OPTIONAL:DEPENDANT - If you will RAM share to Organizational units this is required
+  # This is the AWS Account identifier for account owning the Organization
+  organizationMainAccountId: 123456789012
   # REQUIRED - This prefix will pre-pend ALL stacks created, and will be used within the SSM Prefix below
   # This assures that you can deploy multiple environments with similar resources without name collision.
   stackNamePrefix: Core
@@ -50,6 +53,10 @@ vpcs:
     availabilityZones:
       - us-east-1a
       - us-east-1b
+    # OPTIONAL DEPENDANT: Historically we could RAM Share a Subnet by using 'this' accounts ID even if 'this' account didn't own the organization.
+    # That ARN construction no longer works.  If you have an existing RAM share under this method and want to not trigger an update, set this value to true
+    # See for more details: https://github.com/aws-samples/aws-vpc-builder-cdk/issues/15
+    legacyRamShare: true
     # OPTIONAL: Normally we dynamically decide whether to attach a VPC to a TGW based on it having routes defined in the transitGateways
     # section.  If you want to force, or prevent this VPC attaching to a TGW, then set this to true (always) or false (never).
     attachTgw: true

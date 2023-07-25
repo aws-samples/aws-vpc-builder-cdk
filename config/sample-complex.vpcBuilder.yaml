@@ -1,7 +1,8 @@
 global:
-  # ** Replace with overall organizational ID **
+  # ** Replace with overall organizational ID and Account ID owning the organization **
   # Uncomment below  if you'd like to use RAM Sharing
   # organizationId: o-REPLACEME
+  # organizationMainAccountId: 123456789012
   stackNamePrefix: sample-complex
   ssmPrefix: /sample-complex/network
   region: us-east-1

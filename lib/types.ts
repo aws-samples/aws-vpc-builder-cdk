@@ -106,6 +106,8 @@ export interface IBuilderVpcProps extends IBuilderBaseProps {
 export interface IVpcWorkloadProps extends IBuilderVpcProps {
   createSubnets: Array<SubnetNamedMasks>;
   organizationId?: string;
+  organizationMainAccountId?: string;
+  legacyRamShare?: boolean
 }
 
 /*

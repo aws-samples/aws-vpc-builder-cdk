@@ -72,6 +72,9 @@
                 "organizationId": {
                     "type": "string"
                 },
+                "organizationMainAccountId": {
+                    "type": "string"
+                },
                 "region": {
                     "type": "string"
                 },
@@ -439,6 +442,9 @@
                         "type": "string"
                     },
                     "type": "array"
+                },
+                "legacyRamShare": {
+                    "type": "boolean"
                 },
                 "providerEndpoints": {
                     "type": "string"
