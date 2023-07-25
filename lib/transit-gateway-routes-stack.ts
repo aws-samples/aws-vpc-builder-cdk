@@ -23,6 +23,7 @@ export type tgwAttachmentsAndRouteTypes = IBuilderVpc | IBuilderVpn;
 
 export interface ITransitGatewayRoutesProps extends cdk.StackProps {
   tgwAttachmentsAndRoutes: Array<tgwAttachmentsAndRouteTypes>;
+  useLegacyIdentifiers?: boolean
 }
 
 interface tgwSetupStaticOrDefaultRouteProps {
@@ -192,7 +193,7 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
   // Interface Endpoint private or isolated private subnets route back to the TGW to then route to the VPCs they service
   vpcInterfaceEndpointSubnetRoutes(attachable: IBuilderVpc) {
     this.vpcSubnets(attachable, "privateAll").forEach((namedSubnet) => {
-      this.subnetRouteDefaultToTGW(attachable, namedSubnet);
+      this.subnetRouteDefaultToTGW(attachable, namedSubnet, true);
     });
   }
 
@@ -389,7 +390,7 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
     });
   }
 
-  subnetRouteDefaultToTGW(attachable: IBuilderVpc, namedSubnet: INamedSubnet) {
+  subnetRouteDefaultToTGW(attachable: IBuilderVpc, namedSubnet: INamedSubnet, forInterfaceEndpoint?: boolean) {
     // The route table of our subnet
     const subnetRouteTableId = this.subnetAttachableSsmParameter(
       attachable,
@@ -398,7 +399,20 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
       "routeTableId"
     );
     // Unique ID based on the route Table ID which can have only one default entry
-    const routeId = `ToTGWDefault${md5(subnetRouteTableId.name)}`;
+    let routeId =`ToTGWDefault${md5(subnetRouteTableId.name)}`
+    // Use a Legacy CloudFormation identifier if configured.
+    // Historically the md5 sum of the SSM parameter path was used with different formats used betwen interface endpoints
+    // and others.  This was cleaned up in a later release.
+    if(this.props.useLegacyIdentifiers) {
+      const ssmParameterName = attachable.ssmParameterPaths.subnets.filter((subnets =>
+          subnets.subnetName == namedSubnet.name && subnets.availabilityZone == namedSubnet.subnet.availabilityZone
+      ))
+      if(forInterfaceEndpoint) {
+        routeId = "toTGWCidr" + md5(`${attachable.name}${ssmParameterName[0].subnetCidr}DefaultToTGW`)
+      } else {
+        routeId = `ToTGWDefault${md5(subnetRouteTableId.name)}`
+      }
+    }
     new ec2.CfnRoute(this, routeId, {
       destinationCidrBlock: "0.0.0.0/0",
       transitGatewayId: attachable.tgw.attrId,

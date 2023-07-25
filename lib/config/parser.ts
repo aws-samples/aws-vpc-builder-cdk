@@ -26,13 +26,13 @@ export class ConfigParser {
     if (this.props.configFilename) {
       const fileRead = fs.readFileSync(
         path.join("config", `${this.props.configFilename}`),
-        { encoding: "utf8" }
+        { encoding: "utf8" },
       ) as any;
       try {
         this.configRaw = yaml.parse(fileRead) as any;
       } catch (err) {
         throw new Error(
-          `${this.props.configFilename}: Error parsing YAML. Assure all special characters in value are quoted.  ie: '*' or "*"`
+          `${this.props.configFilename}: Error parsing YAML. Assure all special characters in value are quoted.  ie: '*' or "*"`,
         );
       }
     } else {
@@ -42,7 +42,7 @@ export class ConfigParser {
       }
       if (!this.configRaw) {
         throw new Error(
-          `Either configFilename or configContents must be specified for our config parser!`
+          `Either configFilename or configContents must be specified for our config parser!`,
         );
       }
     }
@@ -55,8 +55,8 @@ export class ConfigParser {
         `Config contains structural errors: ${JSON.stringify(
           this.configValidator.errors,
           null,
-          2
-        )}`
+          2,
+        )}`,
       );
     }
     const configRaw = this.configRaw as any;
@@ -107,7 +107,7 @@ export class ConfigParser {
     for (const providerType of ["endpoints", "internet", "firewall"]) {
       if (this.configRaw.providers.hasOwnProperty(providerType)) {
         for (const providerName of Object.keys(
-          this.configRaw.providers[providerType]
+          this.configRaw.providers[providerType],
         )) {
           const configStanza =
             this.configRaw.providers[providerType][providerName];
@@ -121,45 +121,45 @@ export class ConfigParser {
     let serviceInterfaceCount = 0;
     if (this.configRaw.providers.hasOwnProperty("endpoints")) {
       for (const providerName of Object.keys(
-        this.configRaw.providers["endpoints"]
+        this.configRaw.providers["endpoints"],
       )) {
         const configStanza =
           this.configRaw.providers["endpoints"][providerName];
         if (configStanza.style == "route53ResolverEndpoint") {
           this.verifyProviderEndpointsRoute53Resolvers(
             providerName,
-            configStanza
+            configStanza,
           );
         } else if (configStanza.style == "serviceInterfaceEndpoint") {
           this.verifyProviderEndpointsServiceInterface(
             providerName,
-            configStanza
+            configStanza,
           );
           serviceInterfaceCount++;
         } else {
           throw new Error(
-            `Unable to verify configuration for endpoint style ${configStanza.style}`
+            `Unable to verify configuration for endpoint style ${configStanza.style}`,
           );
         }
       }
     }
     if (serviceInterfaceCount > 1) {
       throw new Error(
-        `Only one endpoint provider of style 'serviceInterfaceEndpoint' is supported.`
+        `Only one endpoint provider of style 'serviceInterfaceEndpoint' is supported.`,
       );
     }
   }
 
   verifyProviderEndpointsRoute53Resolvers(
     providerName: string,
-    configStanza: IConfigProviderEndpoints
+    configStanza: IConfigProviderEndpoints,
   ) {
     if (
       !configStanza.resolveRequestsFromCidrs &&
       !configStanza.forwardRequests
     ) {
       throw new Error(
-        `Endpoint ${providerName}: Route53 resolver requires resolveRequestsFromCidrs and/or forwardRequests are specified`
+        `Endpoint ${providerName}: Route53 resolver requires resolveRequestsFromCidrs and/or forwardRequests are specified`,
       );
     }
     if (configStanza.resolveRequestsFromCidrs) {
@@ -171,12 +171,12 @@ export class ConfigParser {
       for (const ip of configStanza.forwardRequests.toIps) {
         if (!IPCidr.isValidAddress(ip)) {
           throw new Error(
-            `Endpoint ${providerName}: toIp address ${ip} is not valid`
+            `Endpoint ${providerName}: toIp address ${ip} is not valid`,
           );
         }
         if (ip.split("/").length > 1) {
           throw new Error(
-            `Endpoint ${providerName}: toIp address ${ip} must not be a CIDR address`
+            `Endpoint ${providerName}: toIp address ${ip} must not be a CIDR address`,
           );
         }
       }
@@ -185,23 +185,23 @@ export class ConfigParser {
 
   verifyProviderEndpointsServiceInterface(
     providerName: string,
-    configStanza: IConfigProviderEndpoints
+    configStanza: IConfigProviderEndpoints,
   ) {
     if (!configStanza.endpointConfigFile) {
       throw new Error(
-        `Endpoint ${providerName}: Service interfaces requires endpointConfigFile be specified`
+        `Endpoint ${providerName}: Service interfaces requires endpointConfigFile be specified`,
       );
     }
     const interfaceListFile = `${configStanza.endpointConfigFile}-${this.configRaw.global.region}.txt`;
     if (!fs.existsSync(path.join("config", interfaceListFile))) {
       throw new Error(
-        `Endpoint ${providerName}: Service interface file ${interfaceListFile} not found in the config directory`
+        `Endpoint ${providerName}: Service interface file ${interfaceListFile} not found in the config directory`,
       );
     }
     if (configStanza.endpointMask) {
       if (configStanza.endpointMask < 16 || configStanza.endpointMask > 28) {
         throw new Error(
-          `Endpoint ${providerName}: endpointMask of ${configStanza.endpointMask} was given.  Valid values are between 16 and 28`
+          `Endpoint ${providerName}: endpointMask of ${configStanza.endpointMask} was given.  Valid values are between 16 and 28`,
         );
       }
     }
@@ -209,7 +209,7 @@ export class ConfigParser {
 
   verifyCidrsTransitGateway() {
     for (const transitGatewayName of Object.keys(
-      this.configRaw.transitGateways
+      this.configRaw.transitGateways,
     )) {
       const configStanza = this.configRaw.transitGateways[transitGatewayName];
       if (configStanza.blackholeRoutes) {
@@ -248,14 +248,14 @@ export class ConfigParser {
     // Must be in the 169.254 range
     if (!cidr.startsWith("169.254.")) {
       throw new Error(
-        `VPN Tunnel inside CIDR ${cidr} must be within the 169.254.0.0/16 address space`
+        `VPN Tunnel inside CIDR ${cidr} must be within the 169.254.0.0/16 address space`,
       );
     }
     // Go over our reserved blocks and verify
     for (const reservedBlock of amazonReservedInsideCidrs) {
       if (cidr == reservedBlock) {
         throw new Error(
-          `VPN Tunnel inside CIDR ${cidr} conflicts with Amazon reserved address space`
+          `VPN Tunnel inside CIDR ${cidr} conflicts with Amazon reserved address space`,
         );
       }
     }
@@ -276,7 +276,7 @@ export class ConfigParser {
         const subnetStanza = vpcConfigStanza.subnets[subnetName];
         if (subnetStanza.cidrMask < 16 || subnetStanza.cidrMask > 28) {
           throw new Error(
-            `A Subnet cidrMask of ${subnetStanza.cidrMask} was given.  Valid values are between 16 and 28`
+            `A Subnet cidrMask of ${subnetStanza.cidrMask} was given.  Valid values are between 16 and 28`,
           );
         }
         if (subnetStanza.sharedWith) {
@@ -298,7 +298,7 @@ export class ConfigParser {
         !startsWithString.startsWith("ou-")
       ) {
         throw new Error(
-          `Subnet ${subnetName} sharedWith must start with an o- (entire organization) or ou- (an ou within an organization)`
+          `Subnet ${subnetName} sharedWith must start with an o- (entire organization) or ou- (an ou within an organization)`,
         );
       }
       // Where it's shared with an ou- we need to know our organizationId
@@ -307,12 +307,12 @@ export class ConfigParser {
         if (this.configRaw.global.organizationId) {
           if (!this.configRaw.global.organizationId.startsWith("o-")) {
             throw new Error(
-              `Global option organizationId should begin with 'o-'.  Get the correct value from the organizational root account in the organizations page`
+              `Global option organizationId should begin with 'o-'.  Get the correct value from the organizational root account in the organizations page`,
             );
           }
         } else {
           throw new Error(
-            `When sharing with an OU, Global option 'organizationId' must be present and set to the Organization ID (begins with o- from the Organizations service page)`
+            `When sharing with an OU, Global option 'organizationId' must be present and set to the Organization ID (begins with o- from the Organizations service page)`,
           );
         }
       }
@@ -320,7 +320,7 @@ export class ConfigParser {
       // Direct share with an AWS Account ID.  Assure it is 12 digits
       if (sharedWith.toString().length != 12) {
         throw new Error(
-          `Subnet ${subnetName} has sharedWith set to ${sharedWith}.  AWS Account IDs must be 12 digits long`
+          `Subnet ${subnetName} has sharedWith set to ${sharedWith}.  AWS Account IDs must be 12 digits long`,
         );
       }
     }
@@ -333,7 +333,7 @@ export class ConfigParser {
         if (!vpcConfigStanza.attachTgw) {
           if (this.tgwHasRouteForVpc(vpcName)) {
             throw new Error(
-              `VPC ${vpcName} is set to attachTgw:false but contains a route in the transitGateway section`
+              `VPC ${vpcName} is set to attachTgw:false but contains a route in the transitGateway section`,
             );
           }
         }
@@ -344,7 +344,7 @@ export class ConfigParser {
   tgwHasRouteForVpc(name: string) {
     if (this.configRaw.hasOwnProperty("transitGateways")) {
       for (const transitGatewayName of Object.keys(
-        this.configRaw.transitGateways
+        this.configRaw.transitGateways,
       )) {
         const configStanza = this.configRaw.transitGateways[transitGatewayName];
         if (configStanza.blackholeRoutes) {
@@ -391,13 +391,13 @@ export class ConfigParser {
 
   providerNameExists(
     checkProviderName: string,
-    onlyFirewalls: boolean = false
+    onlyFirewalls: boolean = false,
   ) {
     for (const providerType of ["endpoints", "internet", "firewall"]) {
       if (this.configRaw.hasOwnProperty("providers")) {
         if (this.configRaw.providers.hasOwnProperty(providerType)) {
           for (const providerName of Object.keys(
-            this.configRaw.providers[providerType]
+            this.configRaw.providers[providerType],
           )) {
             if (providerName == checkProviderName) {
               // Match
@@ -440,19 +440,19 @@ export class ConfigParser {
     for (const vpcName of Object.keys(this.configRaw.vpcs)) {
       if (this.providerNameExists(vpcName)) {
         throw new Error(
-          `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`
+          `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`,
         );
       }
       if (this.vpnNameExists(vpcName)) {
         throw new Error(
-          `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`
+          `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`,
         );
       }
       if (this.configRaw.hasOwnProperty("vpns")) {
         for (const vpnName of Object.keys(this.configRaw.vpns)) {
           if (this.providerNameExists(vpcName)) {
             throw new Error(
-              `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`
+              `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`,
             );
           }
         }
@@ -475,27 +475,27 @@ export class ConfigParser {
           !configStanza.existingVpnConnectionId.startsWith("vpn-")
         ) {
           throw new Error(
-            `Vpn: ${vpnName}: Importing an existing VPN requires 'existingVpnConnectionId' that starts with 'vpn-'`
+            `Vpn: ${vpnName}: Importing an existing VPN requires 'existingVpnConnectionId' that starts with 'vpn-'`,
           );
         }
         if (
           !configStanza.existingVpnTransitGatewayAttachId ||
           !configStanza.existingVpnTransitGatewayAttachId.startsWith(
-            "tgw-attach-"
+            "tgw-attach-",
           )
         ) {
           throw new Error(
-            `Vpn: ${vpnName}: Importing an existing VPN requires 'existingVpnTransitGatewayAttachId' that starts with 'tgw-attach-'`
+            `Vpn: ${vpnName}: Importing an existing VPN requires 'existingVpnTransitGatewayAttachId' that starts with 'tgw-attach-'`,
           );
         }
         if (
           !configStanza.existingVpnTransitGatewayRouteTableId ||
           !configStanza.existingVpnTransitGatewayRouteTableId.startsWith(
-            "tgw-rtb-"
+            "tgw-rtb-",
           )
         ) {
           throw new Error(
-            `Vpn: ${vpnName}: Importing an existing VPN requires 'existingVpnTransitGatewayRouteTableId' that starts with 'tgw-rtb-'`
+            `Vpn: ${vpnName}: Importing an existing VPN requires 'existingVpnTransitGatewayRouteTableId' that starts with 'tgw-rtb-'`,
           );
         }
       } else {
@@ -503,7 +503,7 @@ export class ConfigParser {
         if (configStanza.existingCustomerGatewayId) {
           if (!configStanza.existingCustomerGatewayId.startsWith("cgw-")) {
             throw new Error(
-              `Vpn: ${vpnName}: existing customer gateway IDs should start with cgw-`
+              `Vpn: ${vpnName}: existing customer gateway IDs should start with cgw-`,
             );
           }
           if (
@@ -512,7 +512,7 @@ export class ConfigParser {
             configStanza.newCustomerGatewayName
           ) {
             throw new Error(
-              `Vpn: ${vpnName}: existingCustomerGatewayId which uses an existing gateway.  Do not specify any new* parameters as well`
+              `Vpn: ${vpnName}: existingCustomerGatewayId which uses an existing gateway.  Do not specify any new* parameters as well`,
             );
           }
         } else {
@@ -522,23 +522,23 @@ export class ConfigParser {
             !configStanza.newCustomerGatewayName
           ) {
             throw new Error(
-              `Vpn: ${vpnName}: for new gateways, newCustomerGatewayIp, newCustomerGatewayAsn and newCustomerGatewayName must be specified`
+              `Vpn: ${vpnName}: for new gateways, newCustomerGatewayIp, newCustomerGatewayAsn and newCustomerGatewayName must be specified`,
             );
           }
           if (!IPCidr.isValidAddress(configStanza.newCustomerGatewayIp)) {
             throw new Error(
-              `Vpn: ${vpnName}: provided new customer gateway IP of ${configStanza.newCustomerGatewayIp} is not a valid IP`
+              `Vpn: ${vpnName}: provided new customer gateway IP of ${configStanza.newCustomerGatewayIp} is not a valid IP`,
             );
           }
         }
         if (configStanza.tunnelOneOptions) {
           this.verifyTunnelInsideCidrs(
-            configStanza.tunnelOneOptions.tunnelInsideCidr
+            configStanza.tunnelOneOptions.tunnelInsideCidr,
           );
         }
         if (configStanza.tunnelTwoOptions) {
           this.verifyTunnelInsideCidrs(
-            configStanza.tunnelTwoOptions.tunnelInsideCidr
+            configStanza.tunnelTwoOptions.tunnelInsideCidr,
           );
         }
       }
@@ -551,7 +551,7 @@ export class ConfigParser {
       // Must have a VPC either shared, or within template
       if (!configStanza.shareWithVpcs && !configStanza.shareWithExistingVpcs) {
         throw new Error(
-          `DNS: ${dnsConfigName}: Private hosted zone must be associated with at least one VPC.  'shareWithVpcs' and/or 'shareWithExistingVpcs' are required`
+          `DNS: ${dnsConfigName}: Private hosted zone must be associated with at least one VPC.  'shareWithVpcs' and/or 'shareWithExistingVpcs' are required`,
         );
       }
       // If shareWithVpcs assure we can resolve those names in the configuration file.
@@ -562,7 +562,7 @@ export class ConfigParser {
             !this.providerNameExists(sharedWithVpc)
           ) {
             throw new Error(
-              `DNS: ${dnsConfigName}: contains sharedWithVpc value of ${sharedWithVpc}.  Unable to find ${sharedWithVpc} as a VPC or Provider in the configuration.`
+              `DNS: ${dnsConfigName}: contains sharedWithVpc value of ${sharedWithVpc}.  Unable to find ${sharedWithVpc} as a VPC or Provider in the configuration.`,
             );
           }
         }
@@ -572,13 +572,13 @@ export class ConfigParser {
         for (const shareWithExistingVpc of configStanza.shareWithExistingVpcs) {
           if (!shareWithExistingVpc.vpcId.startsWith("vpc-")) {
             throw new Error(
-              `DNS: ${dnsConfigName}: contains shareWithExistingVpc with vpc ID ${shareWithExistingVpc.vpcId}.  This value must start with 'vpc-'`
+              `DNS: ${dnsConfigName}: contains shareWithExistingVpc with vpc ID ${shareWithExistingVpc.vpcId}.  This value must start with 'vpc-'`,
             );
           }
           const regionSplit = shareWithExistingVpc.vpcRegion.split("-");
           if (regionSplit.length != 3) {
             throw new Error(
-              `DNS ${dnsConfigName}: Contains shareWithExistingVpc with region ${shareWithExistingVpc.vpcRegion}.  This does not appear valid.  Use format ie: us-east-1`
+              `DNS ${dnsConfigName}: Contains shareWithExistingVpc with region ${shareWithExistingVpc.vpcRegion}.  This does not appear valid.  Use format ie: us-east-1`,
             );
           }
         }
@@ -587,7 +587,7 @@ export class ConfigParser {
       for (const domain of configStanza.domains) {
         if (domain.split(".").length < 2) {
           throw new Error(
-            `DNS: ${dnsConfigName}: Contains a domain ${domain}.  Does not appear to be a valid domain.  Should contain at least one .`
+            `DNS: ${dnsConfigName}: Contains a domain ${domain}.  Does not appear to be a valid domain.  Should contain at least one .`,
           );
         }
       }
@@ -597,7 +597,7 @@ export class ConfigParser {
   tgwRoutesHaveVpnsVpcsOrProviders() {
     if (this.configRaw.hasOwnProperty("transitGateways")) {
       for (const transitGatewayName of Object.keys(
-        this.configRaw.transitGateways
+        this.configRaw.transitGateways,
       )) {
         const configStanza = this.configRaw.transitGateways[transitGatewayName];
         if (configStanza.blackholeRoutes) {
@@ -608,12 +608,12 @@ export class ConfigParser {
               !this.vpnNameExists(route.vpcName)
             ) {
               throw new Error(
-                `A blackhole route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`
+                `A blackhole route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
               );
             }
             if (this.vpnNameExists(route.vpcName)) {
               throw new Error(
-                `A blackhole route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`
+                `A blackhole route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
               );
             }
           }
@@ -626,7 +626,7 @@ export class ConfigParser {
               !this.vpnNameExists(route.vpcName)
             ) {
               throw new Error(
-                `A static route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`
+                `A static route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
               );
             }
             if (
@@ -635,18 +635,18 @@ export class ConfigParser {
               !this.vpnNameExists(route.routesTo)
             ) {
               throw new Error(
-                `A static route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`
+                `A static route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`,
               );
             }
             if (this.vpnNameExists(route.vpcName)) {
               throw new Error(
-                `A static route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`
+                `A static route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
               );
             }
             if (route.inspectedBy) {
               if (!this.providerNameExists(route.inspectedBy, true)) {
                 throw new Error(
-                  `A static route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`
+                  `A static route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
                 );
               }
             }
@@ -660,7 +660,7 @@ export class ConfigParser {
               !this.vpnNameExists(route.vpcName)
             ) {
               throw new Error(
-                `A dynamic route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`
+                `A dynamic route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
               );
             }
             if (
@@ -669,18 +669,18 @@ export class ConfigParser {
               !this.vpnNameExists(route.routesTo)
             ) {
               throw new Error(
-                `A dynamic route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`
+                `A dynamic route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`,
               );
             }
             if (this.vpnNameExists(route.vpcName)) {
               throw new Error(
-                `A dynamic route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`
+                `A dynamic route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
               );
             }
             if (route.inspectedBy) {
               if (!this.providerNameExists(route.inspectedBy, true)) {
                 throw new Error(
-                  `A dynamic route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`
+                  `A dynamic route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
                 );
               }
               if (
@@ -688,7 +688,7 @@ export class ConfigParser {
                 this.vpnNameExists(route.routesTo)
               ) {
                 throw new Error(
-                  `VPN inspection is not possible via Dynamic Routing.  Implement via Static or Default Route instead.`
+                  `VPN inspection is not possible via Dynamic Routing.  Implement via Static or Default Route instead.`,
                 );
               }
             }
@@ -702,7 +702,7 @@ export class ConfigParser {
               !this.vpnNameExists(route.vpcName)
             ) {
               throw new Error(
-                `A default route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`
+                `A default route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
               );
             }
             if (
@@ -711,18 +711,18 @@ export class ConfigParser {
               !this.vpnNameExists(route.routesTo)
             ) {
               throw new Error(
-                `A default route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`
+                `A default route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`,
               );
             }
             if (this.vpnNameExists(route.vpcName)) {
               throw new Error(
-                `A default route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`
+                `A default route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
               );
             }
             if (route.inspectedBy) {
               if (!this.providerNameExists(route.inspectedBy, true)) {
                 throw new Error(
-                  `A default route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`
+                  `A default route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
                 );
               }
             }
@@ -739,14 +739,14 @@ export class ConfigParser {
         this.locateProviderByName(
           vpcConfigStanza.providerEndpoints,
           "endpoints",
-          vpcName
+          vpcName,
         );
       }
       if (vpcConfigStanza.hasOwnProperty("providerInternet")) {
         this.locateProviderByName(
           vpcConfigStanza.providerInternet,
           "internet",
-          vpcName
+          vpcName,
         );
       }
     }
@@ -760,12 +760,12 @@ export class ConfigParser {
       this.configRaw["providers"].hasOwnProperty("internet")
     ) {
       for (const internetProviderName of Object.keys(
-        this.configRaw["providers"]["internet"]
+        this.configRaw["providers"]["internet"],
       )) {
         this.locateRouteByName(
           undefined,
           internetProviderName,
-          undefined
+          undefined,
         ).forEach((route) => {
           const vpcStanza = this.locateVpcStanzaByName(route.vpcName);
           if (
@@ -773,7 +773,7 @@ export class ConfigParser {
             !vpcStanza.hasOwnProperty("providerInternet")
           ) {
             throw new Error(
-              `Vpc: ${route.vpcName} has a route to internet provider ${internetProviderName} but does not have 'providerInternet' defined in the vpc configuration.`
+              `Vpc: ${route.vpcName} has a route to internet provider ${internetProviderName} but does not have 'providerInternet' defined in the vpc configuration.`,
             );
           }
         });
@@ -786,7 +786,7 @@ export class ConfigParser {
     const matchingRoutes: Array<any> = [];
     if (this.configRaw.hasOwnProperty("transitGateways")) {
       for (const transitGatewayName of Object.keys(
-        this.configRaw.transitGateways
+        this.configRaw.transitGateways,
       )) {
         const configStanza = this.configRaw.transitGateways[transitGatewayName];
         for (const routeStyle of [
@@ -840,7 +840,7 @@ export class ConfigParser {
   locateProviderByName(
     providerName: string,
     providerType: string,
-    vpcStanzaEvaluating: string
+    vpcStanzaEvaluating: string,
   ) {
     if (this.configRaw.hasOwnProperty("providers")) {
       if (this.configRaw.providers.hasOwnProperty(providerType)) {
@@ -848,17 +848,17 @@ export class ConfigParser {
           !this.configRaw.providers[providerType].hasOwnProperty(providerName)
         ) {
           throw new Error(
-            `VPC ${vpcStanzaEvaluating} specifies ${providerType} provider named ${providerName}.  No provider with that name was found`
+            `VPC ${vpcStanzaEvaluating} specifies ${providerType} provider named ${providerName}.  No provider with that name was found`,
           );
         }
       } else {
         throw new Error(
-          `VPC ${vpcStanzaEvaluating} specifies a ${providerType} provider.  However no provider of type ${providerType} was found`
+          `VPC ${vpcStanzaEvaluating} specifies a ${providerType} provider.  However no provider of type ${providerType} was found`,
         );
       }
     } else {
       throw new Error(
-        `VPC ${vpcStanzaEvaluating} specifies a ${providerType} provider.  However no providers are defined.`
+        `VPC ${vpcStanzaEvaluating} specifies a ${providerType} provider.  However no providers are defined.`,
       );
     }
   }
@@ -875,7 +875,7 @@ export class ConfigParser {
       const mask = parseInt(cidrSplit[1]);
       if (mask < 16 || mask > 28) {
         throw new Error(
-          `CIDR Address Mask ${cidr} mask must be between /16 and /28 for a Vpc`
+          `CIDR Address Mask ${cidr} mask must be between /16 and /28 for a Vpc`,
         );
       }
     }
@@ -884,7 +884,7 @@ export class ConfigParser {
 
     if (cidrClass.start() != cidrSplit[0]) {
       throw new Error(
-        `CIDR Address provided ${cidr} should start at address ${cidrClass.start()}.  Re-format.`
+        `CIDR Address provided ${cidr} should start at address ${cidrClass.start()}.  Re-format.`,
       );
     }
   }
@@ -895,7 +895,7 @@ export class ConfigParser {
     }
     if (this.configRaw.global.ssmPrefix.endsWith("/")) {
       throw new Error(
-        `Global section - ssmPrefix cannot end with a trailing /`
+        `Global section - ssmPrefix cannot end with a trailing /`,
       );
     }
   }
@@ -905,7 +905,7 @@ export class ConfigParser {
       if (!fs.existsSync(path.join(this.configRaw.global.discoveryFolder!))) {
         throw new Error(
           `Discovery folder specified by ${this.configRaw.global
-            .discoveryFolder!} does not exist.`
+            .discoveryFolder!} does not exist.`,
         );
       }
     }
@@ -916,7 +916,7 @@ export class ConfigParser {
     if (this.configRaw.hasOwnProperty("transitGateways")) {
       if (Object.keys(this.configRaw.transitGateways).length > 1) {
         throw new Error(
-          "At this moment, only one transit gateway is supported.  PR requests welcome!"
+          "At this moment, only one transit gateway is supported.  PR requests welcome!",
         );
       }
     }
@@ -932,7 +932,7 @@ export class ConfigParser {
             ].useExistingTgwId.startsWith("tgw-")
           ) {
             throw new Error(
-              `Transit Gateway: ${tgwName} importing using 'useExistingTgwId' must start with 'tgw-'`
+              `Transit Gateway: ${tgwName} importing using 'useExistingTgwId' must start with 'tgw-'`,
             );
           }
         }
@@ -951,12 +951,12 @@ export class ConfigParser {
           !this.configRaw.transitGateways.hasOwnProperty(transitGatewayName)
         ) {
           throw new Error(
-            `Vpn has useTransit: ${transitGatewayName}.  However no 'transitGateways:' with that name found`
+            `Vpn has useTransit: ${transitGatewayName}.  However no 'transitGateways:' with that name found`,
           );
         }
       } else {
         throw new Error(
-          `Use of VPN requires a transit gateway.  However transitGateway: was not defined.`
+          `Use of VPN requires a transit gateway.  However transitGateway: was not defined.`,
         );
       }
     }
@@ -968,7 +968,7 @@ export class ConfigParser {
       if (this.configRaw.hasOwnProperty("providers")) {
         if (this.configRaw.providers.hasOwnProperty(providerType)) {
           for (const providerName of Object.keys(
-            this.configRaw.providers[providerType]
+            this.configRaw.providers[providerType],
           )) {
             const configStanza =
               this.configRaw.providers[providerType][providerName];
@@ -983,12 +983,12 @@ export class ConfigParser {
           !this.configRaw.transitGateways.hasOwnProperty(transitGatewayName)
         ) {
           throw new Error(
-            `Provider has useTransit: ${transitGatewayName}.  However no 'transitGateways:' with that name found`
+            `Provider has useTransit: ${transitGatewayName}.  However no 'transitGateways:' with that name found`,
           );
         }
       } else {
         throw new Error(
-          `All providers require a transit gateway.  However transitGateway: was not defined.`
+          `All providers require a transit gateway.  However transitGateway: was not defined.`,
         );
       }
     }

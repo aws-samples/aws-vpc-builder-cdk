@@ -86,6 +86,9 @@
                         "$ref": "#/definitions/IConfigConfigTag"
                     },
                     "type": "array"
+                },
+                "useLegacyIdentifiers": {
+                    "type": "boolean"
                 }
             },
             "required": [
@@ -162,9 +165,7 @@
                     "type": "string"
                 },
                 "style": {
-                    "enum": [
-                        "awsNetworkFirewall"
-                    ],
+                    "const": "awsNetworkFirewall",
                     "type": "string"
                 },
                 "useTransit": {
@@ -199,9 +200,7 @@
                     "type": "array"
                 },
                 "style": {
-                    "enum": [
-                        "natEgress"
-                    ],
+                    "const": "natEgress",
                     "type": "string"
                 },
                 "useTransit": {
@@ -384,9 +383,7 @@
                     "type": "array"
                 },
                 "style": {
-                    "enum": [
-                        "transitGateway"
-                    ],
+                    "const": "transitGateway",
                     "type": "string"
                 },
                 "tgwDescription": {
@@ -531,9 +528,7 @@
                     "type": "string"
                 },
                 "style": {
-                    "enum": [
-                        "transitGatewayAttached"
-                    ],
+                    "const": "transitGatewayAttached",
                     "type": "string"
                 },
                 "tunnelOneOptions": {

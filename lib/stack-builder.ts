@@ -168,7 +168,8 @@ export class StackBuilderClass {
       const allNamedStacks = this.allNamedVpcStacks();
       this.stackMapper.transitGatewayRoutesStack("transit-gateway-routes", {
         tgwAttachmentsAndRoutes: allNamedStacks,
-      });
+        useLegacyIdentifiers: this.c.global.useLegacyIdentifiers ? this.c.global.useLegacyIdentifiers : false
+      })
       // Use our Dummy Stack to assure our key exports (tgw ID, vpc ID, TGW attach ID remain exported)
       // Really only required when we're attaching to a TGW.  Stand alone VPCs don't require exports to
       // co-ordinate their installation.

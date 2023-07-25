@@ -8,7 +8,7 @@ import {
 const client = new EC2Client({ region: process.env.AWS_REGION });
 
 const findVpnTransitGatewayAttachId = async (
-  requestProps: ICustomResourceTGWFindVpnAttach
+  requestProps: ICustomResourceTGWFindVpnAttach,
 ) => {
   const vpnResponse = await client.send(
     new DescribeTransitGatewayAttachmentsCommand({
@@ -26,14 +26,14 @@ const findVpnTransitGatewayAttachId = async (
           Values: [requestProps.vpnId],
         },
       ],
-    })
+    }),
   );
   if (vpnResponse.TransitGatewayAttachments) {
     return vpnResponse.TransitGatewayAttachments[0]
       .TransitGatewayAttachmentId as string;
   } else {
     throw new Error(
-      `Failed to retrieve any transit gateway attachments for vpn ${requestProps.vpnId} TGW ${requestProps.transitGatewayId}`
+      `Failed to retrieve any transit gateway attachments for vpn ${requestProps.vpnId} TGW ${requestProps.transitGatewayId}`,
     );
   }
 };
@@ -49,7 +49,7 @@ export const onEvent = async (event: CdkCustomResourceEvent) => {
 
   if (event.RequestType == "Create" || event.RequestType == "Update") {
     const transitGatewayAttachId = await findVpnTransitGatewayAttachId(
-      requestProps
+      requestProps,
     );
     console.info(`Retrieved identifier: ${transitGatewayAttachId}`);
     responseProps.Data = {
