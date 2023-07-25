@@ -14,7 +14,7 @@ export interface IConfigGlobal {
   region: string;
   availabilityZones: Array<string>;
   discoveryFolder?: string;
-  useLegacyIdentifiers?: boolean
+  useLegacyIdentifiers?: boolean;
 }
 
 /*
