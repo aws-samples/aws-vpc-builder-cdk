@@ -85,14 +85,20 @@ export class VpcWorkloadPublicStack extends BuilderVpc {
       } else {
         const sharedWithString = sharedWith.toString();
         // Entire Organization share
+        let organizationMainAccountId = this.props.organizationMainAccountId
+        // Historically we could use the deployment accounts ID to form our OU ARN.  That no longer works
+        // However we want to allow users to annotate existing VPCs to use this old approach to not trigger an update
+        if(this.props.legacyRamShare) {
+          organizationMainAccountId = this.account
+        }
         if (sharedWithString.startsWith("o-")) {
           ramPrincipals.push(
-            `arn:aws:organizations::${this.account}/${sharedWith}`
+            `arn:aws:organizations::${organizationMainAccountId}/${sharedWith}`
           );
         } else if (sharedWithString.startsWith("ou-")) {
           if (this.props.organizationId) {
             ramPrincipals.push(
-              `arn:aws:organizations::${this.account}:ou/${this.props.organizationId}/${sharedWith}`
+              `arn:aws:organizations::${organizationMainAccountId}:ou/${this.props.organizationId}/${sharedWith}`
             );
           }
         } else {

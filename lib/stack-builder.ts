@@ -195,6 +195,8 @@ export class StackBuilderClass {
       const stackProps: IVpcWorkloadProps = {
         globalPrefix: this.c.global.stackNamePrefix,
         organizationId: this.c.global.organizationId,
+        organizationMainAccountId: this.c.global.organizationMainAccountId,
+        legacyRamShare: configStanza.legacyRamShare,
         namePrefix: workloadVpcName,
         availabilityZones: configStanza.availabilityZones
           ? configStanza.availabilityZones

@@ -144,6 +144,7 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
         availabilityZones: ["us-east-1a", "us-east-1b"],
         withTgw: true,
         organizationId: "o-12345",
+        organizationMainAccountId: "012345678910",
         createSubnets: [
           {
             name: "testing",
@@ -167,34 +168,12 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
     });
     template.hasResourceProperties("AWS::RAM::ResourceShare", {
       Principals: Match.arrayWith([
-        {
-          "Fn::Join": [
-            "",
-            [
-              "arn:aws:organizations::",
-              {
-                Ref: "AWS::AccountId",
-              },
-              "/o-12345",
-            ],
-          ],
-        },
+        "arn:aws:organizations::012345678910/o-12345",
       ]),
     });
     template.hasResourceProperties("AWS::RAM::ResourceShare", {
       Principals: Match.arrayWith([
-        {
-          "Fn::Join": [
-            "",
-            [
-              "arn:aws:organizations::",
-              {
-                Ref: "AWS::AccountId",
-              },
-              ":ou/o-12345/ou-12345",
-            ],
-          ],
-        },
+        "arn:aws:organizations::012345678910:ou/o-12345/ou-12345",
       ]),
     });
   }

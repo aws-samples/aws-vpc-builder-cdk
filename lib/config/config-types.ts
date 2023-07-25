@@ -9,6 +9,7 @@ export interface IConfigConfigTag {
 export interface IConfigGlobal {
   stackNamePrefix: string;
   organizationId?: string;
+  organizationMainAccountId?: string;
   tags?: Array<IConfigConfigTag>;
   ssmPrefix: string;
   region: string;
@@ -150,6 +151,7 @@ export interface IConfigVpc {
   availabilityZones?: Array<string>;
   style: IConfigVpcStyles;
   subnets: IConfigVpcNamedSubnets;
+  legacyRamShare?: boolean;
   attachTgw?: boolean;
   providerEndpoints?: string;
   providerInternet?: string;

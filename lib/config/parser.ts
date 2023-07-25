@@ -315,6 +315,18 @@ export class ConfigParser {
             `When sharing with an OU, Global option 'organizationId' must be present and set to the Organization ID (begins with o- from the Organizations service page)`,
           );
         }
+        // Share with an OU.  Verify we have our global organization ID present and it is 12 digits
+        if (this.configRaw.global.organizationMainAccountId) {
+          if (this.configRaw.global.organizationMainAccountId.length != 12) {
+            throw new Error(
+              `Global option organizationMainAccountId must be a 12 digit AWS Account identifier.  Use the ID of the account owning the Organization.`,
+            );
+          }
+        } else {
+          throw new Error(
+            `When sharing with an OU, Global option 'organizationMainAccountId' must be present and set to the AWS Account ID that owns the organization`,
+          );
+        }
       }
     } else {
       // Direct share with an AWS Account ID.  Assure it is 12 digits
