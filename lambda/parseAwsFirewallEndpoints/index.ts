@@ -23,7 +23,7 @@ export const onEvent = async (event: CdkCustomResourceEvent) => {
     // Our CDK framework will trap this and send a failure back to the Template as desired.
     if (!responseProps.hasOwnProperty("PhysicalResourceId")) {
       throw new Error(
-        `Unable to find ${requestProps.availabilityZone} in endpoint details ${requestProps.firewallEndpoints}`
+        `Unable to find ${requestProps.availabilityZone} in endpoint details ${requestProps.firewallEndpoints}`,
       );
     }
   }

@@ -10,37 +10,37 @@ import {
 const client = new EC2Client({ region: process.env.AWS_REGION });
 
 const createTransitGatewayStaticRoute = async (
-  requestProps: ICustomResourceTGWStaticRoute
+  requestProps: ICustomResourceTGWStaticRoute,
 ) => {
   await client.send(
     new CreateTransitGatewayRouteCommand({
       DestinationCidrBlock: requestProps.destinationCidrBlock,
       TransitGatewayAttachmentId: requestProps.transitGatewayAttachmentId,
       TransitGatewayRouteTableId: requestProps.transitGatewayRouteTableId,
-    })
+    }),
   );
 };
 
 const replaceTransitGatewayRoute = async (
-  requestProps: ICustomResourceTGWStaticRoute
+  requestProps: ICustomResourceTGWStaticRoute,
 ) => {
   await client.send(
     new ReplaceTransitGatewayRouteCommand({
       DestinationCidrBlock: requestProps.destinationCidrBlock,
       TransitGatewayAttachmentId: requestProps.transitGatewayAttachmentId,
       TransitGatewayRouteTableId: requestProps.transitGatewayRouteTableId,
-    })
+    }),
   );
 };
 
 const deleteTransitGatewayStaticRoute = async (
-  requestProps: ICustomResourceTGWStaticRoute
+  requestProps: ICustomResourceTGWStaticRoute,
 ) => {
   await client.send(
     new DeleteTransitGatewayRouteCommand({
       DestinationCidrBlock: requestProps.destinationCidrBlock,
       TransitGatewayRouteTableId: requestProps.transitGatewayRouteTableId,
-    })
+    }),
   );
 };
 

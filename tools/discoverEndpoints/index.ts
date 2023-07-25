@@ -9,11 +9,11 @@ import * as fs from "fs";
 
 const filterAvailabilityZone = (
   requiredAz: Array<string>,
-  serviceDetail: ServiceDetail
+  serviceDetail: ServiceDetail,
 ) => {
   if (serviceDetail.AvailabilityZones) {
-    return requiredAz.every((i) =>
-      serviceDetail.AvailabilityZones?.includes(i)
+    return requiredAz.every(
+      (i) => serviceDetail.AvailabilityZones?.includes(i),
     );
   }
   return false;
@@ -25,7 +25,7 @@ const filterAvailabilityZone = (
   // Assure we got at least one argument
   if (requiredAzs.length < 1) {
     console.error(
-      `ERROR: Provide availability zones to filter for ie: '${process.argv[0]} us-east-1a us-east-1-b us-east-1c'`
+      `ERROR: Provide availability zones to filter for ie: '${process.argv[0]} us-east-1a us-east-1-b us-east-1c'`,
     );
     process.exit(1);
   }
@@ -40,22 +40,22 @@ const filterAvailabilityZone = (
     await client.send(
       new DescribeAvailabilityZonesCommand({
         ZoneNames: requiredAzs,
-      })
+      }),
     );
   } catch (e) {
     console.error(
-      `ERROR: AZ Names '${requiredAzs}' provided on commandline do not exist:\n ${e}`
+      `ERROR: AZ Names '${requiredAzs}' provided on commandline do not exist:\n ${e}`,
     );
     console.error(
-      `ERROR: Provide availability zones to filter for ie: '${process.argv[0]} us-east-1a us-east-1-b us-east-1c'`
+      `ERROR: Provide availability zones to filter for ie: '${process.argv[0]} us-east-1a us-east-1-b us-east-1c'`,
     );
     process.exit(1);
   }
 
   console.log(
     `Discovering all common endpoints for availability zones ${requiredAzs.join(
-      ", "
-    )}`
+      ", ",
+    )}`,
   );
   // Describe our endpoints (this gets them all in the region)
   const command = new DescribeVpcEndpointServicesCommand({
@@ -72,7 +72,7 @@ const filterAvailabilityZone = (
   let filtered: Array<ServiceDetail> = [];
   if (response.ServiceDetails) {
     filtered = response.ServiceDetails.filter((serviceDetail) =>
-      filterAvailabilityZone(requiredAzs, serviceDetail)
+      filterAvailabilityZone(requiredAzs, serviceDetail),
     );
   }
 
@@ -80,22 +80,22 @@ const filterAvailabilityZone = (
   fs.writeFileSync(
     path.join("discovery", `endpoints-${region}.json`),
     JSON.stringify(filtered, null, 2),
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   );
 
   // Build a simple text file in our config directory containing all endpoints available with the filter that our
   // Users can modify to suit.
   const endpointList = filtered.map(
-    (serviceDetail) => serviceDetail.ServiceName
+    (serviceDetail) => serviceDetail.ServiceName,
   );
 
   fs.writeFileSync(
     path.join("config", `all-endpointslist-${region}.txt`),
     endpointList.join("\n"),
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   );
 
   console.info(
-    `Discovery results written to 'all-endpointslist-${region}.txt'.  Modify according to your needs.`
+    `Discovery results written to 'all-endpointslist-${region}.txt'.  Modify according to your needs.`,
   );
 })();
