@@ -635,8 +635,8 @@ test("DxGwImportValuesNotCorrect", () => {
   const configContents = minimumConfig();
   configContents.dxgws = {
     toDc: {
-      existingDxGwTransitGatewayAttachId: "tgw-1234",
-      existingDxGwTransitGatewayRouteTableId: "tgw-id-1234",
+      existingDxGwTransitGatewayAttachId: "tgwattach-1234",
+      existingDxGwTransitGatewayRouteTableId: "tgw-rtb-1234",
       existingTgwId: "tgw-1234",
     },
   };
@@ -649,6 +649,40 @@ test("DxGwImportValuesNotCorrect", () => {
   let config = new ConfigParser({ configContents: configContents });
   expect(() => config.parse()).toThrow(
       "DxGw: toDc: Transit Gateway Attachment Value 'existingDxGwTransitGatewayAttachId' must begin with tgw-attach-"
+  );
+  configContents.dxgws = {
+    toDc: {
+      existingDxGwTransitGatewayAttachId: "tgw-attach-1234",
+      existingDxGwTransitGatewayRouteTableId: "tgwrtb-1234",
+      existingTgwId: "tgw-1234",
+    },
+  };
+  configContents.transitGateways = {
+    testing: {
+      style: "transitGateway",
+      tgwDescription: "testing",
+    },
+  };
+  config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+      "DxGw: toDc: Transit Gateway Route Table Value 'existingDxGwTransitGatewayRouteTableId' must begin with tgw-rtb-"
+  );
+  configContents.dxgws = {
+    toDc: {
+      existingDxGwTransitGatewayAttachId: "tgw-attach-1234",
+      existingDxGwTransitGatewayRouteTableId: "tgw-rtb-1234",
+      existingTgwId: "tgwid-1234",
+    },
+  };
+  configContents.transitGateways = {
+    testing: {
+      style: "transitGateway",
+      tgwDescription: "testing",
+    },
+  };
+  config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+      "DxGw: toDc: Existing Transit Gateway 'existingTgwId' must begin with tgw-"
   );
 });
 
