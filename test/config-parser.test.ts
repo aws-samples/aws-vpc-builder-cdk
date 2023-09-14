@@ -516,7 +516,7 @@ test("RouteNamingSanity", () => {
   configContents.vpcs["dev"].providerInternet = "testing";
   configContents.dxgws = {
     todc: {
-      existingDxGwTransitGatewayAttachId: "tgwattach-1234",
+      existingDxGwTransitGatewayAttachId: "tgw-attach-1234",
       existingDxGwTransitGatewayRouteTableId: "tgw-rtb-1234",
       existingTgwId: "tgw-1234",
     },
