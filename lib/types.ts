@@ -23,7 +23,7 @@ export interface ITransitGatewayBaseProps extends cdk.StackProps {
 /*
  * Base for anything transit gateway attached that needs to route
  */
-export type ITgwAttachType = "vpc" | "vpn";
+export type ITgwAttachType = "vpc" | "vpn" | "dxgw";
 export interface ITransitGatewayAttachImport {
   attrId: string;
 }
@@ -131,6 +131,19 @@ export interface IBuilderVpnProps extends IBuilderBaseProps {
   tunnelTwoOptions?: IConfigVpnTunnelOptions;
 }
 
+/*
+ * Base Direct Connect Gateway (DxGw) Class and base properties for our Direct Connect Gateway Imports
+ *
+ * NOTE: There is no Cloudformation support for Direct Connect at the moment.  This will serve as an abstract model so
+ * so we can import the tgw attachments and create static routes and propagations
+ * See: https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/876
+ * Expand in the future to support creation of the Dx Gateway itself when support is added.
+ */
+export interface IBuilderDxGw extends IBuilderBase {
+}
+export interface IBuilderDxGwProps extends IBuilderBaseProps {
+}
+
 export interface ICustomResourceParseAwsFirewallEndpoints {
   firewallEndpoints: Array<string>;
   availabilityZone: string;
@@ -182,7 +195,7 @@ export interface INamedSubnet {
 }
 
 export interface ITgwPropagateRouteAttachmentName {
-  attachTo: IBuilderVpc | IBuilderVpn;
+  attachTo: IBuilderVpc | IBuilderVpn | IBuilderDxGw;
   inspectBy?: IBuilderVpc | IBuilderVpn;
 }
 

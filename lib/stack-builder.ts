@@ -3,6 +3,7 @@ import "source-map-support/register";
 import { ServiceDetail } from "@aws-sdk/client-ec2";
 import {
   IBuilderVpc,
+  IBuilderDxGw,
   IVpcWorkloadProps,
   SubnetNamedMasks,
   ITgwPropagateRouteAttachmentName,
@@ -38,6 +39,11 @@ export interface namedVpnStack {
   stack: IBuilderVpn;
 }
 
+export interface namedDxGwStack {
+  name: string
+  stack: IBuilderDxGw
+}
+
 export type cdkVpcStackTypes =
   | "providerEndpoint"
   | "providerInternet"
@@ -47,6 +53,7 @@ export type cdkVpcStackTypes =
 export interface cdkStacks {
   transitGateway: Array<namedTgwStack>;
   vpn: Array<namedVpnStack>;
+  dxgw: Array<namedDxGwStack>;
   providerEndpoint: Array<namedVpcStack>;
   providerInternet: Array<namedVpcStack>;
   providerFirewall: Array<namedVpcStack>;
@@ -60,16 +67,17 @@ export type providerKeys =
 export type vpnKeys = "vpn";
 export type workloadKeys = "workload";
 export type transitGatewayKeys = "transitGateway";
+export type dxGwKeys = "dxgw"
 
 export interface IStackBuilderProps {}
 
 export class StackBuilderClass {
-  configFilename: string;
-  configContents: string;
+  props: IStackBuilderProps
   stackMapper: StackMapper;
   stacks: cdkStacks = {
     transitGateway: [],
     vpn: [],
+    dxgw: [],
     providerEndpoint: [],
     providerInternet: [],
     providerFirewall: [],
@@ -80,8 +88,9 @@ export class StackBuilderClass {
   interfaceDiscovery: Array<ServiceDetail> = [];
   interfaceList: Array<string> = [];
 
-  constructor(props?: IStackBuilderProps) {
-    this.stackMapper = new StackMapper();
+  constructor(props: IStackBuilderProps) {
+    this.props = props
+    this.stackMapper = new StackMapper({});
   }
 
   configure(configFilename?: string, configContents?: string) {
@@ -112,6 +121,11 @@ export class StackBuilderClass {
     // Build our VPN if configured
     if (this.c.vpns) {
       await this.buildVpnStacks();
+    }
+
+    // Build our DxGw stack if configured
+    if(this.c.dxgws) {
+      await this.buildDxGwStacks();
     }
 
     // Build all of our provider stacks if they are configured
@@ -165,7 +179,7 @@ export class StackBuilderClass {
     // Now our stacks are in place, associate our route relationships between them
     if (this.c.transitGateways) {
       this.associateTgwRoutes();
-      const allNamedStacks = this.allNamedVpcStacks();
+      const allNamedStacks = this.allNamedStacks();
       this.stackMapper.transitGatewayRoutesStack("transit-gateway-routes", {
         tgwAttachmentsAndRoutes: allNamedStacks,
         useLegacyIdentifiers: this.c.global.useLegacyIdentifiers ? this.c.global.useLegacyIdentifiers : false
@@ -325,6 +339,29 @@ export class StackBuilderClass {
               configStanza.useTransit
             ).tgw,
           }
+        ),
+      });
+    }
+  }
+
+  async buildDxGwStacks() {
+    for (const dxGwName of Object.keys(this.c.dxgws!)) {
+      const configStanza = this.c.dxgws![dxGwName];
+      this.stacks.dxgw.push({
+        name: dxGwName,
+        stack: await this.stackMapper.dxGwStacks(
+            `${dxGwName}-dxgw`,
+            {
+              namePrefix: dxGwName,
+              globalPrefix: this.c.global.stackNamePrefix,
+              ssmParameterPrefix: this.c.global.ssmPrefix,
+              existingTransitGatewayId: configStanza.existingTgwId,
+              existingDxGwTransitGatewayAttachId: configStanza.existingDxGwTransitGatewayAttachId,
+              existingDxGwTransitGatewayRouteTableId: configStanza.existingDxGwTransitGatewayRouteTableId,
+              tgw: {
+                attrId: configStanza.existingTgwId
+              }
+            }
         ),
       });
     }
@@ -630,8 +667,8 @@ export class StackBuilderClass {
     return "";
   }
 
-  allNamedVpcStacks(): Array<IBuilderVpc | IBuilderVpn> {
-    const allStacks: Array<IBuilderVpc | IBuilderVpn> = [];
+  allNamedStacks(): Array<IBuilderVpc | IBuilderVpn | IBuilderDxGw> {
+    const allStacks: Array<IBuilderVpc | IBuilderVpn | IBuilderDxGw> = [];
     const cdkStackTypes: Array<cdkVpcStackTypes> = [
       "providerEndpoint",
       "providerInternet",
@@ -646,10 +683,13 @@ export class StackBuilderClass {
     this.stacks.vpn.forEach((namedStack) => {
       allStacks.push(namedStack.stack);
     });
+    this.stacks.dxgw.forEach((namedStack) => {
+      allStacks.push(namedStack.stack);
+    })
     return allStacks;
   }
 
-  routableStackByName(stackName: string): IBuilderVpc | IBuilderVpn {
+  routableStackByName(stackName: string): IBuilderVpc | IBuilderVpn | IBuilderDxGw {
     // Try for a workload stack first, this is the most common
     try {
       return this.workloadStackByName("workload", stackName);
@@ -669,8 +709,12 @@ export class StackBuilderClass {
     try {
       return this.vpnStackByName("vpn", stackName);
     } catch {}
+    // Finally a DxGw stack
+    try {
+      return this.dxGwStackByName("dxgw", stackName);
+    } catch {}
     throw new Error(
-      `Unable find a workload, or provider VPC with name ${stackName}`
+        `Unable find a workload, or provider VPC with name ${stackName}`
     );
   }
 
@@ -736,6 +780,19 @@ export class StackBuilderClass {
     } else {
       throw new Error(
         `Unable to find provider type ${vpnKey} name ${vpnNamedStack}`
+      );
+    }
+  }
+
+  dxGwStackByName(dxGwKey: dxGwKeys, dxGwName: string): IBuilderDxGw {
+    const dxGwNamedStack = this.stacks[dxGwKey].filter(
+        (dxGwStack) => dxGwStack.name == dxGwName
+    )[0];
+    if (dxGwNamedStack) {
+      return dxGwNamedStack.stack;
+    } else {
+      throw new Error(
+          `Unable to find provider type ${dxGwKey} name ${dxGwNamedStack}`
       );
     }
   }

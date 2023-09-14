@@ -57,6 +57,32 @@
             ],
             "type": "object"
         },
+        "IConfigDxGw": {
+            "additionalProperties": false,
+            "properties": {
+                "existingDxGwTransitGatewayAttachId": {
+                    "type": "string"
+                },
+                "existingDxGwTransitGatewayRouteTableId": {
+                    "type": "string"
+                },
+                "existingTgwId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "existingDxGwTransitGatewayAttachId",
+                "existingDxGwTransitGatewayRouteTableId",
+                "existingTgwId"
+            ],
+            "type": "object"
+        },
+        "IConfigDxGws": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigDxGw"
+            },
+            "type": "object"
+        },
         "IConfigGlobal": {
             "additionalProperties": false,
             "properties": {
@@ -575,6 +601,9 @@
     "properties": {
         "dns": {
             "$ref": "#/definitions/IConfigDns"
+        },
+        "dxgws": {
+            "$ref": "#/definitions/IConfigDxGws"
         },
         "global": {
             "$ref": "#/definitions/IConfigGlobal"

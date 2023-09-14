@@ -37,6 +37,10 @@ import {
   VpnToTransitGatewayStack,
 } from "./vpn-to-transit-gateway-stack";
 import {
+  IDirectConnectGatewayProps,
+  DirectConnectGatewayStack
+} from "./direct-connect-gateway-stack"
+import {
   IDnsRoute53PrivateHostedZonesProps,
   DnsRoute53PrivateHostedZonesClass,
 } from "./dns-route53-private-hosted-zones-stack";
@@ -49,13 +53,17 @@ export type endpointStackProps =
   | IVpcRoute53ResolverEndpointsProps;
 export type internetStackProps = IVpcNatEgressProps;
 export type transitGatewayStackProps = ITransitGatewayProps;
+export type directConnectGatewayProps = IDirectConnectGatewayProps;
 
 export interface StackMapperProps {}
 
 export class StackMapper {
   app: cdk.App = new cdk.App();
   c: IConfig;
-  constructor(props?: StackMapperProps) {}
+  props: StackMapperProps
+  constructor(props: StackMapperProps) {
+    this.props = props
+  }
 
   configure(c: IConfig) {
     this.c = c;
@@ -112,6 +120,25 @@ export class StackMapper {
     } else {
       throw new Error(`Workload - style ${style} is not implemented or mapped`);
     }
+  }
+
+  async dxGwStacks(
+      stackName: string,
+      props: directConnectGatewayProps
+  ) {
+      const cfnStackName =
+          `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const stackClass = new DirectConnectGatewayStack(
+          this.app,
+          cfnStackName,
+          props
+      );
+      await stackClass.init();
+      stackClass.saveTgwRouteInformation();
+      stackClass.attachToTGW();
+      stackClass.createSsmParameters();
+      this.tagStack(stackClass);
+      return stackClass;
   }
 
   async providerFirewallStacks(

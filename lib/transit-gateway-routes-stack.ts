@@ -4,6 +4,7 @@ import * as ec2 from "aws-cdk-lib/aws-ec2";
 import {
   IBuilderVpc,
   IBuilderVpn,
+    IBuilderDxGw,
   IVpcSubnetParameterNames,
   IVpcParameterNames,
   INamedSubnet,
@@ -19,7 +20,7 @@ import * as nodeLambda from "aws-cdk-lib/aws-lambda-nodejs";
 const md5 = require("md5");
 
 // TODO Add more to this as they are implemented
-export type tgwAttachmentsAndRouteTypes = IBuilderVpc | IBuilderVpn;
+export type tgwAttachmentsAndRouteTypes = IBuilderVpc | IBuilderVpn | IBuilderDxGw;
 
 export interface ITransitGatewayRoutesProps extends cdk.StackProps {
   tgwAttachmentsAndRoutes: Array<tgwAttachmentsAndRouteTypes>;
@@ -27,8 +28,8 @@ export interface ITransitGatewayRoutesProps extends cdk.StackProps {
 }
 
 interface tgwSetupStaticOrDefaultRouteProps {
-  attachable: IBuilderVpc | IBuilderVpn;
-  routeTo: IBuilderVpc | IBuilderVpn;
+  attachable: IBuilderVpc | IBuilderVpn | IBuilderDxGw;
+  routeTo: IBuilderVpc | IBuilderVpn | IBuilderDxGw;
   inspectBy: IBuilderVpc | IBuilderVpn | undefined;
   destCidr: string;
   routeStyle: "static" | "default";
@@ -233,7 +234,7 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
   //               Return: Dest -> Propagation -> Source
   // Inspect:  Forward: Source -> Static CIDR of Dest -> Inspect.  Inspect -> Propagation -> Dest.
   //           Return: Dest -> Static CIDR of Source -> Inspect.  Inspect -> Propagation -> Source
-  tgwSetupAttachmentPropagations(attachable: IBuilderVpc | IBuilderVpn) {
+  tgwSetupAttachmentPropagations(attachable: IBuilderVpc | IBuilderVpn | IBuilderDxGw) {
     const vpcName = attachable.name;
     attachable.tgwPropagateRouteAttachmentNames.forEach((attachmentName) => {
       const attachTo = attachmentName.attachTo;
@@ -283,7 +284,7 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
     });
   }
 
-  tgwSetupBlackHoles(attachable: IBuilderVpc | IBuilderVpn) {
+  tgwSetupBlackHoles(attachable: IBuilderVpc | IBuilderVpn | IBuilderDxGw) {
     const vpcName = attachable.name;
     attachable.tgwBlackHoleCidrs.forEach((blackHoleCidr) => {
       const tgwRouteTableId = this.insertSsmToken(attachable.tgwRouteTableSsm);
@@ -298,7 +299,7 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
   }
 
   // Configure our default route unless we have a conflicting 'inspected' route.  Inspected route should be preferred.
-  tgwSetupDefaultRoute(attachable: IBuilderVpc | IBuilderVpn) {
+  tgwSetupDefaultRoute(attachable: IBuilderVpc | IBuilderVpn | IBuilderDxGw) {
     // Where we have an inspected attachment but also the same attachment as the default route, remove the default route.
     if (attachable.tgwDefaultRouteAttachmentName) {
       if (
@@ -322,7 +323,7 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
   }
 
   // Static routes we iterate through multiples, same logic as a default though.
-  tgwSetupStaticRoutes(attachable: IBuilderVpc | IBuilderVpn) {
+  tgwSetupStaticRoutes(attachable: IBuilderVpc | IBuilderVpn | IBuilderDxGw) {
     attachable.tgwStaticRoutes.forEach((staticRoute) => {
       this.tgwSetupStaticOrDefaultRoute({
         attachable: attachable,
