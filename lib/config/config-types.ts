@@ -114,6 +114,20 @@ export interface IConfigVpns {
 }
 
 /*
+ ****** Direct Connect Gateways:
+ */
+
+export interface IConfigDxGw {
+  existingTgwId: string;
+  existingDxGwTransitGatewayAttachId: string;
+  existingDxGwTransitGatewayRouteTableId: string;
+}
+
+export interface IConfigDxGws {
+  [key: string]: IConfigDxGw;
+}
+
+/*
  ****** dns:
  */
 
@@ -215,6 +229,7 @@ export interface IConfig {
   providers?: IConfigProviders;
   vpcs: IConfigVpcs;
   vpns?: IConfigVpns;
+  dxgws?: IConfigDxGws;
   dns?: IConfigDns;
   transitGateways?: IConfigTgws;
 }

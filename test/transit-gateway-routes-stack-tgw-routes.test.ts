@@ -1,13 +1,12 @@
-import { Template, Match } from "aws-cdk-lib/assertions";
+import { Template } from "aws-cdk-lib/assertions";
 import {
   TransitGatewayRoutesStack,
-  ITransitGatewayRoutesProps,
 } from "../lib/transit-gateway-routes-stack";
 import {
   newAwsNetworkFirewallStack,
   newVpcWorkloadStack,
+    newDxGwStack
 } from "./stack-builder-helper";
-import { IBuilderVpc } from "../lib/types";
 import * as cdk from "aws-cdk-lib";
 const md5 = require("md5");
 
@@ -39,6 +38,15 @@ const twoWorkloadVpcs = (app: cdk.App) => {
   secondVpc.createSsmParameters();
 
   return [firstVpc, secondVpc];
+};
+
+const createDxGw = (app: cdk.App) => {
+  const dxStack = newDxGwStack({}, app)
+  dxStack.saveTgwRouteInformation();
+  dxStack.attachToTGW();
+  dxStack.createSsmParameters();
+
+  return dxStack
 };
 
 // Black Hole Routes
@@ -103,6 +111,44 @@ test("TgwRouteDynamic", () => {
   });
 });
 
+// A dynamic route from a VPC to a DxGw (a propagation)
+test("TgwRouteDynamicToDxGw", () => {
+  const app = new cdk.App();
+  const [firstVpc, secondVpc] = twoWorkloadVpcs(app);
+
+  const dxgw = createDxGw(app)
+  // Set our relationship between the VPCs
+  firstVpc.tgwPropagateRouteAttachmentNames.push({
+    attachTo: dxgw,
+  });
+
+  const routeStack = new TransitGatewayRoutesStack(app, "RouteStack", {
+    tgwAttachmentsAndRoutes: [firstVpc, secondVpc, dxgw],
+  });
+
+  const template = Template.fromStack(routeStack);
+  const templateJson = template.toJSON();
+  // console.log(JSON.stringify(templateJson, null, 2))
+  // Confirm we get an association both ways
+  const firstRouteId =
+      `TGWPropRoute${firstVpc.name}to${dxgw.name}`.replace(/-/g, "");
+  expect(templateJson.Resources).toMatchObject({
+    [firstRouteId]: {
+      Type: "AWS::EC2::TransitGatewayRouteTablePropagation",
+      Properties: expect.anything(),
+    },
+  });
+
+  const secondRouteId =
+      `TGWPropRoute${firstVpc.name}to${dxgw.name}`.replace(/-/g, "");
+  expect(templateJson.Resources).toMatchObject({
+    [secondRouteId]: {
+      Type: "AWS::EC2::TransitGatewayRouteTablePropagation",
+      Properties: expect.anything(),
+    },
+  });
+});
+
 // A static route between VPCs
 test("TgwStaticDynamic", () => {
   const app = new cdk.App();
@@ -124,6 +170,38 @@ test("TgwStaticDynamic", () => {
   // Confirm our static route is in place and pointing to our custom resource for handling
   const firstRouteId =
     "StaticRouteCR" + md5(`${firstVpc.name}-10.1.2.1/24-${secondVpc.name}`);
+  expect(templateJson.Resources).toMatchObject({
+    [firstRouteId]: {
+      Type: "AWS::CloudFormation::CustomResource",
+      Properties: {
+        destinationCidrBlock: "10.1.2.1/24",
+      },
+    },
+  });
+});
+
+// A static route to a DxGw
+test("TgwStaticVpcToDxGw", () => {
+  const app = new cdk.App();
+  const [firstVpc, secondVpc] = twoWorkloadVpcs(app);
+
+  const dxgw = createDxGw(app)
+  // Set our relationship between the VPCs
+  firstVpc.tgwStaticRoutes.push({
+    cidrAddress: "10.1.2.1/24",
+    attachTo: dxgw,
+  });
+
+  const routeStack = new TransitGatewayRoutesStack(app, "RouteStack", {
+    tgwAttachmentsAndRoutes: [firstVpc, secondVpc, dxgw],
+  });
+
+  const template = Template.fromStack(routeStack);
+  const templateJson = template.toJSON();
+
+  // Confirm our static route is in place and pointing to our custom resource for handling
+  const firstRouteId =
+      "StaticRouteCR" + md5(`${firstVpc.name}-10.1.2.1/24-${dxgw.name}`);
   expect(templateJson.Resources).toMatchObject({
     [firstRouteId]: {
       Type: "AWS::CloudFormation::CustomResource",
@@ -158,6 +236,37 @@ test("TgwStatic", () => {
       Type: "AWS::CloudFormation::CustomResource",
       Properties: {
         destinationCidrBlock: "0.0.0.0/0",
+      },
+    },
+  });
+});
+
+// A default route from a VPC to a DxGw
+test("TgwDefaultRouteVpcToDxGw", () => {
+  const app = new cdk.App();
+  const [firstVpc, secondVpc] = twoWorkloadVpcs(app);
+
+  const dxgw = createDxGw(app)
+  // Set our relationship between the VPCs
+  firstVpc.tgwDefaultRouteAttachmentName = {
+    attachTo: dxgw,
+  };
+
+  const routeStack = new TransitGatewayRoutesStack(app, "RouteStack", {
+    tgwAttachmentsAndRoutes: [firstVpc, secondVpc, dxgw],
+  });
+
+  const template = Template.fromStack(routeStack);
+  const templateJson = template.toJSON();
+  // Confirm our default route is in place
+  const firstRouteId = "TGWDefaultCR" + md5(firstVpc.tgwRouteTableSsm.name);
+  expect(templateJson.Resources).toMatchObject({
+    [firstRouteId]: {
+      Type: "AWS::CloudFormation::CustomResource",
+      Properties: {
+        destinationCidrBlock: "0.0.0.0/0",
+        // this is the attachment identifier of the DxGw
+        transitGatewayAttachmentId: "tgw-attach-12345"
       },
     },
   });
@@ -403,8 +512,6 @@ test("TgwDefaultOverridesDynamic", () => {
     },
   });
   // Dynamic route should not exist
-  const secondRouteId =
-    `TGWPropRoute${firstVpc.name}to${secondVpc.name}`.replace(/-/g, "");
   expect(templateJson.Resources).not.toMatchObject({
     [firstRouteId]: {
       Type: "AWS::EC2::TransitGatewayRouteTablePropagation",

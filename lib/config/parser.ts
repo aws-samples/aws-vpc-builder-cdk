@@ -4,6 +4,7 @@ import * as configSchema from "./config-schema.json";
 import * as fs from "fs";
 import * as path from "path";
 import * as yaml from "yaml";
+
 const IPCidr = require("ip-cidr");
 
 const avj = new Ajv({ allowUnionTypes: true });
@@ -64,11 +65,12 @@ export class ConfigParser {
     // ** Global Section Verifications.
     this.verifySsmPrefix();
     this.verifyDiscoveryFolder();
+    // Confirm unique naming within the config file for all resources
+    this.verifyResourceNamesUnique();
 
     // ** Providers
     if (configRaw.hasOwnProperty("providers")) {
       this.verifyProvidersTransitsExist();
-      this.verifyProviderVpnAndVpcNamesUnique();
       this.verifyVpcCidrsProviders();
       this.verifyProviderEndpoints();
       this.verifyInternetProviderRoutes();
@@ -85,11 +87,16 @@ export class ConfigParser {
       this.verifyVpnsTransitExists();
     }
 
+    //** DxGateways
+    if (configRaw.hasOwnProperty("dxgws")) {
+      this.dxGwAssureRequiredArguments();
+    }
+
     // ** Transits
     if (configRaw.hasOwnProperty("transitGateways")) {
       this.verifyOnlyOneTransitGateway();
       this.verifyTransitGatewayOptions();
-      this.tgwRoutesHaveVpnsVpcsOrProviders();
+      this.tgwRouteChecks();
       this.verifyCidrsTransitGateway();
     }
 
@@ -100,7 +107,6 @@ export class ConfigParser {
     this.verifyVpcWithNoTransitHasNoRoutes();
     // Our schema matches!  Lets load it up for further value verification.
     this.config = this.configRaw as any;
-    // TODO verification of content
   }
 
   verifyVpcCidrsProviders() {
@@ -428,6 +434,22 @@ export class ConfigParser {
     return false;
   }
 
+  allProviderNames(): Array<string> {
+    const providerNames: Array<string> = [];
+    for (const providerType of ["endpoints", "internet", "firewall"]) {
+      if (this.configRaw.hasOwnProperty("providers")) {
+        if (this.configRaw.providers.hasOwnProperty(providerType)) {
+          for (const providerName of Object.keys(
+            this.configRaw.providers[providerType],
+          )) {
+            providerNames.push(providerName);
+          }
+        }
+      }
+    }
+    return providerNames;
+  }
+
   vpcNameExists(checkVpcName: string) {
     for (const vpcName of Object.keys(this.configRaw.vpcs)) {
       if (vpcName == checkVpcName) {
@@ -437,10 +459,28 @@ export class ConfigParser {
     return false;
   }
 
+  // Update as needed as more resources are supported
+  allResourceNames(): Array<string> {
+    return [
+      ...this.allVpcNames(),
+      ...this.allVpnNames(),
+      ...this.allProviderNames(),
+      ...this.allDxGwNames(),
+    ];
+  }
+
+  allVpcNames(): Array<string> {
+    const vpcNames: Array<string> = [];
+    for (const vpcName of Object.keys(this.configRaw.vpcs)) {
+      vpcNames.push(vpcName);
+    }
+    return vpcNames;
+  }
+
   vpnNameExists(checkVpnName: string) {
     if (this.configRaw.vpns) {
-      for (const vpcName of Object.keys(this.configRaw.vpns)) {
-        if (vpcName == checkVpnName) {
+      for (const vpnName of Object.keys(this.configRaw.vpns)) {
+        if (vpnName == checkVpnName) {
           return true;
         }
       }
@@ -448,28 +488,51 @@ export class ConfigParser {
     return false;
   }
 
-  verifyProviderVpnAndVpcNamesUnique() {
-    for (const vpcName of Object.keys(this.configRaw.vpcs)) {
-      if (this.providerNameExists(vpcName)) {
-        throw new Error(
-          `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`,
-        );
+  allVpnNames(): Array<string> {
+    const vpnNames: Array<string> = [];
+    if (this.configRaw.vpns) {
+      for (const vpnName of Object.keys(this.configRaw.vpns)) {
+        vpnNames.push(vpnName);
       }
-      if (this.vpnNameExists(vpcName)) {
-        throw new Error(
-          `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`,
-        );
-      }
-      if (this.configRaw.hasOwnProperty("vpns")) {
-        for (const vpnName of Object.keys(this.configRaw.vpns)) {
-          if (this.providerNameExists(vpcName)) {
-            throw new Error(
-              `Name Providers, VPNs and Vpcs with unique names.  Duplicate name ${vpcName} was found`,
-            );
-          }
+    }
+    return vpnNames;
+  }
+
+  dxgwNameExists(checkDxGwName: string) {
+    if (this.configRaw.dxgws) {
+      for (const dxgwName of Object.keys(this.configRaw.dxgws)) {
+        if (dxgwName == checkDxGwName) {
+          return true;
         }
       }
     }
+    return false;
+  }
+
+  allDxGwNames(): Array<string> {
+    const dxGwNames: Array<string> = [];
+    if (this.configRaw.dxgws) {
+      for (const dxgwName of Object.keys(this.configRaw.dxgws)) {
+        dxGwNames.push(dxgwName);
+      }
+    }
+    return dxGwNames;
+  }
+
+  verifyResourceNamesUnique() {
+    // Find all our names in our config file.
+    const allNames = this.allResourceNames();
+    // Our resulting array should not have any duplicate members
+    const countOccurrences = (arr: Array<string>, val: string) =>
+      arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+    const uniqueList = new Set(allNames);
+    uniqueList.forEach((uniqueName) => {
+      if (countOccurrences(allNames, uniqueName) > 1) {
+        throw new Error(
+          `Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name ${uniqueName} was found`,
+        );
+      }
+    });
   }
 
   // VPN can be imported, with existing customer gateway or without.
@@ -557,6 +620,36 @@ export class ConfigParser {
     }
   }
 
+  // Direct Connect Gateway is always imported.  Assure expected format exists for our values.
+  dxGwAssureRequiredArguments() {
+    for (const dxGwName of Object.keys(this.configRaw.dxgws)) {
+      const configStanza = this.configRaw.dxgws[dxGwName];
+      if (!configStanza.existingTgwId.startsWith("tgw-")) {
+        throw new Error(
+          `DxGw: ${dxGwName}: Existing Transit Gateway 'existingTgwId' must begin with tgw-`,
+        );
+      }
+      if (
+        !configStanza.existingDxGwTransitGatewayAttachId.startsWith(
+          "tgwattach-",
+        )
+      ) {
+        throw new Error(
+          `DxGw: ${dxGwName}: Transit Gateway Attachment Value 'existingDxGwTransitGatewayAttachId' must begin with tgw-attach-`,
+        );
+      }
+      if (
+        !configStanza.existingDxGwTransitGatewayRouteTableId.startsWith(
+          "tgw-rtb-",
+        )
+      ) {
+        throw new Error(
+          `DxGw: ${dxGwName}: Transit Gateway Route Table Value 'existingDxGwTransitGatewayRouteTableId' must begin with tgw-rtb-`,
+        );
+      }
+    }
+  }
+
   dnsVerifyRequiredArguments() {
     for (const dnsConfigName of Object.keys(this.configRaw.dns)) {
       const configStanza = this.configRaw.dns[dnsConfigName];
@@ -606,143 +699,214 @@ export class ConfigParser {
     }
   }
 
-  tgwRoutesHaveVpnsVpcsOrProviders() {
-    if (this.configRaw.hasOwnProperty("transitGateways")) {
-      for (const transitGatewayName of Object.keys(
-        this.configRaw.transitGateways,
-      )) {
-        const configStanza = this.configRaw.transitGateways[transitGatewayName];
-        if (configStanza.blackholeRoutes) {
-          for (const route of configStanza.blackholeRoutes) {
-            if (
-              !this.vpcNameExists(route.vpcName) &&
-              !this.providerNameExists(route.vpcName) &&
-              !this.vpnNameExists(route.vpcName)
-            ) {
+  // route vpcName points to a vpc
+  // route routesTo points to a valid resource in the config file
+  twgRouteNamesValid(configStanza: any) {
+    const routeTypes = [
+      "blackholeRoutes",
+      "staticRoutes",
+      "dynamicRoutes",
+      "defaultRoutes",
+    ];
+    const routeHuman: Record<string, string> = {
+      blackholeRoutes: "blackhole route",
+      staticRoutes: "static route",
+      dynamicRoutes: "dynamic route",
+      defaultRoutes: "default route",
+    };
+    const allNames = this.allResourceNames();
+
+    routeTypes.forEach((routeType) => {
+      if (configStanza[routeType]) {
+        for (const route of configStanza[routeType]) {
+          // vpcName points to a vpc
+          if (!this.vpcNameExists(route.vpcName)) {
+            if (allNames.includes(route.vpcName)) {
+              // If vpcName points to a non-vpc provide a more useful message
               throw new Error(
-                `A blackhole route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
+                `Invalid vpcName specified for ${routeHuman[routeType]}.  'vpcName: ${route.vpcName}'. A non-VPC resource is using this name.`,
+              );
+            } else {
+              throw new Error(
+                `A ${routeHuman[routeType]} was specified for ${route.vpcName} - vpc with that name could not be found`,
               );
             }
-            if (this.vpnNameExists(route.vpcName)) {
+          }
+          // routesTo points to a valid resource in the config.  Not applicable for BlackholeRoutes
+          if (routeType != "blackholeRoutes") {
+            if (!allNames.includes(route.routesTo)) {
               throw new Error(
-                `A blackhole route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
+                `A ${routeHuman[routeType]} for VPC Named ${route.vpcName} to route to ${route.routesTo}.  Configuration file does not contain a resource named ${route.routesTo}`,
               );
             }
           }
         }
-        if (configStanza.staticRoutes) {
-          for (const route of configStanza.staticRoutes) {
-            if (
-              !this.vpcNameExists(route.vpcName) &&
-              !this.providerNameExists(route.vpcName) &&
-              !this.vpnNameExists(route.vpcName)
-            ) {
+      }
+    });
+  }
+
+  // Where present, inspectedBy routes a valid
+  // Dynamic route inspectedBy where routesTo is a VPN is not supported
+  twgRouteInspectedByValid(configStanza: any) {
+    const routeTypes = ["staticRoutes", "dynamicRoutes", "defaultRoutes"];
+    const routeHuman: Record<string, string> = {
+      staticRoutes: "static route",
+      dynamicRoutes: "dynamic route",
+      defaultRoutes: "default route",
+    };
+
+    routeTypes.forEach((routeType) => {
+      if (configStanza[routeType]) {
+        for (const route of configStanza[routeType]) {
+          if (route.inspectedBy) {
+            if (!this.providerNameExists(route.inspectedBy, true)) {
               throw new Error(
-                `A static route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
+                `A ${routeHuman[routeType]} is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
               );
             }
-            if (
-              !this.vpcNameExists(route.routesTo) &&
-              !this.providerNameExists(route.routesTo) &&
-              !this.vpnNameExists(route.routesTo)
-            ) {
-              throw new Error(
-                `A static route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`,
-              );
-            }
-            if (this.vpnNameExists(route.vpcName)) {
-              throw new Error(
-                `A static route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
-              );
-            }
-            if (route.inspectedBy) {
-              if (!this.providerNameExists(route.inspectedBy, true)) {
+            // Dynamic routes where routeTo is a VPN are not supported
+            if (routeType == "dynamicRoutes") {
+              if (this.vpnNameExists(route.routesTo)) {
                 throw new Error(
-                  `A static route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
-                );
-              }
-            }
-          }
-        }
-        if (configStanza.dynamicRoutes) {
-          for (const route of configStanza.dynamicRoutes) {
-            if (
-              !this.vpcNameExists(route.vpcName) &&
-              !this.providerNameExists(route.vpcName) &&
-              !this.vpnNameExists(route.vpcName)
-            ) {
-              throw new Error(
-                `A dynamic route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
-              );
-            }
-            if (
-              !this.vpcNameExists(route.routesTo) &&
-              !this.providerNameExists(route.routesTo) &&
-              !this.vpnNameExists(route.routesTo)
-            ) {
-              throw new Error(
-                `A dynamic route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`,
-              );
-            }
-            if (this.vpnNameExists(route.vpcName)) {
-              throw new Error(
-                `A dynamic route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
-              );
-            }
-            if (route.inspectedBy) {
-              if (!this.providerNameExists(route.inspectedBy, true)) {
-                throw new Error(
-                  `A dynamic route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
-                );
-              }
-              if (
-                this.vpnNameExists(route.vpcName) ||
-                this.vpnNameExists(route.routesTo)
-              ) {
-                throw new Error(
-                  `VPN inspection is not possible via Dynamic Routing.  Implement via Static or Default Route instead.`,
-                );
-              }
-            }
-          }
-        }
-        if (configStanza.defaultRoutes) {
-          for (const route of configStanza.defaultRoutes) {
-            if (
-              !this.vpcNameExists(route.vpcName) &&
-              !this.providerNameExists(route.vpcName) &&
-              !this.vpnNameExists(route.vpcName)
-            ) {
-              throw new Error(
-                `A default route was specified for ${route.vpcName} but no vpc, vpn or provider with that name could be found`,
-              );
-            }
-            if (
-              !this.vpcNameExists(route.routesTo) &&
-              !this.providerNameExists(route.routesTo) &&
-              !this.vpnNameExists(route.routesTo)
-            ) {
-              throw new Error(
-                `A default route was specified for ${route.routesTo} but no vpc, vpn or provider with that name could be found`,
-              );
-            }
-            if (this.vpnNameExists(route.vpcName)) {
-              throw new Error(
-                `A default route was specified with ${route.vpcName}. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs`,
-              );
-            }
-            if (route.inspectedBy) {
-              if (!this.providerNameExists(route.inspectedBy, true)) {
-                throw new Error(
-                  `A default route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
+                  `VPN as the 'routesTo' destination with inspection is not possible using Dynamic Routing.  Implement via Static or Default Route instead.`,
                 );
               }
             }
           }
         }
       }
+    });
+  }
+
+  tgwRouteChecks() {
+    if (this.configRaw.hasOwnProperty("transitGateways")) {
+      for (const transitGatewayName of Object.keys(
+        this.configRaw.transitGateways,
+      )) {
+        const configStanza = this.configRaw.transitGateways[transitGatewayName];
+        // vpcName is a VPC.  routesTo is valid.  For all Route Types
+        this.twgRouteNamesValid(configStanza);
+        // InspectedBy - if configured for static, dynamic, default points to a valid firewall
+        this.twgRouteInspectedByValid(configStanza);
+      }
     }
   }
+
+  // within the structure of [ vpcName: string, routesTo: string ] only vpcNames may be present
+  // BlackHole routes may only be specified for vpcs
+  // Verify that our references are valid for routesTo, inspectedBy
+  // tgwRoutesAreSane() {
+  //     if (this.configRaw.hasOwnProperty("transitGateways")) {
+  //         for (const transitGatewayName of Object.keys(
+  //             this.configRaw.transitGateways,
+  //         )) {
+  //             const configStanza = this.configRaw.transitGateways[transitGatewayName];
+  //             const allNames: Array<string> = [
+  //                 ...this.allVpcNames(),
+  //                 ...this.allVpnNames(),
+  //                 ...this.allProviderNames(),
+  //                 ...this.allDxGwNames()
+  //             ]
+  //             // BlackHole routes may only be specified for vpcs
+  //             if (configStanza.blackholeRoutes) {
+  //                 for (const route of configStanza.blackholeRoutes) {
+  //                     if (!this.vpcNameExists(route.vpcName)) {
+  //                         if (allNames.includes(route.vpcName)) {
+  //                             throw new Error(
+  //                                 `Invalid vpcName specified for blackhole route.  'vpcName: ${route.vpcName}'. A non-VPC resource has this name.`
+  //                             )
+  //                         } else {
+  //                             throw new Error(
+  //                                 `A blackhole route was specified for ${route.vpcName} - vpc with that name could be found`,
+  //                             );
+  //                         }
+  //                     }
+  //                 }
+  //             }
+  //             // vpcName entry must be a vpc
+  //             // If inspectedBy is specified we must have a firewall definition
+  //             if (configStanza.staticRoutes) {
+  //                 for (const route of configStanza.staticRoutes) {
+  //                     // Static route must be a vpcName
+  //                     if (!this.vpcNameExists(route.vpcName)) {
+  //                         if (allNames.includes(route.vpcName)) {
+  //                             throw new Error(
+  //                                 `Invalid vpcName specified for static route.  'vpcName: ${route.vpcName}'. A non-VPC resource has this name.`
+  //                             )
+  //                         } else {
+  //                             throw new Error(
+  //                                 `A static route was specified for ${route.vpcName} - vpc with that name could be found`,
+  //                             );
+  //                         }
+  //                     }
+  //                     // We must have a firewall provider by this name
+  //                     if (route.inspectedBy) {
+  //                         if (!this.providerNameExists(route.inspectedBy, true)) {
+  //                             throw new Error(
+  //                                 `A static route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
+  //                             );
+  //                         }
+  //                     }
+  //                 }
+  //             }
+  //             // vpcName entry must be a vpc
+  //             // routesTo must be a valid resource name
+  //             // If inspectedBy is specified we must have a firewall definition
+  //             // routesTo cannot be a VPN if inspectedBy is present
+  //             if (configStanza.dynamicRoutes) {
+  //                 for (const route of configStanza.dynamicRoutes) {
+  //                     if (!this.vpcNameExists(route.vpcName)) {
+  //                         if (allNames.includes(route.vpcName)) {
+  //                             throw new Error(
+  //                                 `Invalid vpcName specified for dynamic route.  'vpcName: ${route.vpcName}'. A non-VPC resource has this name.`
+  //                             )
+  //                         } else {
+  //                             throw new Error(
+  //                                 `A dynamic route was specified for ${route.vpcName} - vpc with that name could be found`,
+  //                             );
+  //                         }
+  //                     }
+  //                     if (route.inspectedBy) {
+  //                         if (!this.providerNameExists(route.inspectedBy, true)) {
+  //                             throw new Error(
+  //                                 `A dynamic route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
+  //                             );
+  //                         }
+  //                         if (this.vpnNameExists(route.routesTo)) {
+  //                             throw new Error(
+  //                                 `VPN as the 'routesTo' destination with inspection is not possible using Dynamic Routing.  Implement via Static or Default Route instead.`,
+  //                             );
+  //                         }
+  //                     }
+  //                 }
+  //             }
+  //             // vpcName entry must be a vpc
+  //             // If inspectedBy is specified we must have a firewall definition
+  //             if (configStanza.defaultRoutes) {
+  //                 for (const route of configStanza.defaultRoutes) {
+  //                     if (!this.vpcNameExists(route.vpcName)) {
+  //                         if (allNames.includes(route.vpcName)) {
+  //                             throw new Error(
+  //                                 `Invalid vpcName specified for default route.  'vpcName: ${route.vpcName}'. A non-VPC resource has this name.`
+  //                             )
+  //                         } else {
+  //                             throw new Error(
+  //                                 `A default route was specified for ${route.vpcName} - vpc with that name could be found`,
+  //                             );
+  //                         }
+  //                     }
+  //                     if (route.inspectedBy) {
+  //                         if (!this.providerNameExists(route.inspectedBy, true)) {
+  //                             throw new Error(
+  //                                 `A default route is set to be inspected by ${route.inspectedBy} but no firewall provider with that name was found`,
+  //                             );
+  //                         }
+  //                     }
+  //                 }
+  //             }
+  //         }
+  //     }
+  // }
 
   verifyVpcProvidersExist() {
     for (const vpcName of Object.keys(this.configRaw.vpcs)) {
@@ -839,9 +1003,9 @@ export class ConfigParser {
     return matchingRoutes;
   }
 
-  locateVpcStanzaByName(vpcName: string): any | undefined {
+  locateVpcStanzaByName(vpcNameFind: string): any | undefined {
     for (const vpcName of Object.keys(this.configRaw.vpcs)) {
-      if (vpcName == vpcName) {
+      if (vpcName == vpcNameFind) {
         return this.configRaw.vpcs[vpcName];
       }
     }

@@ -1,10 +1,10 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { BuilderVpc } from "./abstract-buildervpc";
-import { IBuilderVpc, IBuilderVpn } from "./types";
+import {IBuilderDxGw, IBuilderVpc, IBuilderVpn} from "./types";
 
 export interface ICdkExportPersistenceProps extends cdk.StackProps {
-  persistExports: Array<IBuilderVpc | IBuilderVpn>;
+  persistExports: Array<IBuilderVpc | IBuilderVpn | IBuilderDxGw>;
 }
 
 export class CdkExportPersistenceStack extends cdk.Stack {

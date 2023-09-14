@@ -431,8 +431,9 @@ test("VpcMarkedNotToAttachHasTgwRoute", () => {
   );
 });
 
-test("DuplicateVpcVpnAndOrEndpointName", () => {
+test("DuplicateResourceNamesUsed", () => {
   const configContents = minimumConfig();
+  // dev provider has same name as the dev vpc
   configContents.providers = {
     internet: {
       dev: {
@@ -445,222 +446,160 @@ test("DuplicateVpcVpnAndOrEndpointName", () => {
   configContents.transitGateways = {
     testing: {
       style: "transitGateway",
-      tgwDescription: "testing",
-      dynamicRoutes: [
-        {
-          vpcName: "dev",
-          routesTo: "dev",
-        },
-      ],
+      tgwDescription: "testing"
     },
   };
   let config = new ConfigParser({ configContents: configContents });
   expect(() => config.parse()).toThrow(
-    "Name Providers, VPNs and Vpcs with unique names.  Duplicate name dev was found"
+      "Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
   );
   delete configContents.providers;
+  // // dev vpn has same name as the dev vpc
   configContents.vpns = {
     dev: {
       style: "transitGatewayAttached",
       useTransit: "testing",
-      existingCustomerGatewayId: "",
+      existingCustomerGatewayId: "cgw-12345",
     },
   };
+  config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+      "Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
+  );
+  delete configContents.vpns
+  // // dev dxgw has same name as the dev vpc
+  configContents.dxgws = {
+    dev: {
+      existingDxGwTransitGatewayAttachId: "tgwattach-1234",
+      existingDxGwTransitGatewayRouteTableId: "tgw-rtb-1234",
+      existingTgwId: "tgw-1234",
+    },
+  }
+  config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+      "Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
+  );
 });
 
-test("RoutesWithNoVpcsOrEndpointsDynamic", () => {
-  const configContents = minimumConfig();
+// vpcName points to a vpc
+// routesTo points to a valid resource
+// inspectedBy when configured is a firewall device
+// where routesTo is a VPN and inspectBy is configured we redirect to static or dynamic routes
+test("RouteNamingSanity", () => {
+  const routeTypes = [ "blackholeRoutes", "staticRoutes", "dynamicRoutes", "defaultRoutes" ]
+
+  const routeHuman: Record<string, string> = {
+    blackholeRoutes: "blackhole route",
+    staticRoutes: "static route",
+    dynamicRoutes: "dynamic route",
+    defaultRoutes: "default route"
+  }
+  const configContents: any = minimumConfig();
   configContents.providers = {
     internet: {
       testing: {
         vpcCidr: "10.1.0.0/17",
         style: "natEgress",
         useTransit: "testing",
+      },
+    },
+    firewall: {
+      testingFirewall: {
+        vpcCidr: "10.1.0.0/17",
+        style: "awsNetworkFirewall",
+        useTransit: "testing",
+        firewallName: "testing",
+        firewallDescription: "testing",
       },
     },
   };
   configContents.vpcs["dev"].providerInternet = "testing";
+  configContents.dxgws = {
+    todc: {
+      existingDxGwTransitGatewayAttachId: "tgwattach-1234",
+      existingDxGwTransitGatewayRouteTableId: "tgw-rtb-1234",
+      existingTgwId: "tgw-1234",
+    },
+  }
+  configContents.vpns = {
+    devvpn: {
+      style: "transitGatewayAttached",
+      useTransit: "testing",
+      existingCustomerGatewayId: "cgw-12345",
+    },
+  };
   configContents.transitGateways = {
     testing: {
       style: "transitGateway",
       tgwDescription: "testing",
-      dynamicRoutes: [
+    },
+  };
+  routeTypes.forEach((routeType) => {
+    if(routeType == "blackholeRoutes") {
+      configContents.transitGateways["testing"][routeType] = [
+        {
+          vpcName: "testing2",
+          blackholeCidrs: [ "10.1.0.0/16" ],
+        },
+      ]
+    }
+    if(routeType == "dynamicRoutes" || routeType == "defaultRoutes") {
+      configContents.transitGateways["testing"][routeType] = [
         {
           vpcName: "testing2",
           routesTo: "dev",
         },
-      ],
-    },
-  };
-  // vpcName missing
-  let config = new ConfigParser({ configContents: configContents });
-  expect(() => config.parse()).toThrow(
-    "A dynamic route was specified for testing2 but no vpc, vpn or provider with that name could be found"
-  );
-  // routesTo missing
-  configContents.transitGateways["testing"].dynamicRoutes?.pop();
-  configContents.transitGateways["testing"].dynamicRoutes = [
-    {
-      vpcName: "dev",
-      routesTo: "testing2",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A dynamic route was specified for testing2 but no vpc, vpn or provider with that name could be found"
-  );
-  // inspectBy Missing (although matches another provider)
-  configContents.transitGateways["testing"].dynamicRoutes?.pop();
-  configContents.transitGateways["testing"].dynamicRoutes = [
-    {
-      vpcName: "dev",
-      routesTo: "testing",
-      inspectedBy: "testing",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A dynamic route is set to be inspected by testing but no firewall provider with that name was found"
-  );
-});
-
-test("RoutesWithNoVpcsOrEndpointsStatic", () => {
-  const configContents = minimumConfig();
-  configContents.providers = {
-    internet: {
-      testing: {
-        vpcCidr: "10.1.0.0/17",
-        style: "natEgress",
-        useTransit: "testing",
-      },
-    },
-  };
-  configContents.vpcs["dev"].providerInternet = "testing";
-  configContents.transitGateways = {
-    testing: {
-      style: "transitGateway",
-      tgwDescription: "testing",
-      staticRoutes: [
-        {
-          vpcName: "testing2",
-          staticCidr: "10.1.1.0/24",
-          routesTo: "dev",
-        },
-      ],
-    },
-  };
-  // vpcName missing
-  let config = new ConfigParser({ configContents: configContents });
-  expect(() => config.parse()).toThrow(
-    "A static route was specified for testing2 but no vpc, vpn or provider with that name could be found"
-  );
-  // routesTo missing
-  configContents.transitGateways["testing"].staticRoutes?.pop();
-  configContents.transitGateways["testing"].staticRoutes = [
-    {
-      vpcName: "dev",
-      staticCidr: "10.1.1.0/24",
-      routesTo: "testing2",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A static route was specified for testing2 but no vpc, vpn or provider with that name could be found"
-  );
-  // inspectBy Missing (although matches another provider)
-  configContents.transitGateways["testing"].staticRoutes?.pop();
-  configContents.transitGateways["testing"].staticRoutes = [
-    {
-      vpcName: "dev",
-      staticCidr: "10.1.1.0/24",
-      routesTo: "testing",
-      inspectedBy: "testing",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A static route is set to be inspected by testing but no firewall provider with that name was found"
-  );
-});
-
-test("RoutesWithNoVpcsOrEndpointsDefault", () => {
-  const configContents = minimumConfig();
-  configContents.providers = {
-    internet: {
-      testing: {
-        vpcCidr: "10.1.0.0/17",
-        style: "natEgress",
-        useTransit: "testing",
-      },
-    },
-  };
-  configContents.vpcs["dev"].providerInternet = "testing";
-  configContents.transitGateways = {
-    testing: {
-      style: "transitGateway",
-      tgwDescription: "testing",
-      defaultRoutes: [
+      ]
+    }
+    if(routeType == "staticRoutes") {
+      configContents.transitGateways["testing"][routeType] = [
         {
           vpcName: "testing2",
           routesTo: "dev",
+          staticCidr: "10.1.0.0/16"
         },
-      ],
-    },
-  };
-  // vpcName missing
-  let config = new ConfigParser({ configContents: configContents });
-  expect(() => config.parse()).toThrow(
-    "A default route was specified for testing2 but no vpc, vpn or provider with that name could be found"
-  );
-  // routesTo missing
-  configContents.transitGateways["testing"].defaultRoutes?.pop();
-  configContents.transitGateways["testing"].defaultRoutes = [
-    {
-      vpcName: "dev",
-      routesTo: "testing2",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A default route was specified for testing2 but no vpc, vpn or provider with that name could be found"
-  );
-  // inspectBy Missing (although matches another provider)
-  configContents.transitGateways["testing"].defaultRoutes?.pop();
-  configContents.transitGateways["testing"].defaultRoutes = [
-    {
-      vpcName: "dev",
-      routesTo: "testing",
-      inspectedBy: "testing",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A default route is set to be inspected by testing but no firewall provider with that name was found"
-  );
-});
-
-test("RoutesWithNoVpcsOrEndpointsBlackhole", () => {
-  const configContents = minimumConfig();
-  configContents.providers = {
-    internet: {
-      testing: {
-        vpcCidr: "10.1.0.0/17",
-        style: "natEgress",
-        useTransit: "testing",
-      },
-    },
-  };
-  configContents.transitGateways = {
-    testing: {
-      style: "transitGateway",
-      tgwDescription: "testing",
-      blackholeRoutes: [
-        {
-          vpcName: "testing2",
-          blackholeCidrs: ["10.1.1.0/24"],
-        },
-      ],
-    },
-  };
-  // vpcName missing
-  let config = new ConfigParser({ configContents: configContents });
-  expect(() => config.parse()).toThrow(
-    "A blackhole route was specified for testing2 but no vpc, vpn or provider with that name could be found"
-  );
+      ]
+    }
+    // vpcName is not present for any resource
+    console.log(JSON.stringify(configContents, null, 2))
+    let config = new ConfigParser({ configContents: configContents });
+    expect(() => config.parse()).toThrow(
+        `A ${routeHuman[routeType]} was specified for testing2 - vpc with that name could not be found`
+    );
+    // vpcName is a non-vpc resource
+    configContents.transitGateways["testing"][routeType][0].vpcName = "todc"
+    config = new ConfigParser({ configContents: configContents });
+    expect(() => config.parse()).toThrow(
+        `Invalid vpcName specified for ${routeHuman[routeType]}.  'vpcName: todc'. A non-VPC resource is using this name.`
+    );
+    if(routeType != "blackholeRoutes") {
+      // routesTo is not present in config
+      configContents.transitGateways["testing"][routeType][0].vpcName = "dev"
+      configContents.transitGateways["testing"][routeType][0].routesTo = "testing2"
+      config = new ConfigParser({ configContents: configContents });
+      expect(() => config.parse()).toThrow(
+          `A ${routeHuman[routeType]} for VPC Named dev to route to testing2.  Configuration file does not contain a resource named testing2`
+      );
+      // inspectBy Missing (although matches another provider).  InspectBy not valid for BlackHOle routes
+      configContents.transitGateways["testing"][routeType][0].routesTo = "testing"
+      configContents.transitGateways["testing"][routeType][0].inspectedBy = "testing"
+      config = new ConfigParser({configContents: configContents});
+      expect(() => config.parse()).toThrow(
+          `A ${routeHuman[routeType]} is set to be inspected by testing but no firewall provider with that name was found`
+      );
+      // inspectBy routesTo VPN with dynamic routes
+      if(routeType == "dynamicRoutes") {
+        configContents.transitGateways["testing"][routeType][0].routesTo = "devvpn"
+        configContents.transitGateways["testing"][routeType][0].inspectedBy = "testingFirewall"
+        config = new ConfigParser({configContents: configContents});
+        expect(() => config.parse()).toThrow(
+            "VPN as the 'routesTo' destination with inspection is not possible using Dynamic Routing.  Implement via Static or Default Route instead."
+        );
+      }
+    }
+    // Clean out for our next route type tests
+    delete configContents.transitGateways["testing"][routeType]
+  })
 });
 
 test("RouteToInternetWithNoInternetProviderInVpc", () => {
@@ -689,6 +628,27 @@ test("RouteToInternetWithNoInternetProviderInVpc", () => {
   let config = new ConfigParser({ configContents: configContents });
   expect(() => config.parse()).toThrow(
     "Vpc: dev has a route to internet provider testing but does not have 'providerInternet' defined in the vpc configuration."
+  );
+});
+
+test("DxGwImportValuesNotCorrect", () => {
+  const configContents = minimumConfig();
+  configContents.dxgws = {
+    toDc: {
+      existingDxGwTransitGatewayAttachId: "tgw-1234",
+      existingDxGwTransitGatewayRouteTableId: "tgw-id-1234",
+      existingTgwId: "tgw-1234",
+    },
+  };
+  configContents.transitGateways = {
+    testing: {
+      style: "transitGateway",
+      tgwDescription: "testing",
+    },
+  };
+  let config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+      "DxGw: toDc: Transit Gateway Attachment Value 'existingDxGwTransitGatewayAttachId' must begin with tgw-attach-"
   );
 });
 
@@ -846,87 +806,6 @@ test("VpnCorrectViaImportMissing", () => {
   config = new ConfigParser({ configContents: configContents });
   expect(() => config.parse()).toThrow(
     "Vpn: onPrem: Importing an existing VPN requires 'existingVpnTransitGatewayAttachId' that starts with 'tgw-attach-'"
-  );
-});
-
-test("VpnRouteOptionsInvalid", () => {
-  const configContents = minimumConfig();
-  configContents.vpns = {
-    onPrem: {
-      style: "transitGatewayAttached",
-      useTransit: "testing",
-      existingCustomerGatewayId: "cgw-12345",
-    },
-  };
-  configContents.transitGateways = {
-    testing: {
-      style: "transitGateway",
-      tgwDescription: "testing",
-      dynamicRoutes: [
-        {
-          vpcName: "onPrem",
-          routesTo: "dev",
-        },
-      ],
-    },
-  };
-  let config = new ConfigParser({ configContents: configContents });
-  expect(() => config.parse()).toThrow(
-    "A dynamic route was specified with onPrem. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs"
-  );
-  delete configContents.transitGateways["testing"].dynamicRoutes;
-  configContents.transitGateways["testing"].staticRoutes = [
-    {
-      vpcName: "onPrem",
-      staticCidr: "10.1.1.0/24",
-      routesTo: "dev",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A static route was specified with onPrem. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs"
-  );
-  delete configContents.transitGateways["testing"].staticRoutes;
-  configContents.transitGateways["testing"].blackholeRoutes = [
-    {
-      vpcName: "onPrem",
-      blackholeCidrs: ["10.1.1.0/24"],
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A blackhole route was specified with onPrem. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs"
-  );
-  delete configContents.transitGateways["testing"].blackholeRoutes;
-  configContents.transitGateways["testing"].defaultRoutes = [
-    {
-      vpcName: "onPrem",
-      routesTo: "dev",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "A default route was specified with onPrem. This is a VPN and cannot be in the 'vpcName' field.  You can only 'routeTo' VPNs"
-  );
-  configContents.providers = {
-    firewall: {
-      testingFirewall: {
-        vpcCidr: "10.1.0.0/17",
-        style: "awsNetworkFirewall",
-        useTransit: "testing",
-        firewallName: "testing",
-        firewallDescription: "testing",
-      },
-    },
-  };
-  // Dynamic Routing with inspection via firewall to the VPN is not available.
-  delete configContents.transitGateways["testing"].defaultRoutes;
-  configContents.transitGateways["testing"].dynamicRoutes = [
-    {
-      vpcName: "dev",
-      routesTo: "onPrem",
-      inspectedBy: "testingFirewall",
-    },
-  ];
-  expect(() => config.parse()).toThrow(
-    "VPN inspection is not possible via Dynamic Routing.  Implement via Static or Default Route instead."
   );
 });
 

@@ -1,11 +1,7 @@
 import {
-  IBuilderVpcStyle,
-  ITransitGatewayStyle,
-  IBuilderVpnStyle,
   IVpcWorkloadProps,
   ITgw,
 } from "../lib/types";
-import { IConfig } from "../lib/config/config-types";
 import { TransitGatewayStack } from "../lib/transit-gateway-stack";
 import {
   IVpcInterfaceEndpointsProps,
@@ -29,6 +25,10 @@ import {
   IVpnToTransitGatewayProps,
   VpnToTransitGatewayStack,
 } from "../lib/vpn-to-transit-gateway-stack";
+import {
+  IDirectConnectGatewayProps,
+  DirectConnectGatewayStack,
+} from "../lib/direct-connect-gateway-stack";
 import * as cdk from "aws-cdk-lib";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as fs from "fs";
@@ -205,6 +205,27 @@ export const newVpnStack = (
     app,
     `${props.namePrefix}VpnToTransitGatewayStack`,
     commonProps
+  );
+};
+
+export const newDxGwStack = (
+    props: Partial<IDirectConnectGatewayProps>,
+    app: cdk.App,
+) => {
+  const commonProps: IDirectConnectGatewayProps = {
+    globalPrefix: "globalPrefix",
+    ssmParameterPrefix: "/ssm/prefix",
+    namePrefix: "Test",
+    existingDxGwTransitGatewayAttachId: "tgw-attach-12345",
+    existingDxGwTransitGatewayRouteTableId: "tgw-rtb-12345",
+    existingTransitGatewayId: "tgw-12345",
+    ...props,
+  };
+
+  return new DirectConnectGatewayStack(
+      app,
+      `${props.namePrefix}VpnToTransitGatewayStack`,
+      commonProps
   );
 };
 
