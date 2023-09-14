@@ -631,7 +631,7 @@ export class ConfigParser {
       }
       if (
         !configStanza.existingDxGwTransitGatewayAttachId.startsWith(
-          "tgwattach-",
+          "tgw-attach-",
         )
       ) {
         throw new Error(

@@ -5,7 +5,7 @@ import { Stack } from "aws-cdk-lib"
 
 (async () => {
   try {
-    const stackBuilder = new StackBuilderClass();
+    const stackBuilder = new StackBuilderClass({});
     const cdkApp = stackBuilder.stackMapper.app;
 
     const configFile = cdkApp.node.tryGetContext("config");
@@ -16,7 +16,7 @@ import { Stack } from "aws-cdk-lib"
     } else {
       // When no configuration context provided, we will warn but not fail.  This allows 'cdk bootstrap', 'cdk help'
       // to continue to work as expected.
-      const dummyStack = new Stack(cdkApp, 'dummyStack', {})
+      new Stack(cdkApp, 'dummyStack', {})
       console.warn(
           "\nNo configuration provided.  Use a configuration file from the 'config' directory using the '-c config=[filename]' argument\n"
       );
