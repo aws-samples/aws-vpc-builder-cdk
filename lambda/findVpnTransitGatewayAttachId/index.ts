@@ -48,9 +48,8 @@ export const onEvent = async (event: CdkCustomResourceEvent) => {
   };
 
   if (event.RequestType == "Create" || event.RequestType == "Update") {
-    const transitGatewayAttachId = await findVpnTransitGatewayAttachId(
-      requestProps,
-    );
+    const transitGatewayAttachId =
+      await findVpnTransitGatewayAttachId(requestProps);
     console.info(`Retrieved identifier: ${transitGatewayAttachId}`);
     responseProps.Data = {
       transitGatewayAttachId: transitGatewayAttachId,
