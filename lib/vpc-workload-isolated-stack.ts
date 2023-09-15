@@ -60,7 +60,7 @@ export class VpcWorkloadIsolatedStack extends BuilderVpc {
       if (createSubnet.sharedWith) {
         new ram.CfnResourceShare(this, `RamShare${createSubnet.name}`, {
           allowExternalPrincipals: false,
-          name: `Share-${createSubnet.name}`,
+          name: `Share-${this.name}`,
           permissionArns: [
             "arn:aws:ram::aws:permission/AWSRAMDefaultPermissionSubnet",
           ],

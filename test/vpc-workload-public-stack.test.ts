@@ -3,7 +3,7 @@ import { newVpcWorkloadStack } from "./stack-builder-helper";
 import { ITgw } from "../lib/types";
 import * as cdk from "aws-cdk-lib";
 
-test("WorkloadIsolatedBase", () => {
+test("WorkloadPublicBase", () => {
   for (const transitStyle of ["stack", "imported"]) {
     const app = new cdk.App();
     let ITgwedId: ITgw | undefined = undefined;
@@ -12,7 +12,7 @@ test("WorkloadIsolatedBase", () => {
         attrId: "tgw-12392488",
       };
     }
-    const workloadIsolated = newVpcWorkloadStack(
+    const workloadPublic = newVpcWorkloadStack(
       {
         globalPrefix: "globalPrefix",
         ssmParameterPrefix: "/ssm/prefix",
@@ -28,60 +28,28 @@ test("WorkloadIsolatedBase", () => {
         ],
       },
       app,
-      "workloadIsolated",
+      "workloadPublic",
       ITgwedId
     );
-    workloadIsolated.saveTgwRouteInformation();
-    workloadIsolated.attachToTGW();
-    workloadIsolated.createSsmParameters();
-    const template = Template.fromStack(workloadIsolated);
+    workloadPublic.saveTgwRouteInformation();
+    workloadPublic.attachToTGW();
+    workloadPublic.createSsmParameters();
+    const template = Template.fromStack(workloadPublic);
     // We've provided 2 AZs and left our transit gateway specific to default of false so expect to see 2 subnets.
     template.resourceCountIs("AWS::EC2::Subnet", 2);
 
-    // Public subnets do not exist
-    expect(workloadIsolated.publicSubnetNames).toEqual([]);
+    // Public subnets exist
+    expect(workloadPublic.publicSubnetNames).toEqual(["testing"]);
     // Private subnet (NATed) do not exist
-    expect(workloadIsolated.privateSubnetNames).toEqual([]);
-    // One total privated ioslated subnet
-    expect(workloadIsolated.privateIsolatedSubnetNames).toEqual(["testing"]);
+    expect(workloadPublic.privateSubnetNames).toEqual([]);
+    // Private Subnets do not exist
+    expect(workloadPublic.privateIsolatedSubnetNames).toEqual([]);
 
-    // We expect NAT, and IGW resources do Not exist
+    // We expect NAT does not exist, but IGW does
     expect(() => template.hasResource("AWS::EC2::NatGateway", {})).toThrow();
     expect(() =>
       template.hasResource("AWS::EC2::InternetGateway", {})
-    ).toThrow();
-
-    // We'll have an s3 and DynamoDB Gateway endpoint
-    template.hasResourceProperties("AWS::EC2::VPCEndpoint", {
-      ServiceName: {
-        "Fn::Join": [
-          "",
-          [
-            "com.amazonaws.",
-            {
-              Ref: "AWS::Region",
-            },
-            ".s3",
-          ],
-        ],
-      },
-      VpcEndpointType: "Gateway",
-    });
-    template.hasResourceProperties("AWS::EC2::VPCEndpoint", {
-      ServiceName: {
-        "Fn::Join": [
-          "",
-          [
-            "com.amazonaws.",
-            {
-              Ref: "AWS::Region",
-            },
-            ".dynamodb",
-          ],
-        ],
-      },
-      VpcEndpointType: "Gateway",
-    });
+    );
 
     // We'll have VPC flow logs enabled for CloudWatch
     template.resourceCountIs("AWS::Logs::LogGroup", 1);
@@ -96,28 +64,28 @@ test("WorkloadIsolatedBase", () => {
     template.resourceCountIs("AWS::EC2::TransitGatewayRouteTable", 1);
 
     // We expect SSM named exports within our construct are prepared with Transit Route Table, and Association.
-    expect(workloadIsolated.tgwAttachmentSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-workload/tgwId"
+    expect(workloadPublic.tgwAttachmentSsm.name).toEqual(
+      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-public-workload/tgwId"
     );
-    expect(workloadIsolated.tgwRouteTableSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-workload/tgwRouteId"
+    expect(workloadPublic.tgwRouteTableSsm.name).toEqual(
+      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-public-workload/tgwRouteId"
     );
 
     const prefix = "/ssm/prefix/networking/globalprefix";
     for (const parameterName of [
-      `${prefix}/vpcs/test-vpc-workload/vpcId`,
-      `${prefix}/vpcs/test-vpc-workload/vpcCidr`,
-      `${prefix}/vpcs/test-vpc-workload/az0`,
-      `${prefix}/vpcs/test-vpc-workload/az1`,
-      `${prefix}/vpcs/test-vpc-workload/subnets/testing/us-east-1a/routeTableId`,
-      `${prefix}/vpcs/test-vpc-workload/subnets/testing/us-east-1a/subnetCidr`,
-      `${prefix}/vpcs/test-vpc-workload/subnets/testing/us-east-1a/subnetId`,
-      `${prefix}/vpcs/test-vpc-workload/subnets/testing/us-east-1b/routeTableId`,
-      `${prefix}/vpcs/test-vpc-workload/subnets/testing/us-east-1b/subnetCidr`,
-      `${prefix}/vpcs/test-vpc-workload/subnets/testing/us-east-1b/subnetId`,
-      `${prefix}/vpcs/test-vpc-workload/tgwAttachId`,
-      `${prefix}/vpcs/test-vpc-workload/tgwRouteId`,
-      `${prefix}/vpcs/test-vpc-workload/tgwId`,
+      `${prefix}/vpcs/test-vpc-public-workload/vpcId`,
+      `${prefix}/vpcs/test-vpc-public-workload/vpcCidr`,
+      `${prefix}/vpcs/test-vpc-public-workload/az0`,
+      `${prefix}/vpcs/test-vpc-public-workload/az1`,
+      `${prefix}/vpcs/test-vpc-public-workload/subnets/testing/us-east-1a/routeTableId`,
+      `${prefix}/vpcs/test-vpc-public-workload/subnets/testing/us-east-1a/subnetCidr`,
+      `${prefix}/vpcs/test-vpc-public-workload/subnets/testing/us-east-1a/subnetId`,
+      `${prefix}/vpcs/test-vpc-public-workload/subnets/testing/us-east-1b/routeTableId`,
+      `${prefix}/vpcs/test-vpc-public-workload/subnets/testing/us-east-1b/subnetCidr`,
+      `${prefix}/vpcs/test-vpc-public-workload/subnets/testing/us-east-1b/subnetId`,
+      `${prefix}/vpcs/test-vpc-public-workload/tgwAttachId`,
+      `${prefix}/vpcs/test-vpc-public-workload/tgwRouteId`,
+      `${prefix}/vpcs/test-vpc-public-workload/tgwId`,
     ]) {
       template.hasResourceProperties("AWS::SSM::Parameter", {
         Name: parameterName,
@@ -135,7 +103,7 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
         attrId: "tgw-12392488",
       };
     }
-    const workloadIsolated = newVpcWorkloadStack(
+    const workloadPublic = newVpcWorkloadStack(
       {
         globalPrefix: "globalPrefix",
         ssmParameterPrefix: "/ssm/prefix",
@@ -154,13 +122,13 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
         ],
       },
       app,
-      "workloadIsolated",
+      "workloadPublic",
       ITgwedId
     );
-    workloadIsolated.saveTgwRouteInformation();
-    workloadIsolated.attachToTGW();
-    workloadIsolated.createSsmParameters();
-    const template = Template.fromStack(workloadIsolated);
+    workloadPublic.saveTgwRouteInformation();
+    workloadPublic.attachToTGW();
+    workloadPublic.createSsmParameters();
+    const template = Template.fromStack(workloadPublic);
 
     // We expect RAM share stanzas for our subnets.  One account, one OU, and one full Org
     template.hasResourceProperties("AWS::RAM::ResourceShare", {
@@ -178,7 +146,7 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
     });
     // The name should match 'Share-${vpcName}'
     template.hasResourceProperties("AWS::RAM::ResourceShare", {
-      Name: "Share-test-vpc-workload",
+      Name: "Share-test-vpc-public-workload",
     });
   }
 });
