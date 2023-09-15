@@ -219,10 +219,32 @@ export class ConfigParser {
     )) {
       const configStanza = this.configRaw.transitGateways[transitGatewayName];
       if (configStanza.blackholeRoutes) {
+        console.log(`Black Hole Routes found, evaluating`);
         for (const route of configStanza.blackholeRoutes) {
-          for (const blackholeCidr of route.blackholeCidrs) {
-            this.verifyCidr(blackholeCidr, false);
-          }
+          route.blackholeCidrs.forEach(
+            (blackholeCidr: string, index: number) => {
+              if (this.blackholeIsCidr(blackholeCidr)) {
+                console.log(`${blackholeCidr} is considered a blackholecidr`);
+                this.verifyCidr(blackholeCidr, false);
+              } else {
+                console.log(`${blackholeCidr} is not a valid cidr`);
+                // Value provided is not CIDR formatted, see if it matches a VPC
+                if (this.vpcNameExists(blackholeCidr)) {
+                  console.log(
+                    `${blackholeCidr} is considered a valid VPC Name`,
+                  );
+                  // We will substitute the value of our VPCs CIDR address here since the rest of our code
+                  // Expects our value to be a CIDR format
+                  route.blackholeCidrs[index] =
+                    this.configRaw.vpcs[blackholeCidr].vpcCidr;
+                } else {
+                  throw new Error(
+                    `blackholeRoutes contains blackholeCidr with value ${blackholeCidr}.  Not a valid CIDR Address or Vpc Name within the 'vpc:' configuration section.`,
+                  );
+                }
+              }
+            },
+          );
         }
       }
       if (configStanza.staticRoutes) {
@@ -1037,6 +1059,11 @@ export class ConfigParser {
         `VPC ${vpcStanzaEvaluating} specifies a ${providerType} provider.  However no providers are defined.`,
       );
     }
+  }
+
+  // Determines if the string value passed for blackholeCidr is in a CIDR Format
+  blackholeIsCidr(cidr: string): boolean {
+    return IPCidr.isValidCIDR(cidr);
   }
 
   verifyCidr(cidr: string, checkMaskRange: boolean = true) {

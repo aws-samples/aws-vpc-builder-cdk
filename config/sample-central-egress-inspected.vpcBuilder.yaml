@@ -52,7 +52,7 @@ transitGateways:
     blackholeRoutes:
       - vpcName: isolatedVpcOne
         blackholeCidrs:
-          - 10.11.0.0/19
+          - isolatedVpcTwo
       - vpcName: isolatedVpcTwo
         blackholeCidrs:
-          - 10.10.0.0/19
+          - isolatedVpcOne

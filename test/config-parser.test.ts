@@ -602,6 +602,28 @@ test("RouteNamingSanity", () => {
   })
 });
 
+test("BlackHoleCidrValue", () => {
+
+  const configContents: any = minimumConfig();
+  configContents.transitGateways = {
+    testing: {
+      style: "transitGateway",
+      tgwDescription: "testing",
+    },
+  };
+  // Invalid CIDR, invalid VPCName
+  configContents.transitGateways["testing"]["blackholeRoutes"] = [
+    {
+      vpcName: "dev",
+      blackholeCidrs: [ "10.1.0.0" ],
+    },
+  ]
+    let config = new ConfigParser({ configContents: configContents });
+    expect(() => config.parse()).toThrow(
+        `blackholeRoutes contains blackholeCidr with value 10.1.0.0.  Not a valid CIDR Address or Vpc Name within the 'vpc:' configuration section.`
+    );
+});
+
 test("RouteToInternetWithNoInternetProviderInVpc", () => {
   const configContents = minimumConfig();
   configContents.providers = {

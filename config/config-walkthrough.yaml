@@ -316,10 +316,12 @@ transitGateways:
     # be tossed into the garbage.  Use this when you have some 'must not' rules to enforce.  Ie: Blacklisting all Production
     # CIDR Addresses on your Development VPC is a good idea!  That way traffic can never get there regardless of routing rules.
     blackholeRoutes:
-        # REQUIRED: The name of the thing we're routing from.  This can be a VPC, or a Provider name.
+        # REQUIRED: The name of the thing we're setting the blackhole for.  This can be a VPC, or a Provider name.
       - vpcName: workloadTwo
-        # REQUIRED: CIDR addresses to discard traffic from
+        # REQUIRED: CIDR addresses to discard traffic from OR the name of a VPC from the `vpc:` section above.  When a vpcName
+        # is specified the vpcCidr is used from the configuration definition above.
         blackholeCidrs:
         - 192.168.168.0/24
+        - workload
         # More blackholeCidrs supported
       # More Lists of Objects supported.
