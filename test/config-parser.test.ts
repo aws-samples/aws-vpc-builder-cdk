@@ -561,7 +561,6 @@ test("RouteNamingSanity", () => {
       ]
     }
     // vpcName is not present for any resource
-    console.log(JSON.stringify(configContents, null, 2))
     let config = new ConfigParser({ configContents: configContents });
     expect(() => config.parse()).toThrow(
         `A ${routeHuman[routeType]} was specified for testing2 - vpc with that name could not be found`
