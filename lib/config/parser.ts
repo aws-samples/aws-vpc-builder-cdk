@@ -219,20 +219,14 @@ export class ConfigParser {
     )) {
       const configStanza = this.configRaw.transitGateways[transitGatewayName];
       if (configStanza.blackholeRoutes) {
-        console.log(`Black Hole Routes found, evaluating`);
         for (const route of configStanza.blackholeRoutes) {
           route.blackholeCidrs.forEach(
             (blackholeCidr: string, index: number) => {
               if (this.blackholeIsCidr(blackholeCidr)) {
-                console.log(`${blackholeCidr} is considered a blackholecidr`);
                 this.verifyCidr(blackholeCidr, false);
               } else {
-                console.log(`${blackholeCidr} is not a valid cidr`);
                 // Value provided is not CIDR formatted, see if it matches a VPC
                 if (this.vpcNameExists(blackholeCidr)) {
-                  console.log(
-                    `${blackholeCidr} is considered a valid VPC Name`,
-                  );
                   // We will substitute the value of our VPCs CIDR address here since the rest of our code
                   // Expects our value to be a CIDR format
                   route.blackholeCidrs[index] =
@@ -446,6 +440,37 @@ export class ConfigParser {
                   return true;
                 }
               } else {
+                return true;
+              }
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  // We allow routing configuration for providers that are VPC Based (currently all of them are).
+  // Let's not assume that will always be the case.  This is used by our route sanity checks to assure routes
+  // under `vpcName:` are actually VPCs so our routing logic will function
+  providerNameIsVpcStyle(providerCheckName: string): boolean {
+    const vpcBasedProviderStyles = [
+      "natEgress",
+      "serviceInterfaceEndpoint",
+      "route53ResolverEndpoint",
+      "awsNetworkFirewall",
+    ];
+    for (const providerType of ["endpoints", "internet", "firewall"]) {
+      if (this.configRaw.hasOwnProperty("providers")) {
+        if (this.configRaw.providers.hasOwnProperty(providerType)) {
+          for (const providerName of Object.keys(
+            this.configRaw.providers[providerType],
+          )) {
+            const configStanza =
+              this.configRaw.providers[providerType][providerName];
+            if (providerName == providerCheckName) {
+              // Assure our type matches what we consider VPC types
+              if (vpcBasedProviderStyles.includes(configStanza.style)) {
                 return true;
               }
             }
@@ -741,8 +766,11 @@ export class ConfigParser {
     routeTypes.forEach((routeType) => {
       if (configStanza[routeType]) {
         for (const route of configStanza[routeType]) {
-          // vpcName points to a vpc
-          if (!this.vpcNameExists(route.vpcName)) {
+          // Assure vpcName points to a vpc: or provider: that is implemented in a VPC Style
+          if (
+            !this.vpcNameExists(route.vpcName) &&
+            !this.providerNameIsVpcStyle(route.vpcName)
+          ) {
             if (allNames.includes(route.vpcName)) {
               // If vpcName points to a non-vpc provide a more useful message
               throw new Error(

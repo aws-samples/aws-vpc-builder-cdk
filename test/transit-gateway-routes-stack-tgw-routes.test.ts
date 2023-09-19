@@ -90,8 +90,7 @@ test("TgwRouteDynamic", () => {
 
   const template = Template.fromStack(routeStack);
   const templateJson = template.toJSON();
-  // console.log(templateJson)
-  // Confirm we get a an association both ways
+  // Confirm we get an association both ways
   const firstRouteId =
     `TGWPropRoute${firstVpc.name}to${secondVpc.name}`.replace(/-/g, "");
   expect(templateJson.Resources).toMatchObject({
@@ -128,7 +127,6 @@ test("TgwRouteDynamicToDxGw", () => {
 
   const template = Template.fromStack(routeStack);
   const templateJson = template.toJSON();
-  // console.log(JSON.stringify(templateJson, null, 2))
   // Confirm we get an association both ways
   const firstRouteId =
       `TGWPropRoute${firstVpc.name}to${dxgw.name}`.replace(/-/g, "");

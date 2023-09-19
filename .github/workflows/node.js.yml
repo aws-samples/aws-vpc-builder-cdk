@@ -29,5 +29,14 @@ jobs:
     - run: npx prettier --check **/**/*.ts
     - run: npm ci
     - run: npm run build --if-present
+    # Run our test cases
     - run: npm test
-
+    # Synthesize each of our sample configuration files to assure they continue to build templates
+    - run: cdk ls -c config=sample-central-egress.vpcBuilder.yaml
+    - run: cdk ls -c config=sample-central-egress-inspected.vpcBuilder.yaml
+    - run: cdk ls -c config=sample-central-ingress.vpcBuilder.yaml
+    - run: cdk ls -c config=sample-central-ingress-inspected.vpcBuilder.yaml
+    - run: cdk ls -c config=sample-complex.vpcBuilder.yaml
+    - run: cdk ls -c config=sample-firewall-blog.vpcBuilder.yaml
+    - run: cdk ls -c config=sample-vpc-endpoints.vpcBuilder.yaml
+    - run: cdk ls -c config=sample-vpn-onprem.vpcBuilder.yaml

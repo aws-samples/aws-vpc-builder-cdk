@@ -40,6 +40,7 @@ vpcs:
   SpokeVpc:
     style: workloadIsolated
     vpcCidr: 10.3.0.0/16
+    providerInternet: centralEgress
     subnets:
       workloadSubnet:
         cidrMask: 24
