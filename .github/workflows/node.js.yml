@@ -32,6 +32,7 @@ jobs:
     # Run our test cases
     - run: npm test
     # Synthesize each of our sample configuration files to assure they continue to build templates
+    - run: npm install -g cdk
     - run: cdk ls -c config=sample-central-egress.vpcBuilder.yaml
     - run: cdk ls -c config=sample-central-egress-inspected.vpcBuilder.yaml
     - run: cdk ls -c config=sample-central-ingress.vpcBuilder.yaml
