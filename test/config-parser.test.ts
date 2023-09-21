@@ -167,6 +167,15 @@ test("CidrBadStartProviders", () => {
   );
 });
 
+test("InvalidRegion", () => {
+  const configContents = minimumConfig();
+  configContents.global.region = "us-esat-2";
+  const config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+      "Global section - region us-esat-2 is not a valid Region name"
+  );
+})
+
 test("BadDiscoveryFolder", () => {
   const configContents = minimumConfig();
   configContents.global.discoveryFolder = "hopefully-does-not-exist";

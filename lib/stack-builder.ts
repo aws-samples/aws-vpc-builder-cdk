@@ -23,6 +23,7 @@ import { IVpcRoute53ResolverEndpointsProps } from "./vpc-route53-resolver-endpoi
 import { IVpcInterfaceEndpointsProps } from "./vpc-interface-endpoints-stack";
 import * as path from "path";
 import * as fs from "fs";
+import * as ri from "@aws-cdk/region-info"
 
 export interface namedVpcStack {
   name: string;
@@ -258,15 +259,24 @@ export class StackBuilderClass {
     const endpointFilePrefix = configStanza.endpointConfigFile
       ? configStanza.endpointConfigFile
       : "endpointlist";
-    this.interfaceList = fs
-      .readFileSync(
-        path.join(
-          "config",
-          `${endpointFilePrefix}-${this.c.global.region}.txt`
-        ),
-        { encoding: "utf8" }
-      )
-      .split("\n").filter(endpoint => endpoint.length > 0)
+    const interfaceListRaw: Array<string> = fs
+        .readFileSync(
+            path.join(
+                "config",
+                `${endpointFilePrefix}-${this.c.global.region}.txt`
+            ),
+            { encoding: "utf8" }
+        )
+        .split("\n").filter(endpoint => endpoint.length > 0)
+    // We will substitute any region specific strings in our interface list with the one declared in global
+    // This allows for re-use across regions and aligns with a 'do what I mean' approach
+    for(const regionInfo of ri.RegionInfo.regions) {
+      interfaceListRaw.forEach((interfaceName) => {
+        if(interfaceName.includes(regionInfo.name)) {
+          this.interfaceList.push(interfaceName.replace(regionInfo.name, this.c.global.region))
+        }
+      })
+    }
   }
 
   async buildTransitGatewayStacks() {
