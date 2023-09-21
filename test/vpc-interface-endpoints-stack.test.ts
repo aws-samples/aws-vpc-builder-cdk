@@ -221,3 +221,31 @@ test("InterfaceEndpointSharedWithVpc", () => {
     }
   }
 });
+
+test("InterfaceEndpointsNotInAllAZs", () => {
+  for (const transitStyle of ["stack", "imported"]) {
+    const app = new cdk.App();
+    let ITgwedId: ITgw | undefined = undefined;
+    if (transitStyle == "imported") {
+      ITgwedId = {
+        attrId: "tgw-12392488",
+      };
+    }
+    // We will add an AZ that we know doesn't exist expecting an error that we don't have coverage in that AZ for the endpoints we've requested
+    expect(() => {
+      const interfaceEndpoints = newVpcInterfaceEndpointsStack(
+          {
+            availabilityZones: ["us-east-1a", "us-east-1z"]
+          },
+          app,
+          interfaceList,
+          ITgwedId
+      );
+      interfaceEndpoints.saveTgwRouteInformation();
+      interfaceEndpoints.attachToTGW();
+      interfaceEndpoints.createSsmParameters();
+    }).toThrow(
+      "Endpoint com.amazonaws.us-east-1.ec2 is not available in all Availability Zones: us-east-1a,us-east-1z"
+    )
+  }
+});

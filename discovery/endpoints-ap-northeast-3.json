@@ -27,7 +27,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "aws.sagemaker.ap-northeast-3.studio",
@@ -56,7 +59,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.acm-pca",
@@ -85,7 +91,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.application-autoscaling",
@@ -112,7 +121,115 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.appmesh",
+    "ServiceId": "vpce-svc-05615a4d980b7e66d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "appmesh.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "appmesh.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "appmesh.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "appmesh.ap-northeast-3.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.appmesh-envoy-management",
+    "ServiceId": "vpce-svc-0b1aa344d74607d28",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "appmesh-envoy-management.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "appmesh-envoy-management.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "appmesh-envoy-management.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "appmesh-envoy-management.ap-northeast-3.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.appsync-api",
+    "ServiceId": "vpce-svc-079b7fdafb4dfbd55",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "appsync-api.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.appsync-api.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.appsync-api.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.appsync-realtime-api.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.athena",
@@ -135,13 +252,20 @@
     "PrivateDnsNames": [
       {
         "PrivateDnsName": "athena.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "athena.ap-northeast-3.api.aws"
       }
     ],
     "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv6",
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.autoscaling",
@@ -168,7 +292,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.backup",
@@ -197,7 +324,74 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.backup-gateway",
+    "ServiceId": "vpce-svc-0bfc7e5b77d7b3e8c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "backup-gateway.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "backup-gateway.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "backup-gateway.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.cloudcontrolapi",
+    "ServiceId": "vpce-svc-02e05e00b96e518d1",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cloudcontrolapi.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cloudcontrolapi.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cloudcontrolapi.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.cloudformation",
@@ -208,7 +402,9 @@
       }
     ],
     "AvailabilityZones": [
-      "ap-northeast-3a"
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
     ],
     "Owner": "amazon",
     "BaseEndpointDnsNames": [
@@ -224,7 +420,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.cloudhsmv2",
@@ -253,7 +452,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.cloudtrail",
@@ -264,7 +466,9 @@
       }
     ],
     "AvailabilityZones": [
-      "ap-northeast-3a"
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
     ],
     "Owner": "amazon",
     "BaseEndpointDnsNames": [
@@ -280,7 +484,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.codebuild",
@@ -309,7 +516,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.codecommit",
@@ -338,7 +548,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.codedeploy-commands-secure",
@@ -367,7 +580,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.codepipeline",
+    "ServiceId": "vpce-svc-08171a4302a331a9b",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "codepipeline.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "codepipeline.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "codepipeline.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.config",
@@ -392,11 +640,50 @@
         "PrivateDnsName": "config.ap-northeast-3.amazonaws.com"
       }
     ],
-    "VpcEndpointPolicySupported": false,
+    "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.data-servicediscovery",
+    "ServiceId": "vpce-svc-0549553a1983ec8dd",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "data-servicediscovery.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "data-servicediscovery.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "data-servicediscovery.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "data-servicediscovery.ap-northeast-3.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4",
+      "ipv6"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.datasync",
@@ -425,7 +712,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.dms",
@@ -454,7 +744,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ebs",
@@ -477,13 +770,19 @@
     "PrivateDnsNames": [
       {
         "PrivateDnsName": "ebs.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "ebs.ap-northeast-3.api.aws"
       }
     ],
     "VpcEndpointPolicySupported": false,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ec2",
@@ -512,7 +811,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ec2messages",
@@ -541,7 +843,74 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.ecr.api",
+    "ServiceId": "vpce-svc-07843b59a339970b3",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "api.ecr.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "api.ecr.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "api.ecr.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.ecr.dkr",
+    "ServiceId": "vpce-svc-0397e64110d7fbea7",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "dkr.ecr.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.dkr.ecr.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.dkr.ecr.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ecs",
@@ -570,7 +939,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ecs-agent",
@@ -599,7 +971,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ecs-telemetry",
@@ -628,7 +1003,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.elasticache",
@@ -657,7 +1035,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.elasticbeanstalk",
@@ -684,7 +1065,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.elasticbeanstalk-health",
@@ -711,7 +1095,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.elasticfilesystem",
@@ -740,7 +1127,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.elasticfilesystem-fips",
@@ -769,7 +1159,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.elasticloadbalancing",
@@ -798,7 +1191,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.elasticmapreduce",
+    "ServiceId": "vpce-svc-03bfcaa8d69ff286d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "elasticmapreduce.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "elasticmapreduce.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "elasticmapreduce.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.email-smtp",
@@ -827,7 +1255,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.events",
@@ -856,7 +1287,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.execute-api",
+    "ServiceId": "vpce-svc-0d5a8f2645142c243",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "execute-api.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.execute-api.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.execute-api.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.fsx",
@@ -885,7 +1351,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.git-codecommit",
@@ -914,7 +1383,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.glue",
@@ -943,7 +1415,75 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.guardduty-data",
+    "ServiceId": "vpce-svc-00f9d165cf4f853b4",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "guardduty-data.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "guardduty-data.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "guardduty-data.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "PayerResponsibility": "ServiceOwner",
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.identitystore",
+    "ServiceId": "vpce-svc-093c8f403e75149c8",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "identitystore.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "identitystore.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "identitystore.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.kinesis-firehose",
@@ -972,7 +1512,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.kinesis-streams",
@@ -995,13 +1538,22 @@
     "PrivateDnsNames": [
       {
         "PrivateDnsName": "kinesis.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.data-kinesis.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.control-kinesis.ap-northeast-3.amazonaws.com"
       }
     ],
     "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.kms",
@@ -1030,7 +1582,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.kms-fips",
+    "ServiceId": "vpce-svc-0650dc9fb61ea794c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "kms-fips.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "kms-fips.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "kms-fips.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.lakeformation",
@@ -1059,7 +1646,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.lambda",
@@ -1091,7 +1681,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.logs",
@@ -1120,7 +1713,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.monitoring",
@@ -1149,7 +1745,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.polly",
+    "ServiceId": "vpce-svc-0ddea350f1c5a4d62",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "polly.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "polly.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "polly.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.rds",
@@ -1181,7 +1812,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.redshift-data",
@@ -1208,7 +1842,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.rolesanywhere",
+    "ServiceId": "vpce-svc-01687359e461f4196",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "rolesanywhere.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "rolesanywhere.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "rolesanywhere.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.s3",
@@ -1227,11 +1896,58 @@
     "BaseEndpointDnsNames": [
       "s3.ap-northeast-3.vpce.amazonaws.com"
     ],
+    "PrivateDnsName": "*.s3.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.s3.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.s3-control.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.s3-accesspoint.ap-northeast-3.amazonaws.com"
+      }
+    ],
     "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.s3-outposts",
+    "ServiceId": "vpce-svc-0be06b8709ec0031e",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "s3-outposts.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "s3-outposts.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "s3-outposts.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.sagemaker.api",
@@ -1260,7 +1976,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.sagemaker.featurestore-runtime",
@@ -1289,7 +2008,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.sagemaker.metrics",
+    "ServiceId": "vpce-svc-013f8f4206d034b21",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "metrics.sagemaker.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "metrics.sagemaker.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "metrics.sagemaker.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.sagemaker.runtime",
@@ -1301,7 +2055,8 @@
     ],
     "AvailabilityZones": [
       "ap-northeast-3a",
-      "ap-northeast-3b"
+      "ap-northeast-3b",
+      "ap-northeast-3c"
     ],
     "Owner": "amazon",
     "BaseEndpointDnsNames": [
@@ -1317,7 +2072,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.secretsmanager",
@@ -1346,7 +2104,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.servicecatalog",
@@ -1375,7 +2136,46 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.servicediscovery",
+    "ServiceId": "vpce-svc-0e959fabdaa762922",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "servicediscovery.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "servicediscovery.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "servicediscovery.ap-northeast-3.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "servicediscovery.ap-northeast-3.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4",
+      "ipv6"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.sns",
@@ -1404,7 +2204,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.sqs",
@@ -1433,7 +2236,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ssm",
@@ -1462,7 +2268,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.ssmmessages",
@@ -1491,7 +2300,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.states",
@@ -1520,7 +2332,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.storagegateway",
@@ -1549,7 +2364,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.sts",
@@ -1578,7 +2396,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.swf",
+    "ServiceId": "vpce-svc-0887b0fdaa65b1ddd",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "swf.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "swf.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "swf.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.sync-states",
@@ -1607,7 +2460,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.transfer",
@@ -1636,7 +2492,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ap-northeast-3.verifiedpermissions",
+    "ServiceId": "vpce-svc-00a07b1a0c2131d13",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ap-northeast-3a",
+      "ap-northeast-3b",
+      "ap-northeast-3c"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "verifiedpermissions.ap-northeast-3.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "verifiedpermissions.ap-northeast-3.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "verifiedpermissions.ap-northeast-3.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ap-northeast-3.xray",
@@ -1665,7 +2556,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.s3-global.accesspoint",
@@ -1694,6 +2588,9 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   }
 ]

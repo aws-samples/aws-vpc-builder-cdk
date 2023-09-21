@@ -103,6 +103,10 @@ export class VpcInterfaceEndpointsStack extends BuilderVpc {
 
       // Create our private hosted zone where we have a private DNS name is available from our service
       const endpointPrivateDnsName = this.lookupPrivateDnsName(endpointName);
+      // Confirm this endpoint is available in all the AZs our stack will be deployed to
+      if(!this.serviceAvailableInAllAzs(endpointName)) {
+        throw new Error(`Endpoint ${endpointName} is not available in all Availability Zones: ${this.availabilityZones.join(',')}`)
+      }
       if (endpointPrivateDnsName) {
         const privateHostedZone = new r53.PrivateHostedZone(
           this,
@@ -186,6 +190,21 @@ export class VpcInterfaceEndpointsStack extends BuilderVpc {
       ec2.Port.tcp(443),
       "Allow endpoint use from any address via HTTPS"
     );
+  }
+
+  // Confirm the serviceName requested exists in the Availability Zones our VPC will be created in
+  serviceAvailableInAllAzs(serviceName: string): boolean {
+    const service = this.props.interfaceDiscovery.find(
+        (service) => service.ServiceName == serviceName
+    );
+    if(service) {
+      if (service.AvailabilityZones) {
+        return this.availabilityZones.every(
+            (i) => service.AvailabilityZones?.includes(i),
+        );
+      }
+    }
+      return false;
   }
 
   lookupPrivateDnsName(serviceName: string): string | undefined {

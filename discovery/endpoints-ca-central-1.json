@@ -1,5 +1,38 @@
 [
   {
+    "ServiceName": "aws.api.ca-central-1.kendra-ranking",
+    "ServiceId": "vpce-svc-0d8c014b92e4c1c6e",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "kendra-ranking.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "kendra-ranking.ca-central-1.api.aws",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "kendra-ranking.ca-central-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4",
+      "ipv6"
+    ]
+  },
+  {
     "ServiceName": "aws.sagemaker.ca-central-1.notebook",
     "ServiceId": "vpce-svc-0e7234fccabe420a8",
     "ServiceType": [
@@ -27,7 +60,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "aws.sagemaker.ca-central-1.studio",
@@ -57,7 +93,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.access-analyzer",
@@ -86,7 +125,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.acm-pca",
@@ -115,7 +157,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.airflow.api",
@@ -144,7 +189,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.airflow.env",
@@ -173,7 +221,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.airflow.ops",
@@ -202,7 +253,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.app-integrations",
@@ -231,7 +285,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.application-autoscaling",
@@ -259,11 +316,14 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
-    "ServiceName": "com.amazonaws.ca-central-1.appmesh-envoy-management",
-    "ServiceId": "vpce-svc-0022cf2d33067411d",
+    "ServiceName": "com.amazonaws.ca-central-1.appmesh",
+    "ServiceId": "vpce-svc-0a5ee670390532581",
     "ServiceType": [
       {
         "ServiceType": "Interface"
@@ -275,19 +335,60 @@
     ],
     "Owner": "amazon",
     "BaseEndpointDnsNames": [
+      "appmesh.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "appmesh.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "appmesh.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "appmesh.ca-central-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.appmesh-envoy-management",
+    "ServiceId": "vpce-svc-0022cf2d33067411d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
       "appmesh-envoy-management.ca-central-1.vpce.amazonaws.com"
     ],
     "PrivateDnsName": "appmesh-envoy-management.ca-central-1.amazonaws.com",
     "PrivateDnsNames": [
       {
         "PrivateDnsName": "appmesh-envoy-management.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "appmesh-envoy-management.ca-central-1.api.aws"
       }
     ],
     "VpcEndpointPolicySupported": false,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.appstream.api",
@@ -316,7 +417,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.appstream.streaming",
@@ -345,7 +449,45 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.appsync-api",
+    "ServiceId": "vpce-svc-05a979fc3cebca106",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "appsync-api.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "*.appsync-api.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.appsync-api.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.appsync-realtime-api.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.athena",
@@ -368,13 +510,20 @@
     "PrivateDnsNames": [
       {
         "PrivateDnsName": "athena.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "athena.ca-central-1.api.aws"
       }
     ],
     "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv6",
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.auditmanager",
@@ -403,7 +552,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.autoscaling",
@@ -432,7 +584,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.autoscaling-plans",
@@ -460,7 +615,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.awsconnector",
@@ -488,7 +646,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.backup",
@@ -517,7 +678,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.backup-gateway",
+    "ServiceId": "vpce-svc-069174a1016862e39",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "backup-gateway.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "backup-gateway.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "backup-gateway.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.batch",
@@ -546,7 +742,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.cases",
+    "ServiceId": "vpce-svc-0efea93406e73d950",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cases.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cases.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cases.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.cassandra",
@@ -574,7 +805,74 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.cloudcontrolapi",
+    "ServiceId": "vpce-svc-0bf6b5fb2c8b4d61d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cloudcontrolapi.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cloudcontrolapi.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cloudcontrolapi.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.cloudcontrolapi-fips",
+    "ServiceId": "vpce-svc-0b76fc9a519becf17",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "cloudcontrolapi-fips.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "cloudcontrolapi-fips.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "cloudcontrolapi-fips.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.clouddirectory",
@@ -602,7 +900,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.cloudformation",
@@ -631,7 +932,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.cloudhsmv2",
@@ -660,7 +964,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.cloudtrail",
@@ -689,7 +996,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.codebuild",
@@ -717,7 +1027,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.codecommit",
@@ -746,7 +1059,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.codecommit-fips",
@@ -775,7 +1091,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.codedeploy",
@@ -803,7 +1122,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.codedeploy-commands-secure",
@@ -831,7 +1153,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.codepipeline",
@@ -860,7 +1185,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.codestar-connections.api",
@@ -889,7 +1217,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.comprehend",
@@ -917,7 +1248,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.comprehendmedical",
@@ -946,7 +1280,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.config",
@@ -975,7 +1312,114 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.connect-campaigns",
+    "ServiceId": "vpce-svc-0309df6fe8a3feb9a",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "connect-campaigns.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "connect-campaigns.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "connect-campaigns.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.data-servicediscovery",
+    "ServiceId": "vpce-svc-035b82ee413e15aa3",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "data-servicediscovery.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "data-servicediscovery.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "data-servicediscovery.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "data-servicediscovery.ca-central-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv6",
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.data-servicediscovery-fips",
+    "ServiceId": "vpce-svc-0c4c86e28d873a0e8",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "data-servicediscovery-fips.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "data-servicediscovery-fips.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "data-servicediscovery-fips.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "data-servicediscovery-fips.ca-central-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4",
+      "ipv6"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.databrew",
@@ -1004,7 +1448,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.datasync",
@@ -1033,7 +1480,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.devops-guru",
+    "ServiceId": "vpce-svc-033dbf52ff2f4ec10",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "devops-guru.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "devops-guru.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "devops-guru.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.dms",
@@ -1062,7 +1544,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.drs",
+    "ServiceId": "vpce-svc-0d6def4afdd4dfb51",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "drs.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "drs.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "drs.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ebs",
@@ -1085,13 +1602,19 @@
     "PrivateDnsNames": [
       {
         "PrivateDnsName": "ebs.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "ebs.ca-central-1.api.aws"
       }
     ],
     "VpcEndpointPolicySupported": false,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ec2",
@@ -1120,7 +1643,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ec2messages",
@@ -1149,7 +1675,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ecr.api",
@@ -1178,7 +1707,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ecr.dkr",
@@ -1207,7 +1739,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ecs",
@@ -1236,7 +1771,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ecs-agent",
@@ -1265,7 +1803,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ecs-telemetry",
@@ -1294,7 +1835,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.eks",
+    "ServiceId": "vpce-svc-0e5bb4238ae00d48a",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "eks.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "eks.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "eks.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.elasticache",
@@ -1323,7 +1899,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.elasticbeanstalk",
@@ -1352,7 +1931,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.elasticbeanstalk-health",
@@ -1380,7 +1962,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.elasticfilesystem",
@@ -1409,7 +1994,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.elasticfilesystem-fips",
@@ -1438,7 +2026,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.elasticloadbalancing",
@@ -1467,7 +2058,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.elasticmapreduce",
@@ -1495,7 +2089,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.email-smtp",
@@ -1523,7 +2120,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.emr-containers",
@@ -1552,7 +2152,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.emr-serverless",
+    "ServiceId": "vpce-svc-0c537549693ad4ce0",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "emr-serverless.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "emr-serverless.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "emr-serverless.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.events",
@@ -1581,7 +2216,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.execute-api",
@@ -1610,7 +2248,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.finspace",
@@ -1639,7 +2280,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.finspace-api",
@@ -1668,7 +2312,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.fis",
@@ -1697,7 +2344,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.fsx",
@@ -1726,7 +2376,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.fsx-fips",
@@ -1755,7 +2408,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.git-codecommit",
@@ -1784,7 +2440,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.git-codecommit-fips",
@@ -1813,7 +2472,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.glue",
@@ -1842,7 +2504,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.greengrass",
@@ -1871,7 +2536,108 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.guardduty-data",
+    "ServiceId": "vpce-svc-07fe65ddaf10d9e51",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "guardduty-data.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "guardduty-data.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "guardduty-data.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "PayerResponsibility": "ServiceOwner",
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.guardduty-data-fips",
+    "ServiceId": "vpce-svc-0d0bf5df0bbc00004",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "guardduty-data-fips.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "guardduty-data-fips.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "guardduty-data-fips.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "PayerResponsibility": "ServiceOwner",
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.identitystore",
+    "ServiceId": "vpce-svc-04927905a8f4a2ce2",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "identitystore.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "identitystore.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "identitystore.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.imagebuilder",
@@ -1900,7 +2666,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.inspector2",
@@ -1929,7 +2698,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.iot.data",
@@ -1950,7 +2722,10 @@
     "VpcEndpointPolicySupported": false,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
-    "Tags": []
+    "Tags": [],
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.iot.fleethub.api",
@@ -1979,7 +2754,74 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.iotsitewise.api",
+    "ServiceId": "vpce-svc-09958377b3fa56879",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "api.iotsitewise.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "api.iotsitewise.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "api.iotsitewise.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.iotsitewise.data",
+    "ServiceId": "vpce-svc-0ab191855cb37737e",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "data.iotsitewise.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "data.iotsitewise.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "data.iotsitewise.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.kendra",
@@ -2008,7 +2850,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.kinesis-firehose",
@@ -2037,7 +2882,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.kinesis-streams",
@@ -2060,13 +2908,22 @@
     "PrivateDnsNames": [
       {
         "PrivateDnsName": "kinesis.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.data-kinesis.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.control-kinesis.ca-central-1.amazonaws.com"
       }
     ],
     "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.kms",
@@ -2095,7 +2952,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.kms-fips",
+    "ServiceId": "vpce-svc-0f845c0e34421c884",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "kms-fips.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "kms-fips.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "kms-fips.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.lakeformation",
@@ -2124,7 +3016,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.lambda",
@@ -2156,7 +3051,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.license-manager",
@@ -2184,7 +3082,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.logs",
@@ -2213,7 +3114,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.m2",
+    "ServiceId": "vpce-svc-0418a45087b85a256",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "m2.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "m2.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "m2.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.macie2",
@@ -2241,7 +3177,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.memory-db",
@@ -2270,7 +3209,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.mgn",
@@ -2299,7 +3241,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.models-v2-lex",
@@ -2328,7 +3273,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.monitoring",
@@ -2357,7 +3305,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.nimble",
@@ -2382,11 +3333,267 @@
         "PrivateDnsName": "nimble.ca-central-1.amazonaws.com"
       }
     ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.panorama",
+    "ServiceId": "vpce-svc-01ef0bd3b567c3cbb",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "panorama.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "panorama.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "panorama.ca-central-1.amazonaws.com"
+      }
+    ],
     "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.pca-connector-ad",
+    "ServiceId": "vpce-svc-074c921bcb9374f28",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "pca-connector-ad.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "pca-connector-ad.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "pca-connector-ad.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.personalize",
+    "ServiceId": "vpce-svc-09c9422372f4939b8",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "personalize.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "personalize.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "personalize.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.personalize-events",
+    "ServiceId": "vpce-svc-071898bc38a83a168",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "personalize-events.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "personalize-events.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "personalize-events.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.personalize-runtime",
+    "ServiceId": "vpce-svc-0267150b218e9307a",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "personalize-runtime.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "personalize-runtime.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "personalize-runtime.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.pinpoint",
+    "ServiceId": "vpce-svc-031e24bdc1dc317b1",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "pinpoint.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "pinpoint.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "pinpoint.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.pinpoint-sms-voice-v2",
+    "ServiceId": "vpce-svc-06497676317f47a10",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "sms-voice.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "sms-voice.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "sms-voice.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.polly",
+    "ServiceId": "vpce-svc-07a8261aca36c207d",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "polly.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "polly.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "polly.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.profile",
@@ -2414,7 +3621,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.proton",
+    "ServiceId": "vpce-svc-0709bf3f8768c5c81",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "proton.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "proton.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "proton.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.qldb.session",
@@ -2443,7 +3685,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.rds",
@@ -2475,7 +3720,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.rds-data",
@@ -2504,7 +3752,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.redshift",
@@ -2532,7 +3783,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.redshift-data",
@@ -2561,7 +3815,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.redshift-fips",
@@ -2589,7 +3846,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.refactor-spaces",
+    "ServiceId": "vpce-svc-02115cf02f434bf52",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "refactor-spaces.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "refactor-spaces.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "refactor-spaces.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.rekognition",
@@ -2618,7 +3910,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.rekognition-fips",
@@ -2647,7 +3942,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.rolesanywhere",
+    "ServiceId": "vpce-svc-06d4ac8ff74a24cf4",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "rolesanywhere.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "rolesanywhere.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "rolesanywhere.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.runtime-v2-lex",
@@ -2676,7 +4006,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.s3",
@@ -2695,10 +4028,58 @@
     "BaseEndpointDnsNames": [
       "s3.ca-central-1.vpce.amazonaws.com"
     ],
+    "PrivateDnsName": "*.s3.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "*.s3.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.s3-control.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "*.s3-accesspoint.ca-central-1.amazonaws.com"
+      }
+    ],
     "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
-    "Tags": []
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.s3-outposts",
+    "ServiceId": "vpce-svc-02f20f0b0c98ff22a",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "s3-outposts.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "s3-outposts.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "s3-outposts.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.sagemaker.api",
@@ -2726,7 +4107,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.sagemaker.featurestore-runtime",
@@ -2755,7 +4139,41 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.sagemaker.metrics",
+    "ServiceId": "vpce-svc-0e6ec1ab250e0a4b0",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "metrics.sagemaker.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "metrics.sagemaker.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "metrics.sagemaker.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.sagemaker.runtime",
@@ -2784,7 +4202,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.secretsmanager",
@@ -2813,7 +4234,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.securityhub",
@@ -2842,7 +4266,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.servicecatalog",
@@ -2871,7 +4298,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.servicecatalog-appregistry",
@@ -2900,11 +4330,14 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
-    "ServiceName": "com.amazonaws.ca-central-1.sms",
-    "ServiceId": "vpce-svc-065d057cc92c5bb43",
+    "ServiceName": "com.amazonaws.ca-central-1.servicediscovery",
+    "ServiceId": "vpce-svc-018baa09a5c71acf8",
     "ServiceType": [
       {
         "ServiceType": "Interface"
@@ -2912,23 +4345,67 @@
     ],
     "AvailabilityZones": [
       "ca-central-1a",
-      "ca-central-1b"
+      "ca-central-1b",
+      "ca-central-1d"
     ],
     "Owner": "amazon",
     "BaseEndpointDnsNames": [
-      "sms.ca-central-1.vpce.amazonaws.com"
+      "servicediscovery.ca-central-1.vpce.amazonaws.com"
     ],
-    "PrivateDnsName": "sms.ca-central-1.amazonaws.com",
+    "PrivateDnsName": "servicediscovery.ca-central-1.amazonaws.com",
     "PrivateDnsNames": [
       {
-        "PrivateDnsName": "sms.ca-central-1.amazonaws.com"
+        "PrivateDnsName": "servicediscovery.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "servicediscovery.ca-central-1.api.aws"
       }
     ],
-    "VpcEndpointPolicySupported": false,
+    "VpcEndpointPolicySupported": true,
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4",
+      "ipv6"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.servicediscovery-fips",
+    "ServiceId": "vpce-svc-05313b2bfa1e09399",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "servicediscovery-fips.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "servicediscovery-fips.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "servicediscovery-fips.ca-central-1.amazonaws.com"
+      },
+      {
+        "PrivateDnsName": "servicediscovery-fips.ca-central-1.api.aws"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4",
+      "ipv6"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.sns",
@@ -2957,7 +4434,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.sqs",
@@ -2986,7 +4466,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ssm",
@@ -3015,7 +4498,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ssm-contacts",
@@ -3044,7 +4530,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ssm-incidents",
@@ -3073,7 +4562,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.ssmmessages",
@@ -3102,7 +4594,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.states",
@@ -3131,7 +4626,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.storagegateway",
@@ -3160,7 +4658,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.sts",
@@ -3189,7 +4690,42 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.swf",
+    "ServiceId": "vpce-svc-034554e85ea556de7",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "swf.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "swf.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "swf.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.sync-states",
@@ -3218,7 +4754,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.synthetics",
@@ -3246,7 +4785,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.textract",
@@ -3275,7 +4817,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.transcribe",
@@ -3304,7 +4849,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.transcribestreaming",
@@ -3333,7 +4881,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.transfer",
@@ -3362,7 +4913,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.transfer.server",
@@ -3390,7 +4944,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.translate",
@@ -3419,7 +4976,106 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.verifiedpermissions",
+    "ServiceId": "vpce-svc-0112d7bf21920790c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "verifiedpermissions.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "verifiedpermissions.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "verifiedpermissions.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": false,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.voiceid",
+    "ServiceId": "vpce-svc-08b085b4d6ffbe1c9",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "voiceid.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "voiceid.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "voiceid.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
+  },
+  {
+    "ServiceName": "com.amazonaws.ca-central-1.vpc-lattice",
+    "ServiceId": "vpce-svc-075fbd4194c2f9c2c",
+    "ServiceType": [
+      {
+        "ServiceType": "Interface"
+      }
+    ],
+    "AvailabilityZones": [
+      "ca-central-1a",
+      "ca-central-1b",
+      "ca-central-1d"
+    ],
+    "Owner": "amazon",
+    "BaseEndpointDnsNames": [
+      "vpc-lattice.ca-central-1.vpce.amazonaws.com"
+    ],
+    "PrivateDnsName": "vpc-lattice.ca-central-1.amazonaws.com",
+    "PrivateDnsNames": [
+      {
+        "PrivateDnsName": "vpc-lattice.ca-central-1.amazonaws.com"
+      }
+    ],
+    "VpcEndpointPolicySupported": true,
+    "AcceptanceRequired": false,
+    "ManagesVpcEndpoints": false,
+    "Tags": [],
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.workspaces",
@@ -3447,7 +5103,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.ca-central-1.xray",
@@ -3476,7 +5135,10 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   },
   {
     "ServiceName": "com.amazonaws.s3-global.accesspoint",
@@ -3505,6 +5167,9 @@
     "AcceptanceRequired": false,
     "ManagesVpcEndpoints": false,
     "Tags": [],
-    "PrivateDnsNameVerificationState": "verified"
+    "PrivateDnsNameVerificationState": "verified",
+    "SupportedIpAddressTypes": [
+      "ipv4"
+    ]
   }
 ]

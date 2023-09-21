@@ -196,16 +196,43 @@ You'll also need the 'ou-' that you wish to share with.  That can be found by cl
 
 Alternately you can AWS RAM share with a specific account ID by putting the Accounts ID in the `sharedWith` field.
 
+### VPC Endpoint Configuration
+
+There are hundreds of available VPC Interface Endpoints.  The ones you wish to deploy are kept in a separate configuration file in the `config/` directory.
+
+The interface endpoint configuration refers to a filename prefix in the `endpointConfigFile:` value.  ie:
+
+```yaml
+  endpoints:
+    vpcEndpoints:
+      style: serviceInterfaceEndpoint
+      vpcCidr: 10.2.0.0/19
+      endpointConfigFile: sample-vpc-endpoints
+```
+
+The stanza above will look for a file in the `config/` directory named `sample-vpc-endpoints-{region}.txt` where `{region}` is the regional value in the global section.
+
+The contents of the text file should be one interface endpoint name per line.  ie:
+
+```text
+com.amazonaws.us-east-1.ssmmessages
+com.amazonaws.us-east-1.kms
+```
+
+This will deploy `ssmmessages` and `kms` Interface Endpoints into the shared VPC and make them available via Route53 Private Hosted Zones, and routing via the Transit Gateway.
+
+NOTE: There is a regional component in the interface name, however vpcBuilder ignores this value.  It is over-ridden by the `region:` specified in `global:`.  So you can copy this file to a new region and refer to it without modification.
+
 ### Synth Test
 
 After your configuration is set up the way you wish, execute this command to verify the configuration file contents are correct.
 
-NOTE: Nothing gets deployed by a 'synth' command, but instead it just validates the configuration contents and generates templates in the `cdk.out` folder.
+NOTE: Nothing gets deployed by an 'ls' command, but instead it just validates the configuration contents and generates templates in the `cdk.out` folder.
 
 You will need pass the configuration file as an option on the command line.
 
 ```bash
-cdk synth -c config=[configuration-file]
+cdk ls -c config=[configuration-file]
 ```
 
 (replace `[configuration-file]` with the filename in the 'config' directory you want to synth / test)
@@ -258,6 +285,16 @@ All typescript is formatted using Prettier.
 npx prettier --write **/**/*.ts
 npx prettier --check **/**/*.ts
 ```
+
+### Re-running Interface Endpoint Discovery
+
+Interface endpoints are not uniformly available across all availability zones.  The vpcBuilder verifies interface endpoints in the configuration files are actually present in the availability zones the Interface VPC will use.
+
+It verifies the configuraiton will function by looking at all available VPC Endpoints and their Availability Zones using the contents of the `discovery/` folder.
+
+Discovery may need to be re-generated on occasion as more endpoints are added.  Run `npm run discoverEndpoints` to re-run discovery and re-create the discovery files.
+
+Discovery looks only at 'non-opt-in' regions, and the 'aws' partition.  The `tools/discoverEndpoints/index.ts` file can be modified to expand the criteria assuming your local credentials have access to `DescribeVpcEndpointServices` in those regions / partitions.
 
 .... more to come.
 

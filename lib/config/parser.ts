@@ -4,6 +4,7 @@ import * as configSchema from "./config-schema.json";
 import * as fs from "fs";
 import * as path from "path";
 import * as yaml from "yaml";
+import * as ri from "@aws-cdk/region-info";
 
 const IPCidr = require("ip-cidr");
 
@@ -63,6 +64,7 @@ export class ConfigParser {
     const configRaw = this.configRaw as any;
 
     // ** Global Section Verifications.
+    this.verifyValidRegion();
     this.verifySsmPrefix();
     this.verifyDiscoveryFolder();
     // Confirm unique naming within the config file for all resources
@@ -1127,6 +1129,14 @@ export class ConfigParser {
     if (this.configRaw.global.ssmPrefix.endsWith("/")) {
       throw new Error(
         `Global section - ssmPrefix cannot end with a trailing /`,
+      );
+    }
+  }
+
+  verifyValidRegion() {
+    if (!ri.Fact.regions.includes(this.configRaw.global.region)) {
+      throw new Error(
+        `Global section - region ${this.configRaw.global.region} is not a valid Region name`,
       );
     }
   }
