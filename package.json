@@ -1,6 +1,6 @@
 {
   "name": "aws-vpc-builder-cdk",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "bin": {
     "vpc-builder": "bin/vpc-builder.js"
   },

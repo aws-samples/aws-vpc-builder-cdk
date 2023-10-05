@@ -24,7 +24,7 @@ export class DirectConnectGatewayStack extends BuilderDxGw {
     super(scope, id, props);
 
     this.name = `${props.namePrefix}-dxgw`.toLowerCase();
-
+    this.withTgw = true;
     this.tgw = {
       attrId: this.props.existingTransitGatewayId
     }
