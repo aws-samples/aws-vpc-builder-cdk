@@ -520,7 +520,7 @@ export class ConfigParser {
       ...this.allVpnNames(),
       ...this.allProviderNames(),
       ...this.allDxGwNames(),
-        ...this.allTgwPeerNames()
+      ...this.allTgwPeerNames(),
     ];
   }
 
@@ -732,25 +732,25 @@ export class ConfigParser {
       const configStanza = this.configRaw.tgwPeers[tgwPeerName];
       if (!configStanza.existingTgwId.startsWith("tgw-")) {
         throw new Error(
-            `TgwPeer: ${tgwPeerName}: Existing Transit Gateway 'existingTgwId' must begin with tgw-`,
+          `TgwPeer: ${tgwPeerName}: Existing Transit Gateway 'existingTgwId' must begin with tgw-`,
         );
       }
       if (
-          !configStanza.existingTgwPeerTransitGatewayAttachId.startsWith(
-              "tgw-attach-",
-          )
+        !configStanza.existingTgwPeerTransitGatewayAttachId.startsWith(
+          "tgw-attach-",
+        )
       ) {
         throw new Error(
-            `TgwPeer: ${tgwPeerName}: Transit Gateway Attachment Value 'existingTgwPeerTransitGatewayAttachId' must begin with tgw-attach-`,
+          `TgwPeer: ${tgwPeerName}: Transit Gateway Attachment Value 'existingTgwPeerTransitGatewayAttachId' must begin with tgw-attach-`,
         );
       }
       if (
-          !configStanza.existingTgwPeerTransitGatewayRouteTableId.startsWith(
-              "tgw-rtb-",
-          )
+        !configStanza.existingTgwPeerTransitGatewayRouteTableId.startsWith(
+          "tgw-rtb-",
+        )
       ) {
         throw new Error(
-            `TgwPeer: ${tgwPeerName}: Transit Gateway Route Table Value 'existingTgwPeerTransitGatewayRouteTableId' must begin with tgw-rtb-`,
+          `TgwPeer: ${tgwPeerName}: Transit Gateway Route Table Value 'existingTgwPeerTransitGatewayRouteTableId' must begin with tgw-rtb-`,
         );
       }
     }
@@ -854,8 +854,6 @@ export class ConfigParser {
     });
   }
 
-
-
   // Where present, inspectedBy routes a valid
   // 1) Dynamic route with inspectedBy where routesTo is a VPN is not supported
   // 2) Dynamic routes where routeTo is a Transit Gateway Peer are not supported:
@@ -871,11 +869,10 @@ export class ConfigParser {
     routeTypes.forEach((routeType) => {
       if (configStanza[routeType]) {
         for (const route of configStanza[routeType]) {
-
           if (routeType == "dynamicRoutes") {
             if (this.tgwPeerNameExists(route.routesTo)) {
               throw new Error(
-                  `A Transit Gateway Peer as the 'routesTo' using Dynamic Routing is not supported.  Implement via Static or Default Route instead.`,
+                `A Transit Gateway Peer as the 'routesTo' using Dynamic Routing is not supported.  Implement via Static or Default Route instead.`,
               );
             }
           }
