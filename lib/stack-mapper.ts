@@ -44,7 +44,12 @@ import {
   IDnsRoute53PrivateHostedZonesProps,
   DnsRoute53PrivateHostedZonesClass,
 } from "./dns-route53-private-hosted-zones-stack";
+import {
+  ITransitGatewayPeerProps,
+  TransitGatewayPeerStack
+} from "./transit-gateway-peer-stack";
 import * as cdk from "aws-cdk-lib";
+
 
 export type workloadStackProps = IVpcWorkloadProps;
 export type firewallStackProps = IVpcAwsNetworkFirewallProps;
@@ -54,6 +59,7 @@ export type endpointStackProps =
 export type internetStackProps = IVpcNatEgressProps;
 export type transitGatewayStackProps = ITransitGatewayProps;
 export type directConnectGatewayProps = IDirectConnectGatewayProps;
+export type transitGatewayPeerProps = ITransitGatewayPeerProps;
 
 export interface StackMapperProps {}
 
@@ -139,6 +145,25 @@ export class StackMapper {
       stackClass.createSsmParameters();
       this.tagStack(stackClass);
       return stackClass;
+  }
+
+  async tgwPeerStacks(
+      stackName: string,
+      props: transitGatewayPeerProps
+  ) {
+    const cfnStackName =
+        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+    const stackClass = new TransitGatewayPeerStack(
+        this.app,
+        cfnStackName,
+        props
+    );
+    await stackClass.init();
+    stackClass.saveTgwRouteInformation();
+    stackClass.attachToTGW();
+    stackClass.createSsmParameters();
+    this.tagStack(stackClass);
+    return stackClass;
   }
 
   async providerFirewallStacks(

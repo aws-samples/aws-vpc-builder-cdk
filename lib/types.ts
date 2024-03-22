@@ -23,7 +23,7 @@ export interface ITransitGatewayBaseProps extends cdk.StackProps {
 /*
  * Base for anything transit gateway attached that needs to route
  */
-export type ITgwAttachType = "vpc" | "vpn" | "dxgw";
+export type ITgwAttachType = "vpc" | "vpn" | "dxgw" | "tgwPeer";
 export interface ITransitGatewayAttachImport {
   attrId: string;
 }
@@ -142,6 +142,15 @@ export interface IBuilderVpnProps extends IBuilderBaseProps {
 export interface IBuilderDxGw extends IBuilderBase {
 }
 export interface IBuilderDxGwProps extends IBuilderBaseProps {
+}
+
+/*
+ * Cross Region / Cross region peering is not implemented (PRs welcome!)
+ * however we can support them for existing / manually created peers to be able to route to them
+ */
+export interface IBuilderTgwPeer extends IBuilderBase {
+}
+export interface IBuilderTgwPeerProps extends IBuilderBaseProps {
 }
 
 export interface ICustomResourceParseAwsFirewallEndpoints {

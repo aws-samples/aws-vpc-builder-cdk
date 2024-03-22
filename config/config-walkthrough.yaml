@@ -265,6 +265,23 @@ dxgws:
     # REQUIRED: Existing Transit Gateway Route Table associated with the Direct Connect Gateway
     existingDxGwTransitGatewayRouteTableId: tgw-rtb-12345
 
+# OPTIONAL:  These define EXISTING Transit Gateway Peers attached to an EXISTING Transit Gateway
+# The Transit Gateway must be the same one you define under `transitGateways`.
+# When creating the Transit Gateway using vpcBuilder:
+# 1) Deploy the transit Gateway without modelling the `tgwPeers:`.
+# 2) Attach / Accept the Transit Gateway Peer to the Transit Gateway deployed in 1)
+# 3) Create a Transit Gateway Route Table and associate it with the Transit Gateway Peer
+# 4) Model the `tgwPeers:` section below with the Transit Gateway ID, Route Table ID, and Attachment ID from above
+# 5) Refer to the tgwPeers in `routesTo:` sections (static and default are supported) in your Transit Gateway Below
+tgwPeers:
+  toUsEast2:
+    # REQUIRED: Existing Transit Gateway (see above if you're relying on vpcBuilder to create the TGW)
+    existingTgwId: tgw-12345
+    # REQUIRED: Existing Transit Gateway Attachment Identifier for the Direct Connect Gateway
+    existingTgwPeerTransitGatewayAttachId: tgw-attach-12345
+    # REQUIRED: Existing Transit Gateway Route Table associated with the Direct Connect Gateway
+    existingTgwPeerTransitGatewayRouteTableId: tgw-rtb-12345
+
 # OPTIONAL|DEPENDANT.  If any VPCs refer to, providers are defined, or VPNs are defined, this section is required.
 # this describes the transit gateways to create (NOTE: at-present we only support one per config file).
 transitGateways:
@@ -281,7 +298,7 @@ transitGateways:
     defaultRoutes:
         # REQUIRED: The name of the thing we're routing from.  This can be a VPC, or a Provider name.
       - vpcName: workload
-        # REQUIRED: The name of the thing we're routing toward.  This can be a VPC, VPN, DxGw, or Provider name.
+        # REQUIRED: The name of the thing we're routing toward.  This can be a VPC, VPN, DxGw, TgwPeer, or Provider name.
         routesTo: egressViaNat
         # OPTIONAL: If we're going to inspect the traffic.  This must be the name of a firewall provider.  Routes are adjusted automatically
         # to assure it passes through the inspection VPC before arriving at its routesTo and vice versa.
@@ -294,7 +311,7 @@ transitGateways:
     dynamicRoutes:
         # REQUIRED: The name of the thing we're routing from.  This can be a VPC, or a Provider name.
       - vpcName: workload
-        # REQUIRED: The name of the thing we're routing toward.  This can be a VPC, VPN, DxGw, or Provider name.
+        # REQUIRED: The name of the thing we're routing toward.  This can be a VPC, VPN, DxGw, or Provider name (TgwPeers do not support propagation).
         routesTo: workloadTwo
         # OPTIONAL: The name of the firewall provider to inspect traffic.  Routes adjust automatically.
         # NOTE: inspectedBy is not available for VPN connections with a dynamic route.  Use Static, or Default route instead.
@@ -305,7 +322,7 @@ transitGateways:
     staticRoutes:
         # REQUIRED: The name of the thing we're routing from.  This can be a VPC, or a Provider name.
       - vpcName: workload
-        # REQUIRED: The name of the thing we're routing toward.  This can be a VPC, VPN, DxGw or Provider name.
+        # REQUIRED: The name of the thing we're routing toward.  This can be a VPC, VPN, DxGw, TgwPeer or Provider name.
         routesTo: toGroundDataCenterOne
         # REQUIRED: the CIDR address for the static route entry
         staticCidr: 192.168.168.0/24

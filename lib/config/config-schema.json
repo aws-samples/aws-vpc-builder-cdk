@@ -381,6 +381,32 @@
             ],
             "type": "object"
         },
+        "IConfigTgwPeer": {
+            "additionalProperties": false,
+            "properties": {
+                "existingTgwId": {
+                    "type": "string"
+                },
+                "existingTgwPeerTransitGatewayAttachId": {
+                    "type": "string"
+                },
+                "existingTgwPeerTransitGatewayRouteTableId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "existingTgwId",
+                "existingTgwPeerTransitGatewayAttachId",
+                "existingTgwPeerTransitGatewayRouteTableId"
+            ],
+            "type": "object"
+        },
+        "IConfigTgwPeers": {
+            "additionalProperties": {
+                "$ref": "#/definitions/IConfigTgwPeer"
+            },
+            "type": "object"
+        },
         "IConfigTgwRoutes": {
             "additionalProperties": false,
             "properties": {
@@ -610,6 +636,9 @@
         },
         "providers": {
             "$ref": "#/definitions/IConfigProviders"
+        },
+        "tgwPeers": {
+            "$ref": "#/definitions/IConfigTgwPeers"
         },
         "transitGateways": {
             "$ref": "#/definitions/IConfigTgws"
