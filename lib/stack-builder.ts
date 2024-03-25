@@ -9,7 +9,7 @@ import {
   ITgwPropagateRouteAttachmentName,
   IBuilderVpn,
   ITransitGatewayBase,
-  ITgw,
+  ITgw, IBuilderTgwPeer,
 } from "./types";
 import { ConfigParser } from "./config/parser";
 import {
@@ -45,6 +45,11 @@ export interface namedDxGwStack {
   stack: IBuilderDxGw
 }
 
+export interface namedTgwPeerStack {
+  name: string
+  stack: IBuilderTgwPeer
+}
+
 export type cdkVpcStackTypes =
   | "providerEndpoint"
   | "providerInternet"
@@ -55,6 +60,7 @@ export interface cdkStacks {
   transitGateway: Array<namedTgwStack>;
   vpn: Array<namedVpnStack>;
   dxgw: Array<namedDxGwStack>;
+  tgwPeer: Array<namedTgwPeerStack>;
   providerEndpoint: Array<namedVpcStack>;
   providerInternet: Array<namedVpcStack>;
   providerFirewall: Array<namedVpcStack>;
@@ -69,6 +75,7 @@ export type vpnKeys = "vpn";
 export type workloadKeys = "workload";
 export type transitGatewayKeys = "transitGateway";
 export type dxGwKeys = "dxgw"
+export type tgwPeerKeys = "tgwPeer"
 
 export interface IStackBuilderProps {}
 
@@ -79,6 +86,7 @@ export class StackBuilderClass {
     transitGateway: [],
     vpn: [],
     dxgw: [],
+    tgwPeer: [],
     providerEndpoint: [],
     providerInternet: [],
     providerFirewall: [],
@@ -127,6 +135,11 @@ export class StackBuilderClass {
     // Build our DxGw stack if configured
     if(this.c.dxgws) {
       await this.buildDxGwStacks();
+    }
+
+    // Build our TGW Peer stack if configured
+    if(this.c.tgwPeers) {
+      await this.buildTgwPeerStacks();
     }
 
     // Build all of our provider stacks if they are configured
@@ -368,6 +381,29 @@ export class StackBuilderClass {
               existingTransitGatewayId: configStanza.existingTgwId,
               existingDxGwTransitGatewayAttachId: configStanza.existingDxGwTransitGatewayAttachId,
               existingDxGwTransitGatewayRouteTableId: configStanza.existingDxGwTransitGatewayRouteTableId,
+              tgw: {
+                attrId: configStanza.existingTgwId
+              }
+            }
+        ),
+      });
+    }
+  }
+
+  async buildTgwPeerStacks() {
+    for (const tgwPeerName of Object.keys(this.c.tgwPeers!)) {
+      const configStanza = this.c.tgwPeers![tgwPeerName];
+      this.stacks.tgwPeer.push({
+        name: tgwPeerName,
+        stack: await this.stackMapper.tgwPeerStacks(
+            `${tgwPeerName}-tgwPeer`,
+            {
+              namePrefix: tgwPeerName,
+              globalPrefix: this.c.global.stackNamePrefix,
+              ssmParameterPrefix: this.c.global.ssmPrefix,
+              existingTransitGatewayId: configStanza.existingTgwId,
+              existingPeerTransitGatewayAttachId: configStanza.existingTgwPeerTransitGatewayAttachId,
+              existingPeerTransitGatewayRouteTableId: configStanza.existingTgwPeerTransitGatewayRouteTableId,
               tgw: {
                 attrId: configStanza.existingTgwId
               }
@@ -677,8 +713,8 @@ export class StackBuilderClass {
     return "";
   }
 
-  allNamedStacks(): Array<IBuilderVpc | IBuilderVpn | IBuilderDxGw> {
-    const allStacks: Array<IBuilderVpc | IBuilderVpn | IBuilderDxGw> = [];
+  allNamedStacks(): Array<IBuilderVpc | IBuilderVpn | IBuilderDxGw | IBuilderTgwPeer> {
+    const allStacks: Array<IBuilderVpc | IBuilderVpn | IBuilderDxGw | IBuilderTgwPeer> = [];
     const cdkStackTypes: Array<cdkVpcStackTypes> = [
       "providerEndpoint",
       "providerInternet",
@@ -696,10 +732,13 @@ export class StackBuilderClass {
     this.stacks.dxgw.forEach((namedStack) => {
       allStacks.push(namedStack.stack);
     })
+    this.stacks.tgwPeer.forEach((namedStack) => {
+      allStacks.push(namedStack.stack);
+    })
     return allStacks;
   }
 
-  routableStackByName(stackName: string): IBuilderVpc | IBuilderVpn | IBuilderDxGw {
+  routableStackByName(stackName: string): IBuilderVpc | IBuilderVpn | IBuilderDxGw | IBuilderTgwPeer {
     // Try for a workload stack first, this is the most common
     try {
       return this.workloadStackByName("workload", stackName);
@@ -718,6 +757,10 @@ export class StackBuilderClass {
     // Now try a VPN stack
     try {
       return this.vpnStackByName("vpn", stackName);
+    } catch {}
+    // Now a TGW Peer Stack
+    try {
+      return this.tgwPeerStackByName("tgwPeer", stackName);
     } catch {}
     // Finally a DxGw stack
     try {
@@ -803,6 +846,19 @@ export class StackBuilderClass {
     } else {
       throw new Error(
           `Unable to find provider type ${dxGwKey} name ${dxGwNamedStack}`
+      );
+    }
+  }
+
+  tgwPeerStackByName(tgwPeerKey: tgwPeerKeys, tgwPeerName: string): IBuilderDxGw {
+    const tgwPeerNamedStack = this.stacks[tgwPeerKey].filter(
+        (tgwPeerStack) => tgwPeerStack.name == tgwPeerName
+    )[0];
+    if (tgwPeerNamedStack) {
+      return tgwPeerNamedStack.stack;
+    } else {
+      throw new Error(
+          `Unable to find provider type ${tgwPeerKey} name ${tgwPeerName}`
       );
     }
   }

@@ -94,6 +94,11 @@ export class ConfigParser {
       this.dxGwAssureRequiredArguments();
     }
 
+    //** TgwPeers
+    if (configRaw.hasOwnProperty("tgwPeers")) {
+      this.tgwPeerAssureRequiredArguments();
+    }
+
     // ** Transits
     if (configRaw.hasOwnProperty("transitGateways")) {
       this.verifyOnlyOneTransitGateway();
@@ -515,6 +520,7 @@ export class ConfigParser {
       ...this.allVpnNames(),
       ...this.allProviderNames(),
       ...this.allDxGwNames(),
+      ...this.allTgwPeerNames(),
     ];
   }
 
@@ -568,6 +574,27 @@ export class ConfigParser {
     return dxGwNames;
   }
 
+  tgwPeerNameExists(checkTgwPeerName: string) {
+    if (this.configRaw.tgwPeers) {
+      for (const tgwPeerName of Object.keys(this.configRaw.tgwPeers)) {
+        if (tgwPeerName == checkTgwPeerName) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  allTgwPeerNames(): Array<string> {
+    const tgwPeerNames: Array<string> = [];
+    if (this.configRaw.tgwPeers) {
+      for (const tgwPeerName of Object.keys(this.configRaw.tgwPeers)) {
+        tgwPeerNames.push(tgwPeerName);
+      }
+    }
+    return tgwPeerNames;
+  }
+
   verifyResourceNamesUnique() {
     // Find all our names in our config file.
     const allNames = this.allResourceNames();
@@ -578,7 +605,7 @@ export class ConfigParser {
     uniqueList.forEach((uniqueName) => {
       if (countOccurrences(allNames, uniqueName) > 1) {
         throw new Error(
-          `Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name ${uniqueName} was found`,
+          `Providers, VPNs, VPCs, TGW Peers, and DxGws must be named uniquely within the config file.  Duplicate name ${uniqueName} was found`,
         );
       }
     });
@@ -699,6 +726,36 @@ export class ConfigParser {
     }
   }
 
+  // Transit Gateway peers are currently always imported.  Assure expected format exists for our values.
+  tgwPeerAssureRequiredArguments() {
+    for (const tgwPeerName of Object.keys(this.configRaw.tgwPeers)) {
+      const configStanza = this.configRaw.tgwPeers[tgwPeerName];
+      if (!configStanza.existingTgwId.startsWith("tgw-")) {
+        throw new Error(
+          `TgwPeer: ${tgwPeerName}: Existing Transit Gateway 'existingTgwId' must begin with tgw-`,
+        );
+      }
+      if (
+        !configStanza.existingTgwPeerTransitGatewayAttachId.startsWith(
+          "tgw-attach-",
+        )
+      ) {
+        throw new Error(
+          `TgwPeer: ${tgwPeerName}: Transit Gateway Attachment Value 'existingTgwPeerTransitGatewayAttachId' must begin with tgw-attach-`,
+        );
+      }
+      if (
+        !configStanza.existingTgwPeerTransitGatewayRouteTableId.startsWith(
+          "tgw-rtb-",
+        )
+      ) {
+        throw new Error(
+          `TgwPeer: ${tgwPeerName}: Transit Gateway Route Table Value 'existingTgwPeerTransitGatewayRouteTableId' must begin with tgw-rtb-`,
+        );
+      }
+    }
+  }
+
   dnsVerifyRequiredArguments() {
     for (const dnsConfigName of Object.keys(this.configRaw.dns)) {
       const configStanza = this.configRaw.dns[dnsConfigName];
@@ -798,8 +855,10 @@ export class ConfigParser {
   }
 
   // Where present, inspectedBy routes a valid
-  // Dynamic route inspectedBy where routesTo is a VPN is not supported
-  twgRouteInspectedByValid(configStanza: any) {
+  // 1) Dynamic route with inspectedBy where routesTo is a VPN is not supported
+  // 2) Dynamic routes where routeTo is a Transit Gateway Peer are not supported:
+  //    https://aws.amazon.com/transit-gateway/faqs/
+  twgRouteConfigValid(configStanza: any) {
     const routeTypes = ["staticRoutes", "dynamicRoutes", "defaultRoutes"];
     const routeHuman: Record<string, string> = {
       staticRoutes: "static route",
@@ -810,6 +869,14 @@ export class ConfigParser {
     routeTypes.forEach((routeType) => {
       if (configStanza[routeType]) {
         for (const route of configStanza[routeType]) {
+          if (routeType == "dynamicRoutes") {
+            if (this.tgwPeerNameExists(route.routesTo)) {
+              throw new Error(
+                `A Transit Gateway Peer as the 'routesTo' using Dynamic Routing is not supported.  Implement via Static or Default Route instead.`,
+              );
+            }
+          }
+          // Where present, inspectedBy routes a valid
           if (route.inspectedBy) {
             if (!this.providerNameExists(route.inspectedBy, true)) {
               throw new Error(
@@ -839,7 +906,7 @@ export class ConfigParser {
         // vpcName is a VPC.  routesTo is valid.  For all Route Types
         this.twgRouteNamesValid(configStanza);
         // InspectedBy - if configured for static, dynamic, default points to a valid firewall
-        this.twgRouteInspectedByValid(configStanza);
+        this.twgRouteConfigValid(configStanza);
       }
     }
   }

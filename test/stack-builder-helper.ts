@@ -33,6 +33,7 @@ import * as cdk from "aws-cdk-lib";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as fs from "fs";
 import * as path from "path";
+import {ITransitGatewayPeerProps, TransitGatewayPeerStack} from "../lib/transit-gateway-peer-stack";
 
 const interfaceDiscovery = JSON.parse(
   fs.readFileSync(path.join("discovery", `endpoints-us-east-1.json`), {
@@ -224,7 +225,28 @@ export const newDxGwStack = (
 
   return new DirectConnectGatewayStack(
       app,
-      `${props.namePrefix}VpnToTransitGatewayStack`,
+      `${props.namePrefix}DirectConnectGatewayStack`,
+      commonProps
+  );
+};
+
+export const newTgwPeerStack = (
+    props: Partial<ITransitGatewayPeerProps>,
+    app: cdk.App,
+) => {
+  const commonProps: ITransitGatewayPeerProps = {
+    globalPrefix: "globalPrefix",
+    ssmParameterPrefix: "/ssm/prefix",
+    namePrefix: "Test",
+    existingPeerTransitGatewayAttachId: "tgw-attach-678910",
+    existingPeerTransitGatewayRouteTableId: "tgw-rtb-678910",
+    existingTransitGatewayId: "tgw-678910",
+    ...props,
+  };
+
+  return new TransitGatewayPeerStack(
+      app,
+      `${props.namePrefix}TransitGatewayPeerStack`,
       commonProps
   );
 };

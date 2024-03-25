@@ -5,9 +5,11 @@ import {
 import {
   newAwsNetworkFirewallStack,
   newVpcWorkloadStack,
-    newDxGwStack
+    newDxGwStack,
+  newTgwPeerStack
 } from "./stack-builder-helper";
 import * as cdk from "aws-cdk-lib";
+import {create} from "domain";
 const md5 = require("md5");
 
 const twoWorkloadVpcs = (app: cdk.App) => {
@@ -47,6 +49,16 @@ const createDxGw = (app: cdk.App) => {
   dxStack.createSsmParameters();
 
   return dxStack
+};
+
+// TGW Peer Stack
+const createTgwPeer = (app: cdk.App) => {
+  const tgwPeerStack = newTgwPeerStack({}, app)
+  tgwPeerStack.saveTgwRouteInformation();
+  tgwPeerStack.attachToTGW();
+  tgwPeerStack.createSsmParameters();
+
+  return tgwPeerStack
 };
 
 // Black Hole Routes
@@ -178,6 +190,38 @@ test("TgwStaticDynamic", () => {
   });
 });
 
+// A static route to a TGW Peer
+test("TgwStaticVpcToTgwPeer", () => {
+  const app = new cdk.App();
+  const [firstVpc, secondVpc] = twoWorkloadVpcs(app);
+
+  const tgwPeer = createTgwPeer(app)
+  // Set our relationship between the VPCs
+  firstVpc.tgwStaticRoutes.push({
+    cidrAddress: "10.1.2.1/24",
+    attachTo: tgwPeer,
+  });
+
+  const routeStack = new TransitGatewayRoutesStack(app, "RouteStack", {
+    tgwAttachmentsAndRoutes: [firstVpc, secondVpc, tgwPeer],
+  });
+
+  const template = Template.fromStack(routeStack);
+  const templateJson = template.toJSON();
+
+  // Confirm our static route is in place and pointing to our custom resource for handling
+  const firstRouteId =
+      "StaticRouteCR" + md5(`${firstVpc.name}-10.1.2.1/24-${tgwPeer.name}`);
+  expect(templateJson.Resources).toMatchObject({
+    [firstRouteId]: {
+      Type: "AWS::CloudFormation::CustomResource",
+      Properties: {
+        destinationCidrBlock: "10.1.2.1/24",
+      },
+    },
+  });
+});
+
 // A static route to a DxGw
 test("TgwStaticVpcToDxGw", () => {
   const app = new cdk.App();
@@ -265,6 +309,37 @@ test("TgwDefaultRouteVpcToDxGw", () => {
         destinationCidrBlock: "0.0.0.0/0",
         // this is the attachment identifier of the DxGw
         transitGatewayAttachmentId: "tgw-attach-12345"
+      },
+    },
+  });
+});
+
+// A default route from a VPC to a TGW Peer
+test("TgwDefaultRouteVpcToTgwPeer", () => {
+  const app = new cdk.App();
+  const [firstVpc, secondVpc] = twoWorkloadVpcs(app);
+
+  const tgwPeer = createTgwPeer(app)
+  // Set our relationship between the VPCs
+  firstVpc.tgwDefaultRouteAttachmentName = {
+    attachTo: tgwPeer,
+  };
+
+  const routeStack = new TransitGatewayRoutesStack(app, "RouteStack", {
+    tgwAttachmentsAndRoutes: [firstVpc, secondVpc, tgwPeer],
+  });
+
+  const template = Template.fromStack(routeStack);
+  const templateJson = template.toJSON();
+  // Confirm our default route is in place
+  const firstRouteId = "TGWDefaultCR" + md5(firstVpc.tgwRouteTableSsm.name);
+  expect(templateJson.Resources).toMatchObject({
+    [firstRouteId]: {
+      Type: "AWS::CloudFormation::CustomResource",
+      Properties: {
+        destinationCidrBlock: "0.0.0.0/0",
+        // this is the attachment identifier of the TgwPeer
+        transitGatewayAttachmentId: "tgw-attach-678910"
       },
     },
   });

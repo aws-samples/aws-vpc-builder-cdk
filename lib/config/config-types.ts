@@ -128,6 +128,20 @@ export interface IConfigDxGws {
 }
 
 /*
+ ****** Transit Gateway Peers
+ */
+
+export interface IConfigTgwPeer {
+  existingTgwId: string;
+  existingTgwPeerTransitGatewayAttachId: string;
+  existingTgwPeerTransitGatewayRouteTableId: string;
+}
+
+export interface IConfigTgwPeers {
+  [key: string]: IConfigTgwPeer;
+}
+
+/*
  ****** dns:
  */
 
@@ -230,6 +244,7 @@ export interface IConfig {
   vpcs: IConfigVpcs;
   vpns?: IConfigVpns;
   dxgws?: IConfigDxGws;
+  tgwPeers?: IConfigTgwPeers;
   dns?: IConfigDns;
   transitGateways?: IConfigTgws;
 }

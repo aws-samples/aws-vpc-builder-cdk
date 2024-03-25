@@ -460,7 +460,7 @@ test("DuplicateResourceNamesUsed", () => {
   };
   let config = new ConfigParser({ configContents: configContents });
   expect(() => config.parse()).toThrow(
-      "Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
+      "Providers, VPNs, VPCs, TGW Peers, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
   );
   delete configContents.providers;
   // // dev vpn has same name as the dev vpc
@@ -473,7 +473,7 @@ test("DuplicateResourceNamesUsed", () => {
   };
   config = new ConfigParser({ configContents: configContents });
   expect(() => config.parse()).toThrow(
-      "Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
+      "Providers, VPNs, VPCs, TGW Peers, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
   );
   delete configContents.vpns
   // // dev dxgw has same name as the dev vpc
@@ -486,7 +486,20 @@ test("DuplicateResourceNamesUsed", () => {
   }
   config = new ConfigParser({ configContents: configContents });
   expect(() => config.parse()).toThrow(
-      "Providers, VPNs, VPCs, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
+      "Providers, VPNs, VPCs, TGW Peers, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
+  );
+  delete configContents.dxgws
+  // dev tgwPeer has same name as the dev vpc
+  configContents.tgwPeers = {
+    dev: {
+      existingTgwPeerTransitGatewayAttachId: "tgwattach-1234",
+      existingTgwPeerTransitGatewayRouteTableId: "tgw-rtb-1234",
+      existingTgwId: "tgw-1234",
+    }
+  }
+  config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+      "Providers, VPNs, VPCs, TGW Peers, and DxGws must be named uniquely within the config file.  Duplicate name dev was found"
   );
 });
 
@@ -529,6 +542,13 @@ test("RouteNamingSanity", () => {
       existingDxGwTransitGatewayRouteTableId: "tgw-rtb-1234",
       existingTgwId: "tgw-1234",
     },
+  }
+  configContents.tgwPeers = {
+    "region2": {
+      existingTgwPeerTransitGatewayAttachId: "tgw-attach-678910",
+      existingTgwPeerTransitGatewayRouteTableId: "tgw-rtb-678910",
+      existingTgwId: "tgw-678910",
+    }
   }
   configContents.vpns = {
     devvpn: {
@@ -596,7 +616,15 @@ test("RouteNamingSanity", () => {
           `A ${routeHuman[routeType]} is set to be inspected by testing but no firewall provider with that name was found`
       );
       // inspectBy routesTo VPN with dynamic routes
+      // A Transit Gateway Peer routes to Dynamic
       if(routeType == "dynamicRoutes") {
+        // Transit Gateway peer with dynamic route
+        configContents.transitGateways["testing"][routeType][0].routesTo = "region2"
+        config = new ConfigParser({configContents: configContents});
+        expect(() => config.parse()).toThrow(
+            "A Transit Gateway Peer as the 'routesTo' using Dynamic Routing is not supported.  Implement via Static or Default Route instead."
+        );
+        // inspectBy routesTo VPN with dynamic routes
         configContents.transitGateways["testing"][routeType][0].routesTo = "devvpn"
         configContents.transitGateways["testing"][routeType][0].inspectedBy = "testingFirewall"
         config = new ConfigParser({configContents: configContents});
