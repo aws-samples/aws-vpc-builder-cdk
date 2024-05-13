@@ -109,7 +109,9 @@ export class StackBuilderClass {
       configFilename: configFilename,
       configContents: configContents,
     });
-    this.permissionsBoundary = cdk.PermissionsBoundary.fromName(permissionsBoundary);
+    if (permissionsBoundary) {
+      this.permissionsBoundary = cdk.PermissionsBoundary.fromName(permissionsBoundary);
+    }
     try {
       this.configParser.parse();
       this.c = this.configParser.config;
