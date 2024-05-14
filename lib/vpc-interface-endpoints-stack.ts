@@ -75,8 +75,12 @@ export class VpcInterfaceEndpointsStack extends BuilderVpc {
     props.interfaceList.forEach((endpointName, index) => {
       // Our first three positions are com.amazonaws.{region}.  We'll retain after that and sub our . for a -
       let endpointNameTemp = endpointName.split(".");
-      endpointNameTemp.splice(0, 3);
-      const endpointNameShort = endpointNameTemp.join("-");
+      // endpoint for ecr.dkr was incorrectly named ecr-dkr
+      // "The Vpc Endpoint Service 'com.amazonaws.ap-southeast-2.ecr-dkr' does not exist (Service: Ec2, Status Code: 400"
+      // It is incorrect to assume that all endpoint service names use a dash, e.g. ecr.drk, ecr.api, airflow.api, airflow.env, airflow.ops, sagemaker.api, sagemaker.runtime-fips
+      // There are no fast rules here, take the input from the configuration instead.
+      const removed = endpointNameTemp.splice(0, 3);
+      const endpointNameShort = endpointName.replace(removed.join('.') + '.', '');
 
       const endpoint = new ec2.InterfaceVpcEndpoint(
         this,
@@ -102,7 +106,12 @@ export class VpcInterfaceEndpointsStack extends BuilderVpc {
       }
 
       // Create our private hosted zone where we have a private DNS name is available from our service
-      const endpointPrivateDnsName = this.lookupPrivateDnsName(endpointName);
+      // "Invalid request provided: Creation of hosted zone with a wildcard domain name is not supported. (Service: Route53, Status Code: 400"
+      // For the privateDnsName using 'ecr.dkr' resolved wrongly to '*.dkr.ecr.ap-southeast-2.amazonaws.com.'
+      // The tool discoverEndpoints was ran and did not update the privateDnsName for the endpoint, to remove the *. prefix
+      // which is invalid for DNS names. There are many endpoints with this issue.
+      // Hence removing the *. in front of the dns name here.
+      const endpointPrivateDnsName = this.lookupPrivateDnsName(endpointName)?.replace('*.', '');
       // Confirm this endpoint is available in all the AZs our stack will be deployed to
       if(!this.serviceAvailableInAllAzs(endpointName)) {
         throw new Error(`Endpoint ${endpointName} is not available in all Availability Zones: ${this.availabilityZones.join(',')}`)
