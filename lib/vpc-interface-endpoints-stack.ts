@@ -111,7 +111,7 @@ export class VpcInterfaceEndpointsStack extends BuilderVpc {
       // The tool discoverEndpoints was ran and did not update the privateDnsName for the endpoint, to remove the *. prefix
       // which is invalid for DNS names. There are many endpoints with this issue.
       // Hence removing the *. in front of the dns name here.
-      const endpointPrivateDnsName = this.lookupPrivateDnsName(endpointName).replace('*.', '');
+      const endpointPrivateDnsName = this.lookupPrivateDnsName(endpointName)?.replace('*.', '');
       // Confirm this endpoint is available in all the AZs our stack will be deployed to
       if(!this.serviceAvailableInAllAzs(endpointName)) {
         throw new Error(`Endpoint ${endpointName} is not available in all Availability Zones: ${this.availabilityZones.join(',')}`)
