@@ -8,31 +8,31 @@
     "discoverEndpoints": "tsc tools/discoverEndpoints/index.ts; node tools/discoverEndpoints/index.js",
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
+    "test": "jest --transformIgnorePatterns",
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.14",
     "@types/node": "20.11.30",
-    "aws-cdk": "2.133.0",
-    "esbuild": "^0.20.2",
+    "aws-cdk": "2.178.1",
+    "esbuild": "^0.24.2",
     "jest": "^29.7.0",
-    "ts-jest": "^29.1.2",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "~4.9.5",
-    "typescript-json-schema": "^0.63.0",
-    "prettier": "^3.2.5"
+    "typescript": "~5.6.3",
+    "typescript-json-schema": "^0.65.1"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.133.0",
-    "@aws-cdk/region-info": "2.133.0",
+    "@aws-cdk/region-info": "2.178.1",
+    "@aws-sdk/client-ec2": "^3.744.0",
+    "@types/aws-lambda": "^8.10.147",
+    "ajv": "^8.17.1",
+    "aws-cdk-lib": "2.178.1",
     "constructs": "^10.0.0",
-    "@types/aws-lambda": "^8.10.136",
-    "source-map-support": "^0.5.21",
-    "@aws-sdk/client-ec2": "^3.537.0",
+    "ip-cidr": "^3.1.0",
     "md5": "^2.3.0",
-    "ajv": "^8.12.0",
-    "yaml": "^2.4.1",
-    "ip-cidr": "^3.1.0"
+    "source-map-support": "^0.5.21",
+    "yaml": "^2.7.0"
   }
 }

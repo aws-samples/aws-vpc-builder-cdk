@@ -254,7 +254,7 @@ export class TransitGatewayRoutesStack extends cdk.Stack {
           const transitGatewayAttachmentId = inspectBy.tgwAttachment.attrId;
           const transitGatewayRouteProps: ec2.CfnTransitGatewayRouteProps = {
             transitGatewayAttachmentId: transitGatewayAttachmentId,
-            destinationCidrBlock: destinationCidrBlock.token,
+            destinationCidrBlock: destinationCidrBlock.token!,
             transitGatewayRouteTableId: tgwRouteTableId.token!,
           };
           new cdk.CustomResource(
