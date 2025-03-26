@@ -9,9 +9,10 @@ import { Stack } from "aws-cdk-lib"
     const cdkApp = stackBuilder.stackMapper.app;
 
     const configFile = cdkApp.node.tryGetContext("config");
+    const permissionsBoundary = cdkApp.node.tryGetContext("permissions_boundary");
     // If a configuration file is provided we will use it to build our stacks
     if (configFile) {
-      stackBuilder.configure(configFile);
+      stackBuilder.configure(configFile, undefined, permissionsBoundary);
       await stackBuilder.build();
     } else {
       // When no configuration context provided, we will warn but not fail.  This allows 'cdk bootstrap', 'cdk help'
