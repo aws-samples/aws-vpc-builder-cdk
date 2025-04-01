@@ -28,7 +28,7 @@
     "@aws-sdk/client-ec2": "^3.744.0",
     "@types/aws-lambda": "^8.10.147",
     "ajv": "^8.17.1",
-    "aws-cdk-lib": "2.178.1",
+    "aws-cdk-lib": "2.186.0",
     "constructs": "^10.0.0",
     "ip-cidr": "^3.1.0",
     "md5": "^2.3.0",
